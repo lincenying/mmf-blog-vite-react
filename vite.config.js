@@ -1,0 +1,79 @@
+const path = require('path')
+import reactRefresh from '@vitejs/plugin-react-refresh'
+import { getBabelOutputPlugin } from '@rollup/plugin-babel'
+// import WindiCSS from 'vite-plugin-windicss'
+import styleImport from 'vite-plugin-style-import'
+
+// https://vitejs.dev/config/
+export default ({ mode }) => {
+    const config = {
+        css: {
+            preprocessorOptions: {
+                less: {
+                    javascriptEnabled: true
+                }
+            }
+        },
+        plugins: [
+            getBabelOutputPlugin(),
+            reactRefresh(),
+            styleImport({
+                libs: [
+                    {
+                        libraryName: 'ant-design-vue',
+                        esModule: true,
+                        resolveStyle: name => {
+                            return `ant-design-vue/es/${name}/style/index`
+                        }
+                    },
+                    {
+                        libraryName: 'antd',
+                        esModule: true,
+                        resolveStyle: name => {
+                            return `antd/es/${name}/style/index`
+                        }
+                    },
+                    {
+                        libraryName: 'vant',
+                        esModule: true,
+                        resolveStyle: name => {
+                            return `vant/es/${name}/style/index`
+                        }
+                    },
+                    {
+                        libraryName: 'element-plus',
+                        resolveStyle: name => {
+                            return `element-plus/lib/theme-chalk/${name}.css`
+                        },
+                        resolveComponent: name => {
+                            return `element-plus/lib/${name}`
+                        }
+                    }
+                ]
+            })
+            // WindiCSS({
+            //     safelist: 'prose prose-sm m-auto text-left'
+            // })
+        ],
+        resolve: {
+            alias: {
+                '@': path.join(__dirname, './src')
+            }
+        },
+        server: {
+            port: 7778,
+            proxy: {
+                '/api': {
+                    target: 'http://localhost:4000',
+                    changeOrigin: true,
+                    pathRewrite: {
+                        '^/api': '/api'
+                    }
+                }
+            }
+        }
+    }
+    if (mode === 'development') {
+    }
+    return config
+}
