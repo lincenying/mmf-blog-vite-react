@@ -17,6 +17,8 @@ import Main from './frontend/topics.jsx'
 import userAccount from './frontend/user-account.jsx'
 import userPassword from './frontend/user-password.jsx'
 
+import ReloadPrompt from '@/components/reload-prompt.jsx'
+
 import MatchWhenAuthorized from '@/components/backend-authorized.jsx'
 import BackendMenu from '@/components/backend-menu.jsx'
 import AdminList from './backend/admin-list.jsx'
@@ -79,6 +81,7 @@ const App = props => {
                         </div>
                     </div>
                     <BackendMenu />
+                    <ReloadPrompt />
                 </div>
             </div>
         )
@@ -101,6 +104,7 @@ const App = props => {
                 </CSSTransition>
             </TransitionGroup>
             <Sign />
+            <ReloadPrompt />
         </div>
     )
 }

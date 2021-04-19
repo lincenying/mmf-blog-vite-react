@@ -7,7 +7,7 @@
     "postinstall": "husky install && husky set .husky/pre-commit 'npx lint-staged'",
     "serve": "vite",
     "build": "vite build",
-    "start": "vite preview",
+    "start": "vite preview --port 7778",
     "lint": "eslint './src/**/*.{js,ts,tsx,jsx,md}'",
     "lint:fix": "eslint './src/**/*.{js,ts,tsx,jsx,md}' --fix"
   },
@@ -44,6 +44,7 @@
     "sass": "^1.32.8",
     "tailwindcss": "^2.0.4",
     "vite": "^2.1.4",
+    "vite-plugin-pwa": "^0.7.2",
     "vite-plugin-style-import": "^0.9.2",
     "vite-plugin-windicss": "^0.11.1"
   },
