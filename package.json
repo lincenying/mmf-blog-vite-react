@@ -8,8 +8,8 @@
     "serve": "vite",
     "build": "vite build",
     "start": "vite preview --port 7778",
-    "lint": "eslint './src/**/*.{js,ts,tsx,jsx,md}'",
-    "lint:fix": "eslint './src/**/*.{js,ts,tsx,jsx,md}' --fix"
+    "lint": "eslint './src/**/*.{js,ts,tsx,jsx}'",
+    "lint:fix": "eslint './src/**/*.{js,ts,tsx,jsx}' --fix"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",

@@ -29,4 +29,4 @@ const TopicsItem = props => {
         </div>
     )
 }
-export default TopicsItem
+export default React.memo(TopicsItem)

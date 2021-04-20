@@ -28,4 +28,4 @@ const AsideAccount = () => {
         </div>
     )
 }
-export default AsideAccount
+export default React.memo(AsideAccount)

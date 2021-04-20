@@ -11,4 +11,4 @@ const TopicsItemNone = props => {
         </div>
     )
 }
-export default TopicsItemNone
+export default React.memo(TopicsItemNone)

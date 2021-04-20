@@ -30,4 +30,4 @@ const AsideTrending = props => {
         </div>
     )
 }
-export default AsideTrending
+export default React.memo(AsideTrending)

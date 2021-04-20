@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useMount, useSetState, useUpdateEffect } from 'ahooks'
+import { useMount, useSetState, useUpdateEffect, useWhyDidYouUpdate } from 'ahooks'
 
 import ls from 'store2'
 
@@ -68,6 +68,8 @@ export default function Topics(props) {
             handlefetchPosts()
         }
     }, [props.location.pathname])
+
+    useWhyDidYouUpdate('topicsComponent', { ...props, topics, category, trending })
 
     let html
     if (!topics.pathname) {

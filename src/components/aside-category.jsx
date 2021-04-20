@@ -20,4 +20,4 @@ const AsideCategory = props => {
     return <div className="card card-topics">{html}</div>
 }
 
-export default AsideCategory
+export default React.memo(AsideCategory)

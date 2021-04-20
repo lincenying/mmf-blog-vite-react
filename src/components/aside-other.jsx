@@ -23,4 +23,4 @@ const AsideOther = () => {
         </div>
     )
 }
-export default AsideOther
+export default React.memo(AsideOther)

@@ -13,4 +13,4 @@ const AInput = props => {
         </div>
     )
 }
-export default AInput
+export default React.memo(AInput)
