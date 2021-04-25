@@ -8,10 +8,10 @@ const Sign = props => {
     const signUpHtml = !backend.current ? <SignUp /> : ''
     const signInHtml = !backend.current ? <SignIn /> : ''
     return (
-        <div>
+        <>
             {signUpHtml}
             {signInHtml}
-        </div>
+        </>
     )
 }
 export default withRouter(Sign)

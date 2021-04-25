@@ -27,8 +27,6 @@ const UserModify = props => {
     const prevUser = usePrevious(user)
 
     useUpdateEffect(() => {
-        console.log(prevUser)
-        console.log(user)
         const { username, email } = user.item.data
         if (prevUser.item.data.username !== username) {
             setState({ username, email })

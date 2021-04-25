@@ -1,4 +1,3 @@
-import md5 from 'md5'
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useMount } from 'ahooks'
@@ -7,6 +6,8 @@ import api from '@/api'
 import { getCommentList, commentState } from '@/store/global/comment'
 import { globalState } from '@/store/global'
 import { setMessage } from '@/utils'
+
+import Avatar from '@/components/avatar.jsx'
 
 export default function FrontendComment(props) {
     const pathname = props.location.pathname
@@ -69,15 +70,12 @@ export default function FrontendComment(props) {
         setContent('回复 @' + item.username + ': ')
         document.querySelector('#content').focus()
     }
-    const avatar = (email = 'lincenying@126.com') => {
-        return `https://fdn.geekzu.org/avatar/${md5(email)}?s=256&d=identicon&r=g`
-    }
 
     const html = comment.data.map(item => {
         return (
             <div key={item._id} className="comment-item">
                 <a href={null} className="comment-author-avatar-link">
-                    <img src={avatar(item.userid.email)} alt="" className="avatar-img" />
+                    <Avatar email={item.userid.email} />
                 </a>
                 <div className="comment-content-wrap">
                     <span className="comment-author-wrap">
@@ -112,7 +110,7 @@ export default function FrontendComment(props) {
             <div className="comments">
                 <div className="comment-post-wrap">
                     {' '}
-                    <img src={avatar(global.cookies.useremail)} alt="" className="avatar-img" />
+                    <Avatar email={global.cookies.useremail} />
                     <div className="comment-post-input-wrap base-textarea-wrap">
                         <textarea
                             value={content}

@@ -66,7 +66,7 @@ const UserList = props => {
         )
         return (
             <div key={index} className="list-section">
-                <div className="list-username">{item.username}</div>
+                <div className={'list-username' + (item.is_delete ? ' text-red-500 line-through' : '')}>{item.username}</div>
                 <div className="list-email">{item.email}</div>
                 <div className="list-date">{timeAgo(item.update_date)}</div>
                 <div className="list-action">

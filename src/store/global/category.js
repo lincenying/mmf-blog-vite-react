@@ -25,11 +25,19 @@ export const slice = createSlice({
                 state.lists.splice(index, 1, payload.data)
             }
             state.item = payload.data
+        },
+        ['deleteCategory']: (state, { payload }) => {
+            const obj = state.lists.find(ii => ii._id === payload.id)
+            if (obj) obj.is_delete = 1
+        },
+        ['recoverCategory']: (state, { payload }) => {
+            const obj = state.lists.find(ii => ii._id === payload.id)
+            if (obj) obj.is_delete = 0
         }
     }
 })
 
-export const { receiveCategoryList, receiveCategoryItem, insertCategoryItem, updateCategoryItem } = slice.actions
+export const { receiveCategoryList, receiveCategoryItem, insertCategoryItem, updateCategoryItem, deleteCategory, recoverCategory } = slice.actions
 
 export const getCategoryList = config => {
     return async dispatch => {

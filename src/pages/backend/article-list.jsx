@@ -70,7 +70,7 @@ export default function ArticleList(props) {
             )
         return (
             <div key={index} className="list-section">
-                <div className="list-title">{item.title}</div>
+                <div className={'list-title' + (item.is_delete ? ' text-red-500 line-through' : '')}>{item.title}</div>
                 <div className="list-category">{item.category_name}</div>
                 <div className="list-date">{timeAgo(item.update_date)}</div>
                 <div className="list-action">

@@ -1,10 +1,11 @@
-import md5 from 'md5'
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { Link, NavLink } from 'react-router-dom'
 
 import { globalState, showLoginModal } from '@/store/global'
+
+import Avatar from '@/components/avatar.jsx'
 
 export default function Navigation(props) {
     const global = useSelector(globalState)
@@ -22,20 +23,17 @@ export default function Navigation(props) {
             props.history.push(`/search/${key}`)
         }
     }
-    const avatar = (email = 'lincenying@126.com') => {
-        return `https://fdn.geekzu.org/avatar/${md5(email)}?s=256&d=identicon&r=g`
-    }
 
     const loginText = isLogin ? (
         <span className="nav-me">
             <Link to="/user/account" className="nav-me-link">
-                <img src={avatar(global.cookies.useremail)} className="nav-avatar-img" />
+                <Avatar email={global.cookies.useremail} classNames={'nav-avatar-img'} />
             </Link>
         </span>
     ) : (
         <span className="nav-me">
             <a onClick={handleLogin} href={null} className="nav-me-link">
-                <img src={avatar('')} className="nav-avatar-img" />
+                <Avatar classNames={'nav-avatar-img'} />
             </a>
         </span>
     )
