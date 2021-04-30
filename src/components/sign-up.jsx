@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useSetState } from 'ahooks'
+import { useSetState, useLockFn } from 'ahooks'
 
 import api from '@/api'
 import { setMessage, strlen } from '@/utils'
@@ -22,7 +22,7 @@ export default function SignUp() {
         dispatch(showLoginModal(true))
         dispatch(showRegisterModal(false))
     }
-    const handleRegister = async () => {
+    const handleRegister = useLockFn(async () => {
         if (!state.username || !state.password || !state.email) {
             return setMessage('请将表单填写完整!')
         } else if (strlen(state.username) < 4) {
@@ -37,7 +37,7 @@ export default function SignUp() {
             setMessage({ type: 'success', content: message })
             handleLogin()
         }
-    }
+    })
     const handleClose = () => {
         dispatch(showRegisterModal(false))
     }

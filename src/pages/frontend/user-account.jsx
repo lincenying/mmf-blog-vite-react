@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useMount, useSetState } from 'ahooks'
+import { useMount, useSetState, useLockFn } from 'ahooks'
 
 import api from '@/api'
 import Account from '@/components/aside-account.jsx'
@@ -33,20 +33,20 @@ export default function UserAccount() {
         getUser()
     })
 
-    const handleModify = async () => {
+    const handleModify = useLockFn(async () => {
         const reg = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)$/i
         if (!state.email) {
             return setMessage('请填写邮箱地址!')
         } else if (!reg.test(state.email)) {
             return setMessage('邮箱格式错误!')
         }
-        const { code, data } = await api.post('frontend/user/account', {
+        const { code, message } = await api.post('frontend/user/account', {
             ...state,
             id: global.cookies.userid
         })
 
         if (code === 200) {
-            setMessage({ type: 'success', content: data })
+            setMessage({ type: 'success', content: message })
             dispatch(
                 setCookis({
                     ...global.cookies,
@@ -54,7 +54,7 @@ export default function UserAccount() {
                 })
             )
         }
-    }
+    })
 
     return (
         <div className="main wrap">

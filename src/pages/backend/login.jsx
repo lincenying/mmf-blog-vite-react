@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSetState } from 'ahooks'
+import { useSetState, useLockFn } from 'ahooks'
 
 import api from '@/api'
 import { setMessage } from '@/utils'
@@ -12,7 +12,7 @@ export default function Login(props) {
         password: ''
     })
 
-    const handleLogin = async () => {
+    const handleLogin = useLockFn(async () => {
         if (!state.username || !state.password) {
             return setMessage('请输入用户名和密码!')
         }
@@ -20,7 +20,7 @@ export default function Login(props) {
         if (data && code === 200) {
             props.history.push('/backend/article/list')
         }
-    }
+    })
 
     return (
         <div className="main wrap">

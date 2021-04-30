@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSetState } from 'ahooks'
+import { useSetState, useLockFn } from 'ahooks'
 
 import api from '@/api'
 import Account from '@/components/aside-account.jsx'
@@ -13,22 +13,22 @@ export default function UserPassword() {
         re_password: ''
     })
 
-    const handleModify = async () => {
+    const handleModify = useLockFn(async () => {
         if (!state.password || !state.old_password || !state.re_password) {
             return setMessage('请将表单填写完整!')
         } else if (state.password !== state.re_password) {
             return setMessage('两次密码输入不一致!')
         }
-        const { code, data } = await api.post('frontend/user/password', state)
+        const { code, message } = await api.post('frontend/user/password', state)
         if (code === 200) {
-            setMessage({ type: 'success', content: data })
+            setMessage({ type: 'success', content: message })
             setState({
                 old_password: '',
                 password: '',
                 re_password: ''
             })
         }
-    }
+    })
 
     return (
         <div className="main wrap">

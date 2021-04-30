@@ -10,7 +10,7 @@ export default function About() {
     const dispatch = useDispatch()
 
     useMount(() => {
-        console.log('about useMount:')
+        console.log('404 useMount:')
         if (trending.data.length === 0) {
             dispatch(getTrending())
         }

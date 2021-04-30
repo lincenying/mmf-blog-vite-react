@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useLockFn } from 'ahooks'
 
 import api from '@/api'
 import { setMessage } from '@/utils'
@@ -10,7 +11,7 @@ export default function ItemActions(props) {
     const global = useSelector(globalState)
     const dispatch = useDispatch()
 
-    const handleLike = async () => {
+    const handleLike = useLockFn(async () => {
         const username = global.cookies.user
         const { item } = props
         if (!username) {
@@ -27,7 +28,7 @@ export default function ItemActions(props) {
             dispatch({ type: 'article/updateArticleLikeState', payload: { id: item._id } })
             //dispatch({type: 'updateTrendingLikeState', payload: item._id})
         }
-    }
+    })
     const handleShare = () => {
         const top = window.screen.height / 2 - 250
         const left = window.screen.width / 2 - 300

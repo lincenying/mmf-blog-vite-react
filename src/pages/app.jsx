@@ -7,7 +7,6 @@ import Frontend from './frontend.jsx'
 import Backend from './backend.jsx'
 
 import 'virtual:windi.css'
-import 'toastr/build/toastr.css'
 import '../assets/scss/style.scss'
 import '../assets/css/hljs/googlecode.css'
 import 'nprogress/nprogress.css'

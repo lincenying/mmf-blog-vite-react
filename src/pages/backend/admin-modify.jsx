@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useMount, useSetState, useUpdateEffect, usePrevious } from 'ahooks'
+import { useMount, useSetState, useUpdateEffect, usePrevious, useLockFn } from 'ahooks'
 import { Link } from 'react-router-dom'
 
 import api from '@/api'
@@ -33,7 +33,7 @@ const AdminModify = props => {
         }
     }, [admin])
 
-    const handleModify = async () => {
+    const handleModify = useLockFn(async () => {
         if (!state.username || !state.email) {
             return setMessage('请将表单填写完整!')
         }
@@ -47,7 +47,7 @@ const AdminModify = props => {
             dispatch({ type: 'admin/updateAdminItem', payload: { data } })
             props.history.push('/backend/admin/list')
         }
-    }
+    })
 
     return (
         <div className="settings-main card">

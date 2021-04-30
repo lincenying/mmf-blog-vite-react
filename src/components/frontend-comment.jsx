@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useMount } from 'ahooks'
+import { useMount, useLockFn } from 'ahooks'
 
 import api from '@/api'
 import { getCommentList, commentState } from '@/store/global/comment'
@@ -44,7 +44,7 @@ export default function FrontendComment(props) {
         setLoading(false)
     }
 
-    const handlePostComment = async () => {
+    const handlePostComment = useLockFn(async () => {
         const username = global.cookies.user
         if (!username) {
             setMessage('请先登录!')
@@ -65,7 +65,8 @@ export default function FrontendComment(props) {
                 dispatch({ type: 'comment/insertCommentItem', payload: { item: data } })
             }
         }
-    }
+    })
+
     const handleReply = item => {
         setContent('回复 @' + item.username + ': ')
         document.querySelector('#content').focus()

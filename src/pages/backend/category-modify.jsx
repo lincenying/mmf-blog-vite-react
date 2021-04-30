@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useMount, useSetState, useUpdateEffect, usePrevious } from 'ahooks'
+import { useMount, useSetState, useUpdateEffect, usePrevious, useLockFn } from 'ahooks'
 import { Link } from 'react-router-dom'
 
 import api from '@/api'
@@ -32,7 +32,7 @@ const CategoryModify = props => {
         }
     }, [category])
 
-    const handleModify = async () => {
+    const handleModify = useLockFn(async () => {
         if (!state.cate_name || !state.cate_order) {
             setMessage('请将表单填写完整!')
             return
@@ -47,7 +47,7 @@ const CategoryModify = props => {
             dispatch({ type: 'category/updateCategoryItem', payload: { data } })
             props.history.push('/backend/category/list')
         }
-    }
+    })
     return (
         <div className="settings-main card">
             <div className="settings-main-content">

@@ -1,13 +1,14 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useLockFn } from 'ahooks'
 import api from '@/api'
 
-const handleLogout = async () => {
-    await api.post('frontend/user/logout', {})
-    window.location.href = '/'
-}
-
 const AsideAccount = () => {
+    const handleLogout = useLockFn(async () => {
+        await api.post('frontend/user/logout', {})
+        window.location.href = '/'
+    })
+
     return (
         <div className="card card-me">
             <NavLink to="/user/account" activeClassName="active" className="side-entry">

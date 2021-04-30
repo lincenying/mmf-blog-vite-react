@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'redux-react-hook'
-import { useSetState } from 'ahooks'
+import { useSetState, useLockFn } from 'ahooks'
 
 import api from '@/api'
 import { setMessage } from '@/utils'
@@ -15,7 +15,7 @@ const CategoryModify = props => {
         cate_order: ''
     })
 
-    const handleInsert = async () => {
+    const handleInsert = useLockFn(async () => {
         if (!state.cate_name || !state.cate_order) {
             return setMessage('请将表单填写完整!')
         }
@@ -25,7 +25,7 @@ const CategoryModify = props => {
             dispatch({ type: 'category/insertCategoryItem', payload: { item: data } })
             props.history.push('/backend/category/list')
         }
-    }
+    })
 
     return (
         <div className="settings-main card">

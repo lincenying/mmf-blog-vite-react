@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useSetState, useMount } from 'ahooks'
+import { useSetState, useMount, useLockFn } from 'ahooks'
 
 import api from '@/api'
 import { getCategoryList, categoryState } from '@/store/global/category'
@@ -56,7 +56,7 @@ export default function ArticleInsert(props) {
         })
     })
 
-    const handleInsert = async () => {
+    const handleInsert = useLockFn(async () => {
         // eslint-disable-next-line
         const content = postEditor.getMarkdown()
         if (!state.title || !state.category || !content) {
@@ -73,7 +73,7 @@ export default function ArticleInsert(props) {
             dispatch({ type: 'backendArticle/insert', payload: { item: data } })
             props.history.push('/backend/article/list')
         }
-    }
+    })
 
     const select = category.lists.map(item => {
         return (

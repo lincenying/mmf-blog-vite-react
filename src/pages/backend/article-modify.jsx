@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useSetState, useMount } from 'ahooks'
+import { useSetState, useMount, useLockFn } from 'ahooks'
 import { Link } from 'react-router-dom'
 
 import api from '@/api'
@@ -72,7 +72,7 @@ export default function ArticleInsert(props) {
         }
     })
 
-    const handleModify = async () => {
+    const handleModify = useLockFn(async () => {
         // eslint-disable-next-line
         const content = postEditor.getMarkdown()
         if (!state.title || !state.category || !content) {
@@ -89,7 +89,7 @@ export default function ArticleInsert(props) {
             dispatch({ type: 'backendArticle/update', payload: { data } })
             props.history.push('/backend/article/list')
         }
-    }
+    })
     const handleChange = e => {
         const obj = e.target
         const category_name = obj.options[obj.selectedIndex].text
