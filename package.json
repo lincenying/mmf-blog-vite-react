@@ -49,7 +49,7 @@
     "vite-plugin-windicss": "^1.0.4"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,jsx,md}": [
+    "*.{js,ts,tsx,jsx}": [
       "eslint --fix"
     ]
   }
