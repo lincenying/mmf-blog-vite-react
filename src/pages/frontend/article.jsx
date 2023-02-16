@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useMount } from 'ahooks'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 
 import Category from '@/components/aside-category.jsx'
 import Other from '@/components/aside-other.jsx'
@@ -18,8 +18,11 @@ const addTarget = content => {
     return content.replace(/<a(.*?)href=/g, '<a$1target="_blank" href=')
 }
 
-export default function Article(props) {
-    const pathname = props.location.pathname
+export default function Article() {
+    const location = useLocation()
+    const params = useParams()
+    const { id } = params
+    const pathname = location.pathname
 
     const article = useSelector(articleState)
     const category = useSelector(categoryState)
@@ -27,19 +30,13 @@ export default function Article(props) {
     const dispatch = useDispatch()
 
     const handlefetchArticle = async () => {
-        const {
-            match: {
-                params: { id }
-            },
-            location: { pathname }
-        } = props
         await dispatch(getArticleItem({ id, pathname }))
     }
 
     useMount(() => {
         console.log('article useMount:')
         window.scrollTo(0, 0)
-        if (article.pathname !== props.location.pathname) handlefetchArticle()
+        if (article.pathname !== location.pathname) handlefetchArticle()
         if (category.lists.length === 0) dispatch(getCategoryList())
         if (trending.data.length === 0) dispatch(getTrending())
     })
@@ -80,7 +77,7 @@ export default function Article(props) {
                     </div>
                     <Actions item={article.data} />
                 </div>
-                <Comment {...props} article={article} category={category} trending={trending} />
+                <Comment article={article} category={category} trending={trending} />
             </div>
         )
     } else {

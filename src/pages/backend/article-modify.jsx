@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSetState, useMount, useLockFn } from 'ahooks'
-import { Link } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 
 import api from '@/api'
 import { getCategoryList, categoryState } from '@/store/global/category'
@@ -9,7 +9,9 @@ import { setMessage } from '@/utils'
 
 import AInput from '@/components/_input.jsx'
 
-export default function ArticleInsert(props) {
+export default function ArticleInsert() {
+    const params = useParams()
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const category = useSelector(categoryState)
 
@@ -22,7 +24,7 @@ export default function ArticleInsert(props) {
     })
 
     const getArticleData = async () => {
-        const { code, data } = await api.get('backend/article/item', { id: props.match.params.id })
+        const { code, data } = await api.get('backend/article/item', { id: params.id })
         if (code === 200) {
             setState({
                 title: data.title,
@@ -82,12 +84,12 @@ export default function ArticleInsert(props) {
         const { code, data, message } = await api.post('backend/article/modify', {
             ...state,
             content,
-            id: props.match.params.id
+            id: params.id
         })
         if (code === 200) {
             setMessage({ type: 'success', content: message })
             dispatch({ type: 'backendArticle/update', payload: { data } })
-            props.history.push('/backend/article/list')
+            navigate('/backend/article/list')
         }
     })
     const handleChange = e => {

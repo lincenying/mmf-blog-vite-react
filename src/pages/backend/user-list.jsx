@@ -1,13 +1,15 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useMount, useSetState } from 'ahooks'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import api from '@/api'
 import { getUserList, backendUserState } from '@/store/backend/user'
 import { setMessage, timeAgo } from '@/utils'
 
-const UserList = props => {
+const UserList = () => {
+    const location = useLocation()
+    const pathname = location.pathname
     const dispatch = useDispatch()
     const user = useSelector(backendUserState)
 
@@ -16,9 +18,6 @@ const UserList = props => {
     })
 
     const getUserListFunc = async page => {
-        const {
-            location: { pathname }
-        } = props
         page = page || user.lists.page
         await dispatch(getUserList({ page, pathname }))
     }

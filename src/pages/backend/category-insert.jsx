@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'redux-react-hook'
 import { useSetState, useLockFn } from 'ahooks'
 
@@ -7,7 +8,8 @@ import { setMessage } from '@/utils'
 
 import AInput from '@/components/_input.jsx'
 
-const CategoryModify = props => {
+const CategoryModify = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
 
     const [state, setState] = useSetState({
@@ -23,7 +25,7 @@ const CategoryModify = props => {
         if (code === 200) {
             setMessage({ type: 'success', content: message })
             dispatch({ type: 'category/insertCategoryItem', payload: { item: data } })
-            props.history.push('/backend/category/list')
+            navigate('/backend/category/list')
         }
     })
 

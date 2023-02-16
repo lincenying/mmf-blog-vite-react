@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useMount, useLockFn } from 'ahooks'
 
@@ -9,8 +10,12 @@ import { setMessage } from '@/utils'
 
 import Avatar from '@/components/avatar.jsx'
 
-export default function FrontendComment(props) {
-    const pathname = props.location.pathname
+export default function FrontendComment() {
+    const location = useLocation()
+    const params = useParams()
+    const { id } = params
+
+    const pathname = location.pathname
 
     const global = useSelector(globalState)
     const comment = useSelector(commentState)
@@ -21,12 +26,6 @@ export default function FrontendComment(props) {
 
     const handleGetComment = async page => {
         if (loading) return
-        const {
-            location: { pathname },
-            match: {
-                params: { id }
-            }
-        } = props
         page = page || comment.page
         await dispatch(getCommentList({ id, pathname, limit: 10, page }))
         setLoading(false)
@@ -54,7 +53,7 @@ export default function FrontendComment(props) {
         } else {
             const { code, data } = await api.post('frontend/comment/insert', {
                 content,
-                id: props.match.params.id
+                id
             })
             if (code === 200) {
                 setContent('')

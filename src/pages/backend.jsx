@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { globalState } from '@/store/global'
@@ -22,28 +22,65 @@ import Login from './backend/login.jsx'
 import UserList from './backend/user-list.jsx'
 import UserModify from './backend/user-modify.jsx'
 
-const Frontend = props => {
+const Frontend = () => {
+    const location = useLocation()
     const global = useSelector(globalState)
     return (
         <div className="backend">
-            <FrontendNavigation location={props.location} history={props.history} />
+            <FrontendNavigation />
             <div className="main wrap">
                 <div className="main-left">
                     <div className="home-feeds cards-wrap">
-                        <Switch key={props.location.pathname} location={props.location}>
-                            <Route name="backend" path="/backend" component={Login} exact />
-                            <Authorized name="admin_list" path="/backend/admin/list" global={global} component={AdminList} />
-                            <Authorized name="admin_modify" path="/backend/admin/modify/:id" global={global} component={AdminModify} />
-                            <Authorized name="article_insert" path="/backend/article/list" global={global} component={ArticleList} />
-                            <Authorized name="article_insert" path="/backend/article/insert" global={global} component={ArticleInsert} />
-                            <Authorized name="article_modify" path="/backend/article/modify/:id" global={global} component={ArticleModify} />
-                            <Authorized name="article_comment" path="/backend/article/comment/:id" global={global} component={Comment} />
-                            <Authorized name="category_list" path="/backend/category/list" global={global} component={CategoryList} />
-                            <Authorized name="category_insert" path="/backend/category/insert" global={global} component={CategoryInsert} />
-                            <Authorized name="category_modify" path="/backend/category/modify/:id" global={global} component={CategoryModify} />
-                            <Authorized name="user_list" path="/backend/user/list" global={global} component={UserList} />
-                            <Authorized name="user_modify" path="/backend/user/modify/:id" global={global} component={UserModify} />
-                        </Switch>
+                        <Routes key={location.pathname}>
+                            <Route name="backend" path="/backend" element={Login} exact="true" />
+                            <Route name="admin_list" path="/backend/admin/list" element={<Authorized global={global} component={AdminList} />} />
+                            <Route
+                                name="admin_modify"
+                                path="/backend/admin/modify/:id"
+                                element={<Authorized global={global} component={AdminModify} />}
+                            />
+                            <Route
+                                name="article_list"
+                                path="/backend/article/list"
+                                element={<Authorized global={global} component={ArticleList} />}
+                            />
+                            <Route
+                                name="article_insert"
+                                path="/backend/article/insert"
+                                element={<Authorized global={global} component={ArticleInsert} />}
+                            />
+                            <Route
+                                name="article_modify"
+                                path="/backend/article/modify/:id"
+                                element={<Authorized global={global} component={ArticleModify} />}
+                            />
+                            <Route
+                                name="article_comment"
+                                path="/backend/article/comment/:id"
+                                element={<Authorized global={global} component={Comment} />}
+                            />
+                            <Route
+                                name="category_list"
+                                path="/backend/category/list"
+                                element={<Authorized global={global} component={CategoryList} />}
+                            />
+                            <Route
+                                name="category_insert"
+                                path="/backend/category/insert"
+                                element={<Authorized global={global} component={CategoryInsert} />}
+                            />
+                            <Route
+                                name="category_modify"
+                                path="/backend/category/modify/:id"
+                                element={<Authorized global={global} component={CategoryModify} />}
+                            />
+                            <Route name="user_list" path="/backend/user/list" element={<Authorized global={global} component={UserList} />} />
+                            <Route
+                                name="user_modify"
+                                path="/backend/user/modify/:id"
+                                element={<Authorized global={global} component={UserModify} />}
+                            />
+                        </Routes>
                     </div>
                 </div>
                 <BackendMenu />
@@ -53,4 +90,4 @@ const Frontend = props => {
     )
 }
 
-export default withRouter(Frontend)
+export default Frontend

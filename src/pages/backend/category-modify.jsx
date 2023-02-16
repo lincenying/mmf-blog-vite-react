@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useMount, useSetState, useUpdateEffect, usePrevious, useLockFn } from 'ahooks'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import api from '@/api'
 import { getCategoryItem, categoryState } from '@/store/global/category'
@@ -9,7 +9,9 @@ import { setMessage } from '@/utils'
 
 import AInput from '@/components/_input.jsx'
 
-const CategoryModify = props => {
+const CategoryModify = () => {
+    const navigate = useNavigate()
+    const params = useParams()
     const dispatch = useDispatch()
     const category = useSelector(categoryState)
 
@@ -20,7 +22,7 @@ const CategoryModify = props => {
 
     useMount(() => {
         console.log('category-modify useMount:')
-        dispatch(getCategoryItem({ id: props.match.params.id }))
+        dispatch(getCategoryItem({ id: params.id }))
     })
 
     const prevCategory = usePrevious(category)
@@ -39,13 +41,13 @@ const CategoryModify = props => {
         }
         const item = {
             ...state,
-            id: props.match.params.id
+            id: params.id
         }
         const { code, data, message } = await api.post('backend/category/modify', item)
         if (code === 200) {
             setMessage({ type: 'success', content: message })
             dispatch({ type: 'category/updateCategoryItem', payload: { data } })
-            props.history.push('/backend/category/list')
+            navigate('/backend/category/list')
         }
     })
     return (

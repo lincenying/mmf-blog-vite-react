@@ -1,13 +1,15 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useMount, useSetState } from 'ahooks'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import api from '@/api'
 import { getAdminList, adminState } from '@/store/backend/admin'
 import { setMessage, timeAgo } from '@/utils'
 
-export default function AdminList(props) {
+export default function AdminList() {
+    const location = useLocation()
+    const pathname = location.pathname
     const dispatch = useDispatch()
     const admin = useSelector(adminState)
 
@@ -16,9 +18,6 @@ export default function AdminList(props) {
     })
 
     const getAdminListFunc = async page => {
-        const {
-            location: { pathname }
-        } = props
         const lists = admin.lists
         page = page || lists.page
         await dispatch(getAdminList({ page, pathname }))

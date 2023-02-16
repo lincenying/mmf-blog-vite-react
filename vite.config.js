@@ -2,9 +2,8 @@ const path = require('path')
 
 import { loadEnv } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
-import { getBabelOutputPlugin } from '@rollup/plugin-babel'
 import WindiCSS from 'vite-plugin-windicss'
-import styleImport from 'vite-plugin-style-import'
+import { createStyleImportPlugin, AndDesignVueResolve } from 'vite-plugin-style-import'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
@@ -32,38 +31,16 @@ export default ({ mode }) => {
             }
         },
         plugins: [
-            getBabelOutputPlugin(),
             reactRefresh(),
-            styleImport({
+            createStyleImportPlugin({
+                resolves: [AndDesignVueResolve()],
                 libs: [
+                    // If you don’t have the resolve you need, you can write it directly in the lib, or you can provide us with PR
                     {
                         libraryName: 'ant-design-vue',
                         esModule: true,
                         resolveStyle: name => {
                             return `ant-design-vue/es/${name}/style/index`
-                        }
-                    },
-                    {
-                        libraryName: 'antd',
-                        esModule: true,
-                        resolveStyle: name => {
-                            return `antd/es/${name}/style/index`
-                        }
-                    },
-                    {
-                        libraryName: 'vant',
-                        esModule: true,
-                        resolveStyle: name => {
-                            return `vant/es/${name}/style/index`
-                        }
-                    },
-                    {
-                        libraryName: 'element-plus',
-                        resolveStyle: name => {
-                            return `element-plus/lib/theme-chalk/${name}.css`
-                        },
-                        resolveComponent: name => {
-                            return `element-plus/lib/${name}`
                         }
                     }
                 ]

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useSetState, useMount, useLockFn } from 'ahooks'
 
@@ -8,7 +9,8 @@ import { setMessage } from '@/utils'
 
 import AInput from '@/components/_input.jsx'
 
-export default function ArticleInsert(props) {
+export default function ArticleInsert() {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const category = useSelector(categoryState)
 
@@ -71,7 +73,7 @@ export default function ArticleInsert(props) {
         if (code === 200) {
             setMessage({ type: 'success', content: message })
             dispatch({ type: 'backendArticle/insert', payload: { item: data } })
-            props.history.push('/backend/article/list')
+            navigate('/backend/article/list')
         }
     })
 

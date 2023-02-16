@@ -1,13 +1,15 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useMount, useSetState } from 'ahooks'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import api from '@/api'
 import { getArticleList, backendArticleState } from '@/store/backend/article'
 import { setMessage, timeAgo } from '@/utils'
 
-export default function ArticleList(props) {
+export default function ArticleList() {
+    const location = useLocation()
+    const { pathname } = location
     const dispatch = useDispatch()
     const topics = useSelector(backendArticleState)
 
@@ -16,9 +18,6 @@ export default function ArticleList(props) {
     })
 
     const handleGetArticleList = async page => {
-        const {
-            location: { pathname }
-        } = props
         page = page || topics.page
         await dispatch(getArticleList({ page, pathname }))
     }

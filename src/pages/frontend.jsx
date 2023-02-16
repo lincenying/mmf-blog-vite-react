@@ -1,6 +1,7 @@
 import React from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
+
 import { useSelector } from 'react-redux'
 
 import { globalState } from '@/store/global'
@@ -18,24 +19,33 @@ import Main from './frontend/topics.jsx'
 import userAccount from './frontend/user-account.jsx'
 import userPassword from './frontend/user-password.jsx'
 
-const Frontend = props => {
+const Frontend = () => {
     const global = useSelector(globalState)
+    const location = useLocation()
     return (
         <div className="frontend">
-            <FrontendNavigation location={props.location} history={props.history} />
+            <FrontendNavigation />
             <TransitionGroup appear className="main-wrap">
-                <CSSTransition classNames="slide-left" in={false} key={props.location.key} timeout={{ appear: 300, enter: 300, exit: 300 }}>
-                    <Switch key={props.location.pathname} location={props.location}>
-                        <Route name="index" path="/" component={Main} exact />
-                        <Route name="trending" path="/trending/:by" component={Main} />
-                        <Route name="category" path="/category/:id" component={Main} />
-                        <Route name="search" path="/search/:key" component={Main} />
-                        <Route name="article" path="/article/:id" component={Article} />
-                        <Route name="about" path="/about" component={About} />
-                        <Authorized name="account" path="/user/account" global={global} component={userAccount} />
-                        <Authorized name="password" path="/user/password" global={global} component={userPassword} />
-                        <Route path="*" component={NotFound} />
-                    </Switch>
+                <CSSTransition classNames="slide-left" in={false} key={location.key} timeout={{ appear: 300, enter: 300, exit: 300 }}>
+                    <Routes>
+                        <Route name="index" path="/" element={<Main />} />
+                        <Route name="trending" path="/trending/:by" element={<Main />} />
+                        <Route name="category" path="/category/:id" element={<Main />} />
+                        <Route name="search" path="/search/:key" element={<Main />} />
+                        <Route name="article" path="/article/:id" element={<Article />} />
+                        <Route name="about" path="/about" element={<About />} />
+                        <Route
+                            name="account"
+                            path="/user/account"
+                            element={<Authorized name="account" path="/user/account" global={global} component={userAccount} />}
+                        />
+                        <Route
+                            name="password"
+                            path="/user/password"
+                            element={<Authorized name="password" path="/user/password" global={global} component={userPassword} />}
+                        />
+                        <Route path="*" element={NotFound} />
+                    </Routes>
                 </CSSTransition>
             </TransitionGroup>
             <Sign />
@@ -44,4 +54,4 @@ const Frontend = props => {
     )
 }
 
-export default withRouter(Frontend)
+export default Frontend

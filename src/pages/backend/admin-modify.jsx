@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useMount, useSetState, useUpdateEffect, usePrevious, useLockFn } from 'ahooks'
-import { Link } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 
 import api from '@/api'
 import { getAdminItem, adminState } from '@/store/backend/admin'
@@ -9,7 +9,9 @@ import { setMessage } from '@/utils'
 
 import AInput from '@/components/_input.jsx'
 
-const AdminModify = props => {
+const AdminModify = () => {
+    const params = useParams()
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const admin = useSelector(adminState)
 
@@ -21,7 +23,7 @@ const AdminModify = props => {
 
     useMount(() => {
         console.log('admin-modify useMount:')
-        dispatch(getAdminItem({ id: props.match.params.id }))
+        dispatch(getAdminItem({ id: params.id }))
     })
 
     const prevAdmin = usePrevious(admin)
@@ -39,13 +41,13 @@ const AdminModify = props => {
         }
         const item = {
             ...state,
-            id: props.match.params.id
+            id: params.id
         }
         const { code, data, message } = await api.post('backend/admin/modify', item)
         if (code === 200) {
             setMessage({ type: 'success', content: message })
             dispatch({ type: 'admin/updateAdminItem', payload: { data } })
-            props.history.push('/backend/admin/list')
+            navigate('/backend/admin/list')
         }
     })
 

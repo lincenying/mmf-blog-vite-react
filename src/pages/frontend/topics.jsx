@@ -1,13 +1,13 @@
 import React, { useRef } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { useMount, useSetState, useUpdateEffect, useWhyDidYouUpdate } from 'ahooks'
+import { useMount, useUnmount, useSetState, useUpdateEffect, useWhyDidYouUpdate } from 'ahooks'
 
 import ls from 'store2'
 
 import Category from '@/components/aside-category.jsx'
 import Other from '@/components/aside-other.jsx'
 import Trending from '@/components/aside-trending.jsx'
-import PromptWrapper from '@/components/prompt-wrapper.jsx'
 import TopicsItemNone from '@/components/topics-item-none.jsx'
 import TopicsItem from '@/components/topics-item.jsx'
 
@@ -15,8 +15,10 @@ import { getTopics, topicsState } from '@/store/frontend/topics'
 import { getTrending, trendingState } from '@/store/frontend/trending'
 import { getCategoryList, categoryState } from '@/store/global/category'
 
-export default function Topics(props) {
-    const pathname = props.location.pathname
+export default function Topics() {
+    const location = useLocation()
+    const { id, key, by } = useParams()
+    const pathname = location.pathname
 
     const topics = useSelector(topicsState)
     const category = useSelector(categoryState)
@@ -30,12 +32,6 @@ export default function Topics(props) {
     })
 
     const handlefetchPosts = async (page = 1) => {
-        const {
-            location: { pathname },
-            match: {
-                params: { id, key, by }
-            }
-        } = props
         await dispatch(getTopics({ id, key, by, pathname, page }))
     }
 
@@ -46,6 +42,11 @@ export default function Topics(props) {
         await handlefetchPosts(page + 1)
         setState({ loading: false })
     }
+
+    useUnmount(() => {
+        const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
+        console.log(scrollTop)
+    })
 
     useMount(() => {
         console.log('topics useMount:')
@@ -67,9 +68,9 @@ export default function Topics(props) {
         if (topics.pathname !== firstPathname.current) {
             handlefetchPosts()
         }
-    }, [props.location.pathname])
+    }, [location.pathname])
 
-    useWhyDidYouUpdate('topicsComponent', { ...props, topics, category, trending })
+    useWhyDidYouUpdate('topicsComponent', { location, topics, category, trending })
 
     let html
     if (!topics.pathname) {
@@ -103,14 +104,6 @@ export default function Topics(props) {
     }
     return (
         <div className="main wrap">
-            <PromptWrapper
-                message={() => {
-                    const path = firstPathname.current
-                    const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
-                    ls.set(path, scrollTop)
-                    return true
-                }}
-            />
             <div className="main-left">{html}</div>
             <div className="main-right">
                 <Category payload={category.lists} />

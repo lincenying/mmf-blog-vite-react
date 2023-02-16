@@ -6,8 +6,12 @@ import { useMount, useSetState } from 'ahooks'
 import api from '@/api'
 import { getCommentList, commentState } from '@/store/global/comment'
 import { setMessage, timeAgo } from '@/utils'
+import { useLocation, useParams } from 'react-router-dom'
 
-const Comment = props => {
+const Comment = () => {
+    const location = useLocation()
+    const params = useParams()
+    const { id } = params
     const dispatch = useDispatch()
     const comment = useSelector(commentState)
 
@@ -15,15 +19,9 @@ const Comment = props => {
         loading: false
     })
 
-    const pathname = props.location.pathname
+    const pathname = location.pathname
 
     const handleGetComment = async page => {
-        const {
-            location: { pathname },
-            match: {
-                params: { id }
-            }
-        } = props
         page = page || comment.page
         await dispatch(getCommentList({ id, page, pathname }))
     }

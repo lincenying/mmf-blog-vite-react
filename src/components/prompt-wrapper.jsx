@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Prompt } from 'react-router-dom'
+import Prompt from './prompt.jsx'
 import { useMount } from 'ahooks'
 
 export default function PromptWrapper(props) {

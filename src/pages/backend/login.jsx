@@ -5,8 +5,10 @@ import api from '@/api'
 import { setMessage } from '@/utils'
 
 import AInput from '@/components/_input.jsx'
+import { useNavigate } from 'react-router-dom'
 
-export default function Login(props) {
+export default function Login() {
+    const navigate = useNavigate()
     const [state, setState] = useSetState({
         username: '',
         password: ''
@@ -18,7 +20,7 @@ export default function Login(props) {
         }
         const { code, data } = await api.post('backend/admin/login', state)
         if (data && code === 200) {
-            props.history.push('/backend/article/list')
+            navigate('/backend/article/list')
         }
     })
 

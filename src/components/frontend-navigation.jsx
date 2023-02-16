@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 import { globalState, showLoginModal } from '@/store/global'
 
 import Avatar from '@/components/avatar.jsx'
 
-export default function Navigation(props) {
+export default function Navigation() {
+    const navigate = useNavigate()
     const global = useSelector(globalState)
     const dispatch = useDispatch()
 
@@ -20,7 +21,7 @@ export default function Navigation(props) {
     const handleSearch = e => {
         var key = e.target.value
         if (e.keyCode === 13 && key !== '') {
-            props.history.push(`/search/${key}`)
+            navigate(`/search/${key}`)
         }
     }
 
@@ -47,15 +48,15 @@ export default function Navigation(props) {
                         <span className="hidden">M.M.F 小屋</span>
                     </Link>
                     <div className="main-nav">
-                        <NavLink activeClassName="current" to="/" exact className="nav-link">
+                        <NavLink activeclassname="current" to="/" exact="true" className="nav-link">
                             <i className="icon icon-nav-home" />
                             <span className="text">首页</span>
                         </NavLink>
-                        <NavLink activeClassName="current" to="/trending/visit" className="nav-link">
+                        <NavLink activeclassname="current" to="/trending/visit" className="nav-link">
                             <i className="icon icon-nav-explore" />
                             <span className="text">热门</span>
                         </NavLink>
-                        <NavLink activeClassName="current" to="/about" className="nav-link">
+                        <NavLink activeclassname="current" to="/about" className="nav-link">
                             <i className="icon icon-nav-features" />
                             <span className="text">关于</span>
                         </NavLink>

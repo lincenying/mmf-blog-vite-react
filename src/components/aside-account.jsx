@@ -11,12 +11,12 @@ const AsideAccount = () => {
 
     return (
         <div className="card card-me">
-            <NavLink to="/user/account" activeClassName="active" className="side-entry">
+            <NavLink to="/user/account" activeclassname="active" className="side-entry">
                 <i className="icon icon-arrow-right" />
                 <i className="icon icon-menu-articles" />
                 帐号
             </NavLink>
-            <NavLink to="/user/password" activeClassName="active" className="side-entry">
+            <NavLink to="/user/password" activeclassname="active" className="side-entry">
                 <i className="icon icon-arrow-right" />
                 <i className="icon icon-menu-articles" />
                 密码

@@ -1,18 +1,7 @@
 import React from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 const FrontendAuthorized = ({ component: Component, ...rest }) => {
-    return (
-        <Route
-            {...rest}
-            render={renderProps => {
-                return rest.global.cookies.user ? (
-                    <Component {...renderProps} global={rest.global} />
-                ) : (
-                    <Redirect to={{ pathname: '/', state: { from: renderProps.location } }} />
-                )
-            }}
-        />
-    )
+    return rest.global.cookies.user ? <Component {...rest} /> : <Navigate to={{ pathname: '/', state: { from: rest.location } }} replace />
 }
 export default FrontendAuthorized
