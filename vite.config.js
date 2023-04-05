@@ -15,7 +15,7 @@ export default ({ mode }) => {
             port: 17778,
             proxy: {
                 '/api': {
-                    target: 'http://localhost:4000',
+                    target: 'https://api.mmxiaowu.com',
                     changeOrigin: true,
                     pathRewrite: {
                         '^/api': '/api'

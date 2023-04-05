@@ -22,7 +22,7 @@ import Login from './backend/login.jsx'
 import UserList from './backend/user-list.jsx'
 import UserModify from './backend/user-modify.jsx'
 
-const Frontend = () => {
+const Backend = () => {
     const location = useLocation()
     const global = useSelector(globalState)
     return (
@@ -90,4 +90,4 @@ const Frontend = () => {
     )
 }
 
-export default Frontend
+export default Backend
