@@ -1,0 +1,100 @@
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useMount } from 'ahooks'
+import { Link, useLocation, useParams } from 'react-router-dom'
+
+import Category from '@/components/aside-category'
+import Other from '@/components/aside-other'
+import Trending from '@/components/aside-trending'
+import Comment from '@/components/frontend-comment'
+import Actions from '@/components/item-actions'
+
+import { articleState, getArticleItem } from '@/store/frontend/article'
+import { categoryState, getCategoryList } from '@/store/global/category'
+import { getTrending, trendingState } from '@/store/frontend/trending'
+
+const addTarget = (content: string) => {
+    if (!content) return ''
+    return content.replace(/<a(.*?)href=/g, '<a$1target="_blank" href=')
+}
+
+export default function Article() {
+    const location = useLocation()
+    const params = useParams()
+    const { id } = params
+    const pathname = location.pathname
+
+    const article = useSelector(articleState)
+    const category = useSelector(categoryState)
+    const trending = useSelector(trendingState)
+    const dispatch = useDispatch()
+
+    useMount(async () => {
+        console.log('article useMount:')
+        window.scrollTo(0, 0)
+        if (article.pathname !== location.pathname) dispatch(await getArticleItem({ id, pathname }))
+        if (category.lists.length === 0) dispatch(await getCategoryList({}))
+        if (trending.data.length === 0) dispatch(await getTrending())
+    })
+
+    let html
+
+    if (!article.isLoad || pathname !== article.pathname) {
+        html = (
+            <div className="main-left">
+                <div className="card card-answer">
+                    <div className="answer-content">加载中, 请稍等...</div>
+                </div>
+            </div>
+        )
+    }
+    else if (article.data?._id) {
+        html = (
+            <div className="main-left">
+                <div className="card card-question-head">
+                    <div className="question-content">
+                        <Link to={`/category/${article.data.category}`} className="topic-link-item">
+                            {article.data.category_name}
+                        </Link>
+                        <h2 className="question-title">
+                            <Link to={`/article/${article.data._id}`} className="question-title-link">
+                                {article.data.title}
+                            </Link>
+                        </h2>
+                    </div>
+                </div>
+                <div className="card card-answer">
+                    <div className="answer-content">
+                        <div
+                            className="article-content markdown-body"
+                            dangerouslySetInnerHTML={{
+                                __html: addTarget(article.data.html),
+                            }}
+                        />
+                    </div>
+                    <Actions item={article.data} />
+                </div>
+                <Comment />
+            </div>
+        )
+    }
+    else {
+        html = (
+            <div className="main-left">
+                <div className="card card-answer">
+                    <div className="answer-content">该文章不存在, 或者该文章已经被删除</div>
+                </div>
+            </div>
+        )
+    }
+    return (
+        <div className="main wrap">
+            {html}
+            <div className="main-right">
+                <Category payload={category.lists} />
+                <Trending payload={trending.data} />
+                <Other />
+            </div>
+        </div>
+    )
+}

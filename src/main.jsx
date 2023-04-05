@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom'
 import Root from './pages/app'
 import store from './store'
 
-console.log('当前环境: ' + import.meta.env.VITE_APP_ENV)
+console.log(`当前环境: ${import.meta.env.VITE_APP_ENV}`)
 
 createRoot(document.getElementById('root')).render(
     <Provider store={store}>
@@ -16,5 +16,5 @@ createRoot(document.getElementById('root')).render(
                 <Root />
             </BrowserRouter>
         </StoreContext.Provider>
-    </Provider>
+    </Provider>,
 )

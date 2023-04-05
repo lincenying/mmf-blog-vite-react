@@ -1,22 +1,25 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
+        "baseUrl": ".",
+        "module": "ESNext",
+        "target": "ESNext",
+        "lib": ["DOM", "ESNext"],
         "strict": true,
+        "esModuleInterop": true,
         "jsx": "preserve",
+        "skipLibCheck": true,
         "importHelpers": true,
         "moduleResolution": "node",
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "sourceMap": true,
-        "baseUrl": ".",
+        "resolveJsonModule": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": true,
+        "allowJs": true,
+        "forceConsistentCasingInFileNames": true,
+        "types": ["vite/client", "vite-plugin-pwa/client"],
         "paths": {
             "@/*": ["src/*"]
         },
-        "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+        "outDir": "build"
     },
-    "include": ["src/**/*.js", "src/**/*.vue", "src/**/*.jsx"],
-    "exclude": ["node_modules"],
-    "files": ["main.ts"]
+    "exclude": ["node_modules", "dist/**/*", "public/**/*"]
 }
