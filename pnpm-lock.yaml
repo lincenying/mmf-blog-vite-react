@@ -5,11 +5,11 @@ specifiers:
   '@types/md5': ^2.3.2
   '@types/nprogress': ^0.2.0
   '@types/qs': ^6.9.7
+  '@types/react-dom': ^18.0.11
   '@types/react-router-redux': ^5.0.21
   '@types/react-transition-group': ^4.4.5
   '@types/toastr': ^2.1.40
   '@vitejs/plugin-react': ^3.1.0
-  '@vitejs/plugin-react-refresh': ^1.3.6
   ahooks: ^3.7.4
   antd: ^5.2.1
   axios: ^1.3.3
@@ -52,7 +52,7 @@ dependencies:
   qs: 6.11.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-redux: 8.0.5_egguyi6kvemdtrnkbl3bdoeaey
+  react-redux: 8.0.5_vgzmmmdsxlsvqklhwylf67wqfy
   react-router-dom: 6.10.0_biqbaboplfbrettd7655fr4n2y
   react-router-redux: 4.0.8
   react-transition-group: 4.4.5_biqbaboplfbrettd7655fr4n2y
@@ -65,11 +65,11 @@ devDependencies:
   '@types/md5': 2.3.2
   '@types/nprogress': 0.2.0
   '@types/qs': 6.9.7
+  '@types/react-dom': 18.0.11
   '@types/react-router-redux': 5.0.21
   '@types/react-transition-group': 4.4.5
   '@types/toastr': 2.1.40
   '@vitejs/plugin-react': 3.1.0_vite@4.2.1
-  '@vitejs/plugin-react-refresh': 1.3.6
   eslint: 8.37.0
   eslint-config-lcy-react: 4.0.0_vwh6htx42aidho2qgfca5u5rwm
   husky: 8.0.3
@@ -1789,7 +1789,7 @@ packages:
     dependencies:
       immer: 9.0.21
       react: 18.2.0
-      react-redux: 8.0.5_egguyi6kvemdtrnkbl3bdoeaey
+      react-redux: 8.0.5_vgzmmmdsxlsvqklhwylf67wqfy
       redux: 4.2.1
       redux-thunk: 2.4.2_redux@4.2.1
       reselect: 4.1.7
@@ -1979,6 +1979,11 @@ packages:
   /@types/qs/6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
     dev: true
+
+  /@types/react-dom/18.0.11:
+    resolution: {integrity: sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==}
+    dependencies:
+      '@types/react': 18.0.33
 
   /@types/react-router-redux/5.0.21:
     resolution: {integrity: sha512-BF2OrI3bW5gJhjqKElu/YK7lnUySFV9BMm5ryJbm47rARLLdCr72dC6cXBzcFORqsDTCrFbhsFsq2ogJRY4fvg==}
@@ -2348,20 +2353,6 @@ packages:
       vite: 4.2.1_sass@1.60.0
     transitivePeerDependencies:
       - rollup
-    dev: true
-
-  /@vitejs/plugin-react-refresh/1.3.6:
-    resolution: {integrity: sha512-iNR/UqhUOmFFxiezt0em9CgmiJBdWR+5jGxB2FihaoJfqGt76kiwaKoVOJVU5NYcDWMdN06LbyN2VIGIoYdsEA==}
-    engines: {node: '>=12.0.0'}
-    deprecated: This package has been deprecated in favor of @vitejs/plugin-react
-    dependencies:
-      '@babel/core': 7.21.4
-      '@babel/plugin-transform-react-jsx-self': 7.21.0_@babel+core@7.21.4
-      '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.21.4
-      '@rollup/pluginutils': 4.2.1
-      react-refresh: 0.10.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@vitejs/plugin-react/3.1.0_vite@4.2.1:
@@ -5778,7 +5769,7 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: false
 
-  /react-redux/8.0.5_egguyi6kvemdtrnkbl3bdoeaey:
+  /react-redux/8.0.5_vgzmmmdsxlsvqklhwylf67wqfy:
     resolution: {integrity: sha512-Q2f6fCKxPFpkXt1qNRZdEDLlScsDWyrgSj0mliK59qU6W5gvBiKkdMEG2lJzhd1rCctf0hb6EtePPLZ2e0m1uw==}
     peerDependencies:
       '@types/react': ^16.8 || ^17.0 || ^18.0
@@ -5801,6 +5792,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.0
       '@types/hoist-non-react-statics': 3.3.1
+      '@types/react-dom': 18.0.11
       '@types/use-sync-external-store': 0.0.3
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
@@ -5809,11 +5801,6 @@ packages:
       redux: 4.2.1
       use-sync-external-store: 1.2.0_react@18.2.0
     dev: false
-
-  /react-refresh/0.10.0:
-    resolution: {integrity: sha512-PgidR3wST3dDYKr6b4pJoqQFpPGNKDSCDx4cZoshjXipw3LzO7mG1My2pwEzz2JVkF+inx3xRpDeQLFQGH/hsQ==}
-    engines: {node: '>=0.10.0'}
-    dev: true
 
   /react-refresh/0.14.0:
     resolution: {integrity: sha512-wViHqhAd8OHeLS/IRMJjTSDHF3U9eWi62F/MledQGPdJGDhodXJ9PBLNGr6WWL7qlH12Mt3TyTpbS+hGXMjCzQ==}

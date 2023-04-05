@@ -9,7 +9,7 @@ import store from './store'
 
 console.log(`当前环境: ${import.meta.env.VITE_APP_ENV}`)
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
         <StoreContext.Provider value={store}>
             <BrowserRouter>
