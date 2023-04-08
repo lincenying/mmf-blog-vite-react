@@ -1,13 +1,10 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLockFn, useMount, usePrevious, useSetState, useUpdateEffect } from 'ahooks'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import api from '@/api'
-import { backendUserState, backendUserUpdate, getUserItem } from '@/store/backend/user'
-import { setMessage } from '@/utils'
+import { backendUserState, getUserItem, updateBackendUser } from '@/store/backend/user'
 
-import AInput from '@/components/_input'
+import AInput from '@/components/a-input'
 
 const UserModify = () => {
     const params = useParams()
@@ -22,8 +19,9 @@ const UserModify = () => {
     })
 
     useMount(async () => {
-        console.log('admin-modify useMount:')
+        console.log('admin-modify useMount: start')
         dispatch(await getUserItem({ id: params.id }))
+        console.log('admin-modify useMount: end')
     })
 
     const prevUser = usePrevious(user)
@@ -45,7 +43,7 @@ const UserModify = () => {
         const { code, data, message } = await api.post('backend/user/modify', item)
         if (code === 200) {
             setMessage({ type: 'success', content: message })
-            dispatch(backendUserUpdate(data))
+            dispatch(updateBackendUser(data))
             navigate('/backend/user/list')
         }
     })

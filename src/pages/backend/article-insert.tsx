@@ -1,14 +1,10 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLockFn, useMount, useSetState } from 'ahooks'
 
 import api from '@/api'
 import { categoryState, getCategoryList } from '@/store/global/category'
-import { backendArticleInsert } from '@/store/backend/article'
-import { setMessage } from '@/utils'
+import { insertBackendArticle } from '@/store/backend/article'
 
-import AInput from '@/components/_input'
+import AInput from '@/components/a-input'
 
 export default function ArticleInsert() {
     const navigate = useNavigate()
@@ -23,7 +19,7 @@ export default function ArticleInsert() {
 
     useMount(async () => {
         if (category.lists.length === 0)
-            dispatch(await getCategoryList({}))
+            dispatch(await getCategoryList())
 
         window.postEditor = window.editormd('post-content', {
             width: '100%',
@@ -55,7 +51,7 @@ export default function ArticleInsert() {
         })
         if (code === 200) {
             setMessage({ type: 'success', content: message })
-            dispatch(backendArticleInsert(data))
+            dispatch(insertBackendArticle(data))
             navigate('/backend/article/list')
         }
     })

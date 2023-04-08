@@ -1,11 +1,9 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useMount, useSetState } from 'ahooks'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import api from '@/api'
-import { backendUserDelete, backendUserRecover, backendUserState, getUserList } from '@/store/backend/user'
-import { setMessage, timeAgo } from '@/utils'
+import { backendUserState, deleteBackendUser, getUserList, recoverBackendUser } from '@/store/backend/user'
+import { timeAgo } from '@/utils'
 
 const UserList = () => {
     const location = useLocation()
@@ -22,9 +20,10 @@ const UserList = () => {
         dispatch(await getUserList({ page, pathname }))
     }
 
-    useMount(() => {
-        console.log('user-list useMount:')
-        if (user.lists.data.length === 0) getUserListFunc(1)
+    useMount(async () => {
+        console.log('user-list useMount: start')
+        if (user.lists.data.length === 0) await getUserListFunc(1)
+        console.log('user-list useMount: end')
     })
 
     const handleRecover = async (id: string) => {
@@ -33,7 +32,7 @@ const UserList = () => {
         })
         if (code === 200) {
             setMessage({ type: 'success', content: message })
-            dispatch(backendUserRecover(id))
+            dispatch(recoverBackendUser(id))
         }
     }
     const handleDelete = async (id: string) => {
@@ -42,7 +41,7 @@ const UserList = () => {
         })
         if (code === 200) {
             setMessage({ type: 'success', content: message })
-            dispatch(backendUserDelete(id))
+            dispatch(deleteBackendUser(id))
         }
     }
     const handleLoadMore = async () => {

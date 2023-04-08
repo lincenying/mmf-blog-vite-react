@@ -1,9 +1,7 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLockFn, useSetState } from 'ahooks'
 
 import api from '@/api'
-import { setMessage, strlen } from '@/utils'
+import { strlen } from '@/utils'
 
 import { globalState, showLoginModal, showRegisterModal } from '@/store/global'
 

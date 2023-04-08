@@ -62,17 +62,17 @@ export const slice = createSlice({
 })
 
 export const {
-    receive: backendArticleReceive,
-    insert: backendArticleInsert,
-    update: backendArticleUpdate,
-    deletes: backendArticleDelete,
-    recover: backendArticleRecover,
+    receive: receiveBackendArticle,
+    insert: insertBackendArticle,
+    update: updateBackendArticle,
+    deletes: deleteBackendArticle,
+    recover: recoverBackendArticle,
 } = slice.actions
 
 export const getArticleList = async (config: Record<string, any>) => {
     const { code, data } = await api.get('backend/article/list', config)
     if (code === 200)
-        return backendArticleReceive({ ...data, ...config })
+        return receiveBackendArticle({ ...data, ...config })
 
     return setMessage(errConfig)
 }
@@ -80,14 +80,14 @@ export const getArticleList = async (config: Record<string, any>) => {
 export const deleteArticle = async (config: Record<string, any>) => {
     const { code } = await api.get('backend/article/delete', config)
     if (code === 200)
-        return backendArticleDelete(config.id)
+        return deleteBackendArticle(config.id)
 
     return setMessage(errConfig)
 }
 export const recoverArticle = async (config: Record<string, any>) => {
     const { code } = await api.get('backend/article/recover', config)
     if (code === 200)
-        return backendArticleRecover(config.id)
+        return recoverBackendArticle(config.id)
 
     return setMessage(errConfig)
 }

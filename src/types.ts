@@ -157,6 +157,13 @@ export interface FArticleStore {
 interface UserStoreList extends ListConfig {
     data: User[]
 }
+
+export interface UserStoreItem {
+    data: Nullable<User>
+    path?: string
+    [propName: string]: any
+}
+
 export interface UserStore {
     lists: UserStoreList
     item: {
@@ -213,14 +220,14 @@ export interface ShellStore {
 }
 
 export interface ApiClientReturn {
-    get(url: string, params: Record<string, any>, headers?: Record<string, any>): Promise<any>
-    post(url: string, data: Record<string, any>, headers?: Record<string, any>): Promise<any>
-    file(url: string, data: Record<string, any>, headers?: Record<string, any>): Promise<any>
+    get(url: string, params?: Record<string, any>, headers?: Record<string, any>): Promise<any>
+    post(url: string, data?: Record<string, any>, headers?: Record<string, any>): Promise<any>
+    file(url: string, data?: Record<string, any>, headers?: Record<string, any>): Promise<any>
 }
 
 export interface ApiServerReturn {
-    post(url: string, data: Record<string, any>, headers?: Record<string, any>): Promise<any>
-    get(url: string, params: Record<string, any>, headers?: Record<string, any>): Promise<any>
+    post(url: string, data?: Record<string, any>, headers?: Record<string, any>): Promise<any>
+    get(url: string, params?: Record<string, any>, headers?: Record<string, any>): Promise<any>
     cookies: UserCookies
     api: AxiosInstance
     getCookies: () => UserCookies

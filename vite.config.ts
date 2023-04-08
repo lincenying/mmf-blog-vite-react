@@ -4,8 +4,10 @@ import { fileURLToPath } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import { AntdResolve, createStyleImportPlugin } from 'vite-plugin-style-import'
-import { VitePWA } from 'vite-plugin-pwa'
+import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
+
+import pwaConfig from './vite.config.pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -28,101 +30,38 @@ export default defineConfig(({ mode }) => {
         },
         plugins: [
             react(),
+            AutoImport({
+                eslintrc: {
+                    enabled: true,
+                },
+                include: [
+                    /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
+                    /\.md$/, // .md
+                ],
+                imports: [
+                    'react',
+                    'react-router-dom',
+                    'ahooks',
+                    {
+                        'react-redux': ['useSelector', 'useDispatch'],
+                        '@/utils': ['setMessage'],
+                    },
+                ],
+                dts: 'src/auto-imports.d.ts',
+                dirs: [],
+
+                resolvers: [],
+                defaultExportByFilename: false,
+                vueTemplate: false,
+                cache: false,
+            }),
             createStyleImportPlugin({
                 resolves: [AntdResolve()],
                 libs: [
 
                 ],
             }),
-
-            VitePWA({
-                // mode: 'development',
-                base: '/',
-                manifest: {
-                    name: 'M.M.F小屋',
-                    short_name: 'M.M.F小屋',
-                    theme_color: '#54d9e0',
-                    background_color: '#ffffff',
-                    icons: [
-                        {
-                            src: '/static/img/icons/android-chrome-48x48.png',
-                            sizes: '48x48',
-                            type: 'image/png',
-                        },
-                        {
-                            src: '/static/img/icons/android-chrome-72x72.png',
-                            sizes: '72x72',
-                            type: 'image/png',
-                        },
-                        {
-                            src: '/static/img/icons/android-chrome-96x96.png',
-                            sizes: '96x96',
-                            type: 'image/png',
-                        },
-                        {
-                            src: '/static/img/icons/msapplication-icon-144x144.png',
-                            sizes: '144x144',
-                            type: 'image/png',
-                        },
-                        {
-                            src: '/static/img/icons/android-chrome-168x168.png',
-                            sizes: '168x168',
-                            type: 'image/png',
-                        },
-                        {
-                            src: '/static/img/icons/android-chrome-192x192.png',
-                            sizes: '192x192',
-                            type: 'image/png',
-                        },
-                        {
-                            src: '/static/img/icons/android-chrome-512x512.png',
-                            sizes: '512x512',
-                            type: 'image/png',
-                        },
-                    ],
-                    start_url: '/',
-                    display: 'standalone',
-                    lang: 'zh-CN',
-                },
-                workbox: {
-                    cacheId: 'mmf-blog-vite-react',
-                    runtimeCaching: [
-                        {
-                            urlPattern: /api/,
-                            handler: 'NetworkFirst',
-                            options: {
-                                networkTimeoutSeconds: 1,
-                                cacheName: 'api-cache',
-                                cacheableResponse: {
-                                    statuses: [0, 200],
-                                },
-                            },
-                        },
-                        {
-                            urlPattern: /^https:\/\/cdn\.jsdelivr\.net/,
-                            handler: 'NetworkFirst',
-                            options: {
-                                networkTimeoutSeconds: 1,
-                                cacheName: 'cdn-cache',
-                                cacheableResponse: {
-                                    statuses: [0, 200],
-                                },
-                            },
-                        },
-                        {
-                            urlPattern: /^https:\/\/fdn\.geekzu\.org/,
-                            handler: 'NetworkFirst',
-                            options: {
-                                networkTimeoutSeconds: 1,
-                                cacheName: 'avatar-cache',
-                                cacheableResponse: {
-                                    statuses: [0, 200],
-                                },
-                            },
-                        },
-                    ],
-                },
-            }),
+            ...pwaConfig(),
             UnoCSS({
                 /* options */
             }),
@@ -133,8 +72,6 @@ export default defineConfig(({ mode }) => {
             },
         },
     }
-    if (mode === 'development')
-        console.log('development')
 
     return config
 })

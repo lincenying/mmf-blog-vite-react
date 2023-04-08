@@ -1,10 +1,8 @@
 import React from 'react'
-import { useLockFn, useSetState } from 'ahooks'
 
 import api from '@/api'
 import Account from '@/components/aside-account'
-import AInput from '@/components/_input'
-import { setMessage } from '@/utils'
+import AInput from '@/components/a-input'
 
 export default function UserPassword() {
     const [state, setState] = useSetState({

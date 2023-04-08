@@ -1,12 +1,8 @@
 import React, { useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLockFn, useMount } from 'ahooks'
 
 import api from '@/api'
 import { commentState, getCommentList, insertCommentItem } from '@/store/global/comment'
 import { globalState, showLoginModal } from '@/store/global'
-import { setMessage } from '@/utils'
 
 import Avatar from '@/components/avatar'
 
@@ -23,11 +19,12 @@ export default function FrontendComment() {
     const comment = useSelector(commentState)
     const dispatch = useDispatch()
 
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(false)
     const [content, setContent] = useState('')
 
     const handleGetComment = async (page: number) => {
         if (loading) return
+        setLoading(true)
         page = page || comment.page
         dispatch(await getCommentList({ id, pathname, limit: 10, page }))
         setLoading(false)
@@ -38,11 +35,8 @@ export default function FrontendComment() {
     })
 
     const handleLoadMore = async () => {
-        if (loading) return
         const { page } = comment
-        setLoading(true)
         await handleGetComment(page + 1)
-        setLoading(false)
     }
 
     const handlePostComment = useLockFn(async () => {

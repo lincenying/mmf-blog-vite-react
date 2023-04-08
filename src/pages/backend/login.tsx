@@ -1,11 +1,8 @@
 import React from 'react'
-import { useLockFn, useSetState } from 'ahooks'
 
-import { useNavigate } from 'react-router-dom'
 import api from '@/api'
-import { setMessage } from '@/utils'
 
-import AInput from '@/components/_input'
+import AInput from '@/components/a-input'
 
 export default function Login() {
     const navigate = useNavigate()

@@ -1,13 +1,10 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLockFn, useMount, usePrevious, useSetState, useUpdateEffect } from 'ahooks'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import api from '@/api'
 import { categoryState, getCategoryItem } from '@/store/global/category'
-import { setMessage } from '@/utils'
 
-import AInput from '@/components/_input'
+import AInput from '@/components/a-input'
 
 const CategoryModify = () => {
     const navigate = useNavigate()
@@ -21,8 +18,9 @@ const CategoryModify = () => {
     })
 
     useMount(async () => {
-        console.log('category-modify useMount:')
+        console.log('category-modify useMount: start')
         dispatch(await getCategoryItem({ id: params.id }))
+        console.log('category-modify useMount: end')
     })
 
     const prevCategory = usePrevious(category)

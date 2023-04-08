@@ -1,12 +1,13 @@
 import toastr from 'toastr'
+import type { Message } from '@/types'
 toastr.options.positionClass = 'toast-top-center'
 
 function pluralize(time: number, label: string) {
     return time + label
 }
 
-export const setMessage = (config: Record<string, any> | string) => {
-    let content, type: 'success' | 'warning' | 'info' | 'error'
+export const setMessage = (config: Message | string) => {
+    let content: string, type: 'success' | 'warning' | 'info' | 'error'
     if (typeof config === 'string') {
         content = config
         type = 'error'

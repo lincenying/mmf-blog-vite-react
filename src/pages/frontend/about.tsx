@@ -1,6 +1,4 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useMount } from 'ahooks'
 
 import Trending from '@/components/aside-trending'
 import { getTrending, trendingState } from '@/store/frontend/trending'
@@ -10,9 +8,10 @@ export default function About() {
     const dispatch = useDispatch()
 
     useMount(async () => {
-        console.log('about useMount:')
+        console.log('about useMount: start')
         if (trending.data.length === 0)
             dispatch(await getTrending())
+        console.log('about useMount: end')
     })
 
     return (

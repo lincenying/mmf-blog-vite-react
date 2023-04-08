@@ -1,12 +1,9 @@
 import md5 from 'md5'
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useMount, useSetState } from 'ahooks'
 
-import { useLocation, useParams } from 'react-router-dom'
 import api from '@/api'
 import { commentState, deleteComment, getCommentList, recoverComment } from '@/store/global/comment'
-import { setMessage, timeAgo } from '@/utils'
+import { timeAgo } from '@/utils'
 
 const Comment = () => {
     const location = useLocation()

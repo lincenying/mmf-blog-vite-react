@@ -1,13 +1,10 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLockFn, useMount, useSetState } from 'ahooks'
 
 import api from '@/api'
 import Account from '@/components/aside-account'
-import AInput from '@/components/_input'
+import AInput from '@/components/a-input'
 
 import { globalState, setCookis } from '@/store/global'
-import { setMessage } from '@/utils'
 
 export default function UserAccount() {
     const dispatch = useDispatch()
@@ -19,7 +16,7 @@ export default function UserAccount() {
     })
 
     const getUser = async () => {
-        const { code, data } = await api.get('frontend/user/account', {})
+        const { code, data } = await api.get('frontend/user/account')
         if (code === 200) {
             setState({
                 username: data.username,
@@ -28,9 +25,10 @@ export default function UserAccount() {
         }
     }
 
-    useMount(() => {
-        console.log('user-account useMount:')
-        getUser()
+    useMount(async () => {
+        console.log('user-account useMount: start')
+        await getUser()
+        console.log('user-account useMount: end')
     })
 
     const handleModify = useLockFn(async () => {

@@ -1,7 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useMount } from 'ahooks'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 import Category from '@/components/aside-category'
 import Other from '@/components/aside-other'
@@ -30,11 +28,12 @@ export default function Article() {
     const dispatch = useDispatch()
 
     useMount(async () => {
-        console.log('article useMount:')
+        console.log('article useMount: start')
         window.scrollTo(0, 0)
         if (article.pathname !== location.pathname) dispatch(await getArticleItem({ id, pathname }))
-        if (category.lists.length === 0) dispatch(await getCategoryList({}))
+        if (category.lists.length === 0) dispatch(await getCategoryList())
         if (trending.data.length === 0) dispatch(await getTrending())
+        console.log('article useMount: end')
     })
 
     let html

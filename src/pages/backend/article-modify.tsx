@@ -1,14 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLockFn, useMount, useSetState } from 'ahooks'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import api from '@/api'
 import { categoryState, getCategoryList } from '@/store/global/category'
-import { backendArticleUpdate } from '@/store/backend/article'
-import { setMessage } from '@/utils'
+import { updateBackendArticle } from '@/store/backend/article'
 
-import AInput from '@/components/_input'
+import AInput from '@/components/a-input'
 
 export default function ArticleInsert() {
     const params = useParams()
@@ -54,7 +51,7 @@ export default function ArticleInsert() {
     useMount(async () => {
         getArticleData()
         if (category.lists.length === 0)
-            dispatch(await getCategoryList({}))
+            dispatch(await getCategoryList())
     })
 
     const handleModify = useLockFn(async () => {
@@ -69,7 +66,7 @@ export default function ArticleInsert() {
         })
         if (code === 200) {
             setMessage({ type: 'success', content: message })
-            dispatch(backendArticleUpdate(data))
+            dispatch(updateBackendArticle(data))
             navigate('/backend/article/list')
         }
     })

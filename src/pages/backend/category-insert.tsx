@@ -1,14 +1,10 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'redux-react-hook'
-import { useLockFn, useSetState } from 'ahooks'
 
 import api from '@/api'
-import { setMessage } from '@/utils'
 
 import { insertCategoryItem } from '@/store/global/category'
 
-import AInput from '@/components/_input'
+import AInput from '@/components/a-input'
 
 const CategoryModify = () => {
     const navigate = useNavigate()

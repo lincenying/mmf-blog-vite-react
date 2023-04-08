@@ -1,11 +1,9 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useMount, useSetState } from 'ahooks'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import api from '@/api'
 import { adminState, deleteAdmin, getAdminList, recoverAdmin } from '@/store/backend/admin'
-import { setMessage, timeAgo } from '@/utils'
+import { timeAgo } from '@/utils'
 
 export default function AdminList() {
     const location = useLocation()
@@ -23,9 +21,10 @@ export default function AdminList() {
         dispatch(await getAdminList({ page, pathname }))
     }
 
-    useMount(() => {
-        console.log('admin-list useMount:')
-        if (admin.lists.data.length === 0) getAdminListFunc(1)
+    useMount(async () => {
+        console.log('admin-list useMount: start')
+        if (admin.lists.data.length === 0) await getAdminListFunc(1)
+        console.log('admin-list useMount: end')
     })
 
     const handleDelete = async (id: string) => {

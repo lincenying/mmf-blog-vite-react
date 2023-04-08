@@ -4,9 +4,9 @@ import { createSlice } from '@reduxjs/toolkit'
 import { errConfig, setMessage } from '../global'
 import type { RootState } from '..'
 import api from '@/api'
-import type { AdminStore, AdminStoreItem, User } from '@/types'
+import type { User, UserStore, UserStoreItem } from '@/types'
 
-const initialState: AdminStore = {
+const initialState: UserStore = {
     lists: {
         hasNext: 0,
         hasPrev: 0,
@@ -21,7 +21,7 @@ const initialState: AdminStore = {
 }
 
 const reducers = {
-    receive: (state: AdminStore, action: PayloadAction<Record<string, any>>) => {
+    receive: (state: UserStore, action: PayloadAction<Record<string, any>>) => {
         const { list, pathname, hasNext, hasPrev, page } = action.payload
         let data
         if (page === 1)
@@ -38,24 +38,24 @@ const reducers = {
             pathname,
         }
     },
-    insert: (state: AdminStore, action: PayloadAction<AdminStoreItem>) => {
+    insert: (state: UserStore, action: PayloadAction<UserStoreItem>) => {
         const { data, pathname } = action.payload
         state.item = {
             data,
             pathname,
         }
     },
-    update: (state: AdminStore, action: PayloadAction<User>) => {
+    update: (state: UserStore, action: PayloadAction<User>) => {
         const data = action.payload
         const index = state.lists.data.findIndex(ii => ii._id === data?._id)
         if (index > -1)
             state.lists.data.splice(index, 1, data)
     },
-    deletes: (state: AdminStore, action: PayloadAction<string>) => {
+    deletes: (state: UserStore, action: PayloadAction<string>) => {
         const obj = state.lists.data.find(ii => ii._id === action.payload)
         if (obj) obj.is_delete = 1
     },
-    recover: (state: AdminStore, action: PayloadAction<string>) => {
+    recover: (state: UserStore, action: PayloadAction<string>) => {
         const obj = state.lists.data.find(ii => ii._id === action.payload)
         if (obj) obj.is_delete = 0
     },
@@ -67,19 +67,25 @@ export const slice = createSlice({
     reducers,
 })
 
-export const { receive: backendUserReceive, insert: backendUserInsert, update: backendUserUpdate, deletes: backendUserDelete, recover: backendUserRecover } = slice.actions
+export const {
+    receive: receiveBackendUser,
+    insert: insertBackendUser,
+    update: updateBackendUser,
+    deletes: deleteBackendUser,
+    recover: recoverBackendUser,
+} = slice.actions
 
 export const getUserList = async (config: Record<string, any>) => {
     const { code, data } = await api.get('backend/user/list', config)
     if (code === 200)
-        return backendUserReceive({ ...data, ...config })
+        return receiveBackendUser({ ...data, ...config })
 
     return setMessage(errConfig)
 }
 export const getUserItem = async (config: Record<string, any>) => {
     const { code, data } = await api.get('backend/user/item', config)
     if (code === 200)
-        return backendUserInsert({ data, ...config })
+        return insertBackendUser({ data, ...config })
 
     return setMessage(errConfig)
 }

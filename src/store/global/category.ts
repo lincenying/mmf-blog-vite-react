@@ -54,7 +54,7 @@ export const {
     recoverCategory,
 } = slice.actions
 
-export const getCategoryList = async (config: Record<string, any>) => {
+export const getCategoryList = async (config?: Record<string, any>) => {
     const { code, data } = await api.get('backend/category/list', config)
     if (code === 200)
         return receiveCategoryList(data.list)

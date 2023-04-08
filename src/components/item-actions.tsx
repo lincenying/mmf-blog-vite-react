@@ -5,7 +5,7 @@ import { useLockFn } from 'ahooks'
 import api from '@/api'
 import { setMessage } from '@/utils'
 
-import { globalState } from '@/store/global'
+import { globalState, showLoginModal } from '@/store/global'
 import { updateTopicsLikeState } from '@/store/frontend/topics'
 import { updateArticleLikeState } from '@/store/frontend/article'
 import type { Article } from '@/types'
@@ -13,13 +13,13 @@ import type { Article } from '@/types'
 export default function ItemActions(props: { item: Article }) {
     const global = useSelector(globalState)
     const dispatch = useDispatch()
+    const item = props.item
 
     const handleLike = useLockFn(async () => {
         const username = global.cookies.user
-        const { item } = props
         if (!username) {
             setMessage('请先登录!')
-            dispatch({ type: 'global/showLoginModal', payload: true })
+            dispatch(showLoginModal(true))
             return
         }
         let url = 'frontend/like'
@@ -35,8 +35,8 @@ export default function ItemActions(props: { item: Article }) {
     const handleShare = () => {
         const top = window.screen.height / 2 - 250
         const left = window.screen.width / 2 - 300
-        const title = `${props.item.title} - M.M.F 小屋`
-        const url = `https://www.mmxiaowu.com/article/${props.item._id}`
+        const title = `${item.title} - M.M.F 小屋`
+        const url = `https://www.mmxiaowu.com/article/${item._id}`
         window.open(
             `http://service.weibo.com/share/share.php?title=${
                 encodeURIComponent(title.replace(/&nbsp;/g, ' ').replace(/<br \/>/g, ' '))
@@ -47,7 +47,6 @@ export default function ItemActions(props: { item: Article }) {
         )
     }
 
-    const item = props.item
     return (
         <div className="actions-wrap">
             <a onClick={handleLike} href={undefined} className={item.like_status ? 'action-item active' : 'action-item'}>

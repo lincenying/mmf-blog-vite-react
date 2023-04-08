@@ -1,10 +1,7 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useMount } from 'ahooks'
 import { Link } from 'react-router-dom'
 
 import api from '@/api'
-import { setMessage } from '@/utils'
 import { categoryState, deleteCategory, getCategoryList, recoverCategory } from '@/store/global/category'
 
 const CategoryList = () => {
@@ -13,7 +10,7 @@ const CategoryList = () => {
 
     useMount(async () => {
         if (category.lists.length === 0)
-            dispatch(await getCategoryList({}))
+            dispatch(await getCategoryList())
     })
 
     const handleRecover = async (id: string) => {

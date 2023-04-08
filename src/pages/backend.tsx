@@ -1,6 +1,5 @@
 import React from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
 
 import AdminList from './backend/admin-list'
 import AdminModify from './backend/admin-modify'
@@ -18,11 +17,9 @@ import ReloadPrompt from '@/components/reload-prompt'
 import BackendMenu from '@/components/backend-menu'
 import Authorized from '@/components/backend-authorized'
 import FrontendNavigation from '@/components/frontend-navigation'
-import { globalState } from '@/store/global'
 
 const Backend = () => {
     const location = useLocation()
-    const global = useSelector(globalState)
     return (
         <div className="backend">
             <FrontendNavigation />
@@ -31,44 +28,17 @@ const Backend = () => {
                     <div className="home-feeds cards-wrap">
                         <Routes key={location.pathname}>
                             <Route path="/backend" element={<Login />} />
-                            <Route path="/backend/admin/list" element={<Authorized global={global} component={AdminList} />} />
-                            <Route
-                                path="/backend/admin/modify/:id"
-                                element={<Authorized global={global} component={AdminModify} />}
-                            />
-                            <Route
-                                path="/backend/article/list"
-                                element={<Authorized global={global} component={ArticleList} />}
-                            />
-                            <Route
-                                path="/backend/article/insert"
-                                element={<Authorized global={global} component={ArticleInsert} />}
-                            />
-                            <Route
-                                path="/backend/article/modify/:id"
-                                element={<Authorized global={global} component={ArticleModify} />}
-                            />
-                            <Route
-                                path="/backend/article/comment/:id"
-                                element={<Authorized global={global} component={Comment} />}
-                            />
-                            <Route
-                                path="/backend/category/list"
-                                element={<Authorized global={global} component={CategoryList} />}
-                            />
-                            <Route
-                                path="/backend/category/insert"
-                                element={<Authorized global={global} component={CategoryInsert} />}
-                            />
-                            <Route
-                                path="/backend/category/modify/:id"
-                                element={<Authorized global={global} component={CategoryModify} />}
-                            />
-                            <Route path="/backend/user/list" element={<Authorized global={global} component={UserList} />} />
-                            <Route
-                                path="/backend/user/modify/:id"
-                                element={<Authorized global={global} component={UserModify} />}
-                            />
+                            <Route path="/backend/admin/list" element={<Authorized component={AdminList} />} />
+                            <Route path="/backend/admin/modify/:id" element={<Authorized component={AdminModify} />} />
+                            <Route path="/backend/article/list" element={<Authorized component={ArticleList} />} />
+                            <Route path="/backend/article/insert" element={<Authorized component={ArticleInsert} />} />
+                            <Route path="/backend/article/modify/:id" element={<Authorized component={ArticleModify} />} />
+                            <Route path="/backend/article/comment/:id" element={<Authorized component={Comment} />} />
+                            <Route path="/backend/category/list" element={<Authorized component={CategoryList} />} />
+                            <Route path="/backend/category/insert" element={<Authorized component={CategoryInsert} />} />
+                            <Route path="/backend/category/modify/:id" element={<Authorized component={CategoryModify} />} />
+                            <Route path="/backend/user/list" element={<Authorized component={UserList} />} />
+                            <Route path="/backend/user/modify/:id" element={<Authorized component={UserModify} />} />
                         </Routes>
                     </div>
                 </div>

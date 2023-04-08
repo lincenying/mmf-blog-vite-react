@@ -1,13 +1,10 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLockFn, useMount, usePrevious, useSetState, useUpdateEffect } from 'ahooks'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import api from '@/api'
 import { adminState, getAdminItem } from '@/store/backend/admin'
-import { setMessage } from '@/utils'
 
-import AInput from '@/components/_input'
+import AInput from '@/components/a-input'
 
 const AdminModify = () => {
     const params = useParams()
@@ -22,8 +19,9 @@ const AdminModify = () => {
     })
 
     useMount(async () => {
-        console.log('admin-modify useMount:')
+        console.log('admin-modify useMount: start')
         dispatch(await getAdminItem({ id: params.id }))
+        console.log('admin-modify useMount: end')
     })
 
     const prevAdmin = usePrevious(admin)

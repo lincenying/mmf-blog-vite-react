@@ -1,8 +1,6 @@
 import React from 'react'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import { Route, Routes, useLocation } from 'react-router-dom'
-
-import { useSelector } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
 
 import NotFound from './frontend/404'
 
@@ -15,10 +13,8 @@ import ReloadPrompt from '@/components/reload-prompt'
 import Sign from '@/components/sign'
 import Authorized from '@/components/frontend-authorized'
 import FrontendNavigation from '@/components/frontend-navigation'
-import { globalState } from '@/store/global/index.js'
 
 const Frontend = () => {
-    const global = useSelector(globalState)
     const location = useLocation()
     return (
         <div className="frontend">
@@ -32,14 +28,8 @@ const Frontend = () => {
                         <Route path="/search/:key" element={<Main />} />
                         <Route path="/article/:id" element={<Article />} />
                         <Route path="/about" element={<About />} />
-                        <Route
-                            path="/user/account"
-                            element={<Authorized name="account" path="/user/account" global={global} component={userAccount} />}
-                        />
-                        <Route
-                            path="/user/password"
-                            element={<Authorized name="password" path="/user/password" global={global} component={userPassword} />}
-                        />
+                        <Route path="/user/account" element={<Authorized path="/user/account" component={userAccount} />} />
+                        <Route path="/user/password" element={<Authorized path="/user/password" component={userPassword} />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </CSSTransition>

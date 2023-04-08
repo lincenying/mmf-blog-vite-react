@@ -1,7 +1,4 @@
-import React, { useRef } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { useDebounceEffect, useMount, useScroll, useSetState, useUnmount, useUpdateEffect, useWhyDidYouUpdate } from 'ahooks'
+import React from 'react'
 
 import ls from 'store2'
 
@@ -57,26 +54,25 @@ export default function Topics() {
 
     useUnmount(() => {
         // const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
-        // console.log('useUnmount', scrollTop)
         // if (scrollTop > 0 && ls.get(pathname) === null) ls.set(pathname, scrollTop)
     })
 
     useMount(async () => {
-        console.log('topics useMount:')
+        console.log('topics useMount: start')
         const pathname = firstPathname.current
 
         if (topics.pathname !== firstPathname.current) handlefetchPosts()
-        if (category.lists.length === 0) dispatch(await getCategoryList({}))
+        if (category.lists.length === 0) dispatch(await getCategoryList())
         if (trending.data.length === 0) dispatch(await getTrending())
 
         if (topics.pathname !== '') {
             const scrollTop = ls.get(pathname)
-            console.log('useMount', scrollTop)
             if (scrollTop !== null) {
                 ls.remove(pathname)
                 window.scrollTo(0, scrollTop)
             }
         }
+        console.log('topics useMount: end')
     })
 
     useUpdateEffect(() => {

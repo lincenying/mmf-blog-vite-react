@@ -1,11 +1,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useLockFn } from 'ahooks'
 import api from '@/api'
 
 const AsideAccount = () => {
     const handleLogout = useLockFn(async () => {
-        await api.post('frontend/user/logout', {})
+        await api.post('frontend/user/logout')
         window.location.href = '/'
     })
 

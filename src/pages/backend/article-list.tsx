@@ -1,11 +1,9 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useMount, useSetState } from 'ahooks'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import api from '@/api'
-import { backendArticleDelete, backendArticleRecover, backendArticleState, getArticleList } from '@/store/backend/article'
-import { setMessage, timeAgo } from '@/utils'
+import { backendArticleState, deleteBackendArticle, getArticleList, recoverBackendArticle } from '@/store/backend/article'
+import { timeAgo } from '@/utils'
 
 export default function ArticleList() {
     const location = useLocation()
@@ -22,23 +20,24 @@ export default function ArticleList() {
         dispatch(await getArticleList({ page, pathname }))
     }
 
-    useMount(() => {
-        console.log('article-list useMount:')
-        if (topics.data.length === 0) handleGetArticleList(1)
+    useMount(async () => {
+        console.log('article-list useMount: start')
+        if (topics.data.length === 0) await handleGetArticleList(1)
+        console.log('article-list useMount: end')
     })
 
     const handleDelete = async (id: string) => {
         const { code, message } = await api.get('backend/article/delete', { id })
         if (code === 200) {
             setMessage({ type: 'success', content: message })
-            dispatch(backendArticleDelete(id))
+            dispatch(deleteBackendArticle(id))
         }
     }
     const handleRecover = async (id: string) => {
         const { code, message } = await api.get('backend/article/recover', { id })
         if (code === 200) {
             setMessage({ type: 'success', content: message })
-            dispatch(backendArticleRecover(id))
+            dispatch(recoverBackendArticle(id))
         }
     }
     const handleLoadMore = async () => {

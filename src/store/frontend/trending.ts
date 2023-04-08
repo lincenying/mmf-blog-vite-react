@@ -31,7 +31,7 @@ export const slice = createSlice({
 export const { receiveTrending, updateTrendingLikeState } = slice.actions
 
 export const getTrending = async () => {
-    const { code, data } = await api.get('frontend/trending', {})
+    const { code, data } = await api.get('frontend/trending')
     if (data && code === 200)
         return receiveTrending({ data: data.list })
 

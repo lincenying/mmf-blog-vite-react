@@ -1,9 +1,6 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useSetState } from 'ahooks'
 
 import api from '@/api'
-import { setMessage } from '@/utils'
 
 import { globalState, showLoginModal, showRegisterModal } from '@/store/global'
 
