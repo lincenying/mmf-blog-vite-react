@@ -1,12 +1,13 @@
 import toastr from 'toastr'
 import type { Message } from '@/types'
+
 toastr.options.positionClass = 'toast-top-center'
 
 function pluralize(time: number, label: string) {
     return time + label
 }
 
-export const setMessage = (config: Message | string) => {
+export function setMessage(config: Message | string) {
     let content: string, type: 'success' | 'warning' | 'info' | 'error'
     if (typeof config === 'string') {
         content = config
@@ -19,13 +20,14 @@ export const setMessage = (config: Message | string) => {
     toastr[type](content)
 }
 
-export const strlen = (str: string) => {
+export function strlen(str: string) {
     let charCode = -1
     const len = str.length
     let realLength = 0
     for (let i = 0; i < len; i++) {
         charCode = str.charCodeAt(i)
-        if (charCode >= 0 && charCode <= 128) realLength += 1
+        if (charCode >= 0 && charCode <= 128)
+            realLength += 1
         else realLength += 2
     }
     return realLength
@@ -51,7 +53,7 @@ export function timeAgo(time: string | number) {
     return pluralize(Math.floor(between / 86400), ' 天前')
 }
 
-export const timeYmd = (timestamp: number) => {
+export function timeYmd(timestamp: number) {
     const time = new Date(timestamp * 1000)
     const year = time.getFullYear()
     const month = time.getMonth() + 1

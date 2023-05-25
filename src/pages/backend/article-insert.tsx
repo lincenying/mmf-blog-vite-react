@@ -5,6 +5,7 @@ import { categoryState, getCategoryList } from '@/store/global/category'
 import { insertBackendArticle } from '@/store/backend/article'
 
 import AInput from '@/components/a-input'
+import type { Article } from '@/types'
 
 export default function ArticleInsert() {
     const navigate = useNavigate()
@@ -45,7 +46,7 @@ export default function ArticleInsert() {
             return
         }
 
-        const { code, data, message } = await api.post('backend/article/insert', {
+        const { code, data, message } = await api.post<Article>('backend/article/insert', {
             ...state,
             content,
         })
@@ -92,9 +93,7 @@ export default function ArticleInsert() {
                 </div>
             </div>
             <div className="settings-footer">
-                <a onClick={handleInsert} href={undefined} className="btn btn-yellow">
-                    添加文章
-                </a>
+                <a onClick={handleInsert} href={undefined} className="btn btn-yellow">添加文章</a>
             </div>
         </div>
     )

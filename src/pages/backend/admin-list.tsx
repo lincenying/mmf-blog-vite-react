@@ -23,7 +23,8 @@ export default function AdminList() {
 
     useMount(async () => {
         console.log('admin-list useMount: start')
-        if (admin.lists.data.length === 0) await getAdminListFunc(1)
+        if (admin.lists.data.length === 0)
+            await getAdminListFunc(1)
         console.log('admin-list useMount: end')
     })
 
@@ -46,7 +47,8 @@ export default function AdminList() {
         }
     }
     const handleLoadMore = async () => {
-        if (state.loading) return
+        if (state.loading)
+            return
         const { page } = admin.lists
         setState({ loading: true })
         await getAdminListFunc(page + 1)
@@ -55,42 +57,29 @@ export default function AdminList() {
 
     const lists = admin.lists.data.map((item, index) => {
         const btn = item.is_delete
-            ? (
-            <a onClick={handleRecover.bind(null, item._id)} href={undefined}>
-                恢复
-            </a>
-                )
-            : (
-            <a onClick={handleDelete.bind(null, item._id)} href={undefined}>
-                删除
-            </a>
-                )
+            ? <a onClick={handleRecover.bind(null, item._id)} href={undefined}>恢复</a>
+            : <a onClick={handleDelete.bind(null, item._id)} href={undefined}>删除</a>
         return (
             <div key={index} className="list-section">
                 <div className={`list-username${item.is_delete ? ' text-red-500 line-through' : ''}`}>{item.username}</div>
                 <div className="list-email">{item.email}</div>
                 <div className="list-date">{timeAgo(item.update_date)}</div>
                 <div className="list-action">
-                    <Link to={`/backend/admin/modify/${item._id}`} className="badge badge-success">
-                        编辑
-                    </Link>
+                    <Link to={`/backend/admin/modify/${item._id}`} className="badge badge-success">编辑</Link>
                     {btn}
                 </div>
             </div>
         )
     })
     const next = admin.lists.hasNext
-        ? (
-        <div className="settings-footer">
+        ? <div className="settings-footer">
             {' '}
             <a onClick={handleLoadMore} className="admin-load-more" href={undefined}>
                 {state.loading ? '加载中...' : '加载更多'}
-            </a>{' '}
+            </a>
+            {' '}
         </div>
-            )
-        : (
-                ''
-            )
+        : null
     return (
         <div className="settings-main card">
             <div className="settings-main-content">

@@ -5,8 +5,9 @@ import api from '@/api'
 import { insertCategoryItem } from '@/store/global/category'
 
 import AInput from '@/components/a-input'
+import type { Category } from '@/types'
 
-const CategoryModify = () => {
+function CategoryModify() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -19,7 +20,7 @@ const CategoryModify = () => {
         if (!state.cate_name || !state.cate_order)
             return setMessage('请将表单填写完整!')
 
-        const { code, data, message } = await api.post('backend/category/insert', state)
+        const { code, data, message } = await api.post<Category>('backend/category/insert', state)
         if (code === 200) {
             setMessage({ type: 'success', content: message })
             dispatch(insertCategoryItem(data))
@@ -54,9 +55,7 @@ const CategoryModify = () => {
                 </AInput>
             </div>
             <div className="settings-footer">
-                <a onClick={handleInsert} href={undefined} className="btn btn-yellow">
-                    添加分类
-                </a>
+                <a onClick={handleInsert} href={undefined} className="btn btn-yellow">添加分类</a>
             </div>
         </div>
     )

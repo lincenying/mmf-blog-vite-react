@@ -15,7 +15,7 @@ export default function Login() {
         if (!state.username || !state.password)
             return setMessage('请输入用户名和密码!')
 
-        const { code, data } = await api.post('backend/admin/login', state)
+        const { code, data } = await api.post<string>('backend/admin/login', state)
         if (data && code === 200)
             navigate('/backend/article/list')
     })
@@ -49,9 +49,7 @@ export default function Login() {
                         </AInput>
                     </div>
                     <div className="settings-footer">
-                        <a onClick={handleLogin} href={undefined} className="btn btn-yellow">
-                            登录
-                        </a>
+                        <a onClick={handleLogin} href={undefined} className="btn btn-yellow">登录</a>
                     </div>
                 </div>
             </div>

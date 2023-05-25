@@ -5,8 +5,9 @@ import api from '@/api'
 import { backendUserState, getUserItem, updateBackendUser } from '@/store/backend/user'
 
 import AInput from '@/components/a-input'
+import type { User } from '@/types'
 
-const UserModify = () => {
+function UserModify() {
     const params = useParams()
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -40,7 +41,7 @@ const UserModify = () => {
             ...state,
             id: params.id,
         }
-        const { code, data, message } = await api.post('backend/user/modify', item)
+        const { code, data, message } = await api.post<User>('backend/user/modify', item)
         if (code === 200) {
             setMessage({ type: 'success', content: message })
             dispatch(updateBackendUser(data))
@@ -86,12 +87,8 @@ const UserModify = () => {
                 </AInput>
             </div>
             <div className="settings-footer">
-                <Link to="/backend/user/list" className="btn btn-blue">
-                    返回
-                </Link>
-                <a onClick={handleModify} href={undefined} className="btn btn-yellow">
-                    编辑用户
-                </a>
+                <Link to="/backend/user/list" className="btn btn-blue">返回</Link>
+                <a onClick={handleModify} href={undefined} className="btn btn-yellow">编辑用户</a>
             </div>
         </div>
     )

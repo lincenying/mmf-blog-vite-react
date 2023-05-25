@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import api from '@/api'
-import { adminState, getAdminItem } from '@/store/backend/admin'
+import { adminState, getAdminItem, updateAdminItem } from '@/store/backend/admin'
 
 import AInput from '@/components/a-input'
+import type { User } from '@/types'
 
-const AdminModify = () => {
+function AdminModify() {
     const params = useParams()
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -40,10 +41,10 @@ const AdminModify = () => {
             ...state,
             id: params.id,
         }
-        const { code, data, message } = await api.post('backend/admin/modify', item)
+        const { code, data, message } = await api.post<User>('backend/admin/modify', item)
         if (code === 200) {
             setMessage({ type: 'success', content: message })
-            dispatch({ type: 'admin/updateAdminItem', payload: { data } })
+            dispatch(updateAdminItem(data))
             navigate('/backend/admin/list')
         }
     })
@@ -86,12 +87,8 @@ const AdminModify = () => {
                 </AInput>
             </div>
             <div className="settings-footer">
-                <Link to="/backend/admin/list" className="btn btn-blue">
-                    返回
-                </Link>
-                <a onClick={handleModify} href={undefined} className="btn btn-yellow">
-                    编辑管理员
-                </a>
+                <Link to="/backend/admin/list" className="btn btn-blue">返回</Link>
+                <a onClick={handleModify} href={undefined} className="btn btn-yellow">编辑管理员</a>
             </div>
         </div>
     )

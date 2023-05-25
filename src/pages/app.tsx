@@ -9,7 +9,7 @@ import '../assets/scss/style.scss'
 import '../assets/css/hljs/googlecode.css'
 import 'nprogress/nprogress.css'
 
-const App = () => {
+function App() {
     const location = useLocation()
     if (location.pathname.includes('backend'))
         return <Backend />

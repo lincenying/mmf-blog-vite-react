@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const BackendMenu = () => {
+function BackendMenu() {
     const location = useLocation()
     const isLogin = location.pathname !== '/backend'
     return !isLogin

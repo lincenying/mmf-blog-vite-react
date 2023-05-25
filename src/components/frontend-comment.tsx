@@ -23,7 +23,8 @@ export default function FrontendComment() {
     const [content, setContent] = useState('')
 
     const handleGetComment = async (page: number) => {
-        if (loading) return
+        if (loading)
+            return
         setLoading(true)
         page = page || comment.page
         dispatch(await getCommentList({ id, pathname, limit: 10, page }))
@@ -31,7 +32,8 @@ export default function FrontendComment() {
     }
 
     useMount(() => {
-        if (comment.pathname !== pathname) handleGetComment(1)
+        if (comment.pathname !== pathname)
+            handleGetComment(1)
     })
 
     const handleLoadMore = async () => {
@@ -49,7 +51,7 @@ export default function FrontendComment() {
             setMessage('请输入评论内容!')
         }
         else {
-            const { code, data } = await api.post('frontend/comment/insert', {
+            const { code, data } = await api.post<Comment>('frontend/comment/insert', {
                 content,
                 id,
             })

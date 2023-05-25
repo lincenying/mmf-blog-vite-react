@@ -5,7 +5,7 @@ import api from '@/api'
 import { commentState, deleteComment, getCommentList, recoverComment } from '@/store/global/comment'
 import { timeAgo } from '@/utils'
 
-const Comment = () => {
+function Comment() {
     const location = useLocation()
     const params = useParams()
     const { id } = params
@@ -24,7 +24,8 @@ const Comment = () => {
     }
 
     useMount(() => {
-        if (comment.pathname !== pathname) handleGetComment(1)
+        if (comment.pathname !== pathname)
+            handleGetComment(1)
     })
 
     const handleRecover = async (id: string) => {
@@ -42,7 +43,8 @@ const Comment = () => {
         }
     }
     const handleLoadMore = async () => {
-        if (state.loading) return
+        if (state.loading)
+            return
         const { page } = comment
         setState({ loading: true })
         await handleGetComment(page + 1)
@@ -54,16 +56,8 @@ const Comment = () => {
 
     const html = comment.data.map((item) => {
         const btn = item.is_delete
-            ? (
-            <a onClick={handleRecover.bind(null, item._id)} href={undefined}>
-                恢复
-            </a>
-                )
-            : (
-            <a onClick={handleDelete.bind(null, item._id)} href={undefined}>
-                删除
-            </a>
-                )
+            ? <a onClick={handleRecover.bind(null, item._id)} href={undefined}>恢复</a>
+            : <a onClick={handleDelete.bind(null, item._id)} href={undefined}>删除</a>
         return (
             <div key={item._id} className="comment-item">
                 <a href={undefined} className="comment-author-avatar-link">
@@ -71,9 +65,7 @@ const Comment = () => {
                 </a>
                 <div className="comment-content-wrap">
                     <span className="comment-author-wrap">
-                        <a href={undefined} className="comment-author">
-                            {item.username}
-                        </a>
+                        <a href={undefined} className="comment-author">{item.username}</a>
                     </span>
                     <div className="comment-content">{item.content}</div>
                     <div className="comment-footer">
@@ -85,17 +77,14 @@ const Comment = () => {
         )
     })
     const next = comment.hasNext
-        ? (
-        <div className="settings-footer">
+        ? <div className="settings-footer">
             {' '}
             <a onClick={handleLoadMore} className="admin-load-more" href={undefined}>
                 {state.loading ? '加载中...' : '加载更多'}
-            </a>{' '}
+            </a>
+            {' '}
         </div>
-            )
-        : (
-                ''
-            )
+        : null
     return (
         <div className="card">
             <div className="comments">

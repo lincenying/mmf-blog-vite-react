@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import type { Article } from '@/types'
 
-const AsideTrending = (props: { payload: Article[] }) => {
+function AsideTrending(props: { payload: Article[] }) {
     const { payload } = props
     const html = payload.map((item, index) => {
         return (

@@ -42,19 +42,21 @@ export const slice = createSlice({
         },
         deleteComment: (state, action: PayloadAction<string>) => {
             const obj = state.lists.data.find(ii => ii._id === action.payload)
-            if (obj) obj.is_delete = 1
+            if (obj)
+                obj.is_delete = 1
         },
         recoverComment: (state, action: PayloadAction<string>) => {
             const obj = state.lists.data.find(ii => ii._id === action.payload)
-            if (obj) obj.is_delete = 0
+            if (obj)
+                obj.is_delete = 0
         },
     },
 })
 
 export const { recevieCommentList, insertCommentItem, deleteComment, recoverComment } = slice.actions
 
-export const getCommentList = async (config: Record<string, any>) => {
-    const { code, data } = await api.get('frontend/comment/list', config)
+export async function getCommentList(config: Record<string, any>) {
+    const { code, data } = await api.get<ResponseDataLists<Comment>>('frontend/comment/list', config)
     if (code === 200)
         return recevieCommentList({ ...data, ...config })
 

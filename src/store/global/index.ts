@@ -6,7 +6,8 @@ import type { RootState } from '..'
 import type { GlobalStore, Message, UserCookies } from '@/types'
 
 let userid = cookies.get('userid')
-if (userid) userid = userid.replace('j:"', '').replace('"', '')
+if (userid)
+    userid = userid.replace('j:"', '').replace('"', '')
 
 const initialState: GlobalStore = {
     cookies: {
@@ -62,7 +63,7 @@ export const slice = createSlice({
 
 export const { setMessage, receiveCookies, showLoginModal, showRegisterModal } = slice.actions
 
-export const setCookis = (config: UserCookies) => {
+export function setCookis(config: UserCookies) {
     return receiveCookies(config)
 }
 

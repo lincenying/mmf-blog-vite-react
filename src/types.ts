@@ -219,15 +219,21 @@ export interface ShellStore {
     historyPageScrollTop: Record<string, number>
 }
 
+/**
+ * Api 浏览器端封装类型
+ */
 export interface ApiClientReturn {
-    get(url: string, params?: Record<string, any>, headers?: Record<string, any>): Promise<any>
-    post(url: string, data?: Record<string, any>, headers?: Record<string, any>): Promise<any>
-    file(url: string, data?: Record<string, any>, headers?: Record<string, any>): Promise<any>
+    get<T>(url: string, params?: Obj, headers?: Obj): Promise<ResponseData<T>>
+    post<T>(url: string, data?: Obj, headers?: Obj): Promise<ResponseData<T>>
+    file<T>(url: string, data?: Obj, headers?: Obj): Promise<ResponseData<T>>
 }
 
+/**
+ * Api Node端封装类型
+ */
 export interface ApiServerReturn {
-    post(url: string, data?: Record<string, any>, headers?: Record<string, any>): Promise<any>
-    get(url: string, params?: Record<string, any>, headers?: Record<string, any>): Promise<any>
+    post<T>(url: string, data?: Obj, headers?: Obj): Promise<ResponseData<T>>
+    get<T>(url: string, params?: Obj, headers?: Obj): Promise<ResponseData<T>>
     cookies: UserCookies
     api: AxiosInstance
     getCookies: () => UserCookies

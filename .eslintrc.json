@@ -1,5 +1,5 @@
 {
-    "extends": ["lcy-react", ".eslintrc-auto-import.json"],
+    "extends": ["@lincy/eslint-config-react", ".eslintrc-auto-import.json"],
     "rules": {
 
     }

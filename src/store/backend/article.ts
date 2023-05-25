@@ -46,17 +46,20 @@ export const slice = createSlice({
         update: (state, action: PayloadAction<Article>) => {
             const data = action.payload
             const index = state.lists.data.findIndex(ii => ii._id === data._id)
-            if (index > -1) state.lists.data[index] = data
+            if (index > -1)
+                state.lists.data[index] = data
         },
         deletes: (state, action: PayloadAction<string>) => {
             const id = action.payload
             const obj = state.lists.data.find(ii => ii._id === id)
-            if (obj) obj.is_delete = 1
+            if (obj)
+                obj.is_delete = 1
         },
         recover: (state, action: PayloadAction<string>) => {
             const id = action.payload
             const obj = state.lists.data.find(ii => ii._id === id)
-            if (obj) obj.is_delete = 0
+            if (obj)
+                obj.is_delete = 0
         },
     },
 })
@@ -69,22 +72,22 @@ export const {
     recover: recoverBackendArticle,
 } = slice.actions
 
-export const getArticleList = async (config: Record<string, any>) => {
-    const { code, data } = await api.get('backend/article/list', config)
+export async function getArticleList(config: Record<string, any>) {
+    const { code, data } = await api.get<ResponseDataLists<Article[]>>('backend/article/list', config)
     if (code === 200)
         return receiveBackendArticle({ ...data, ...config })
 
     return setMessage(errConfig)
 }
 
-export const deleteArticle = async (config: Record<string, any>) => {
+export async function deleteArticle(config: Record<string, any>) {
     const { code } = await api.get('backend/article/delete', config)
     if (code === 200)
         return deleteBackendArticle(config.id)
 
     return setMessage(errConfig)
 }
-export const recoverArticle = async (config: Record<string, any>) => {
+export async function recoverArticle(config: Record<string, any>) {
     const { code } = await api.get('backend/article/recover', config)
     if (code === 200)
         return recoverBackendArticle(config.id)

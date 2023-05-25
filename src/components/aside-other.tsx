@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AsideOther = () => {
+function AsideOther() {
     return (
         <div className="card card-other">
             <div className="card-content">

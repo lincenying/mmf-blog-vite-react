@@ -33,7 +33,8 @@ export default function Topics() {
     }
 
     const handleLoadMore = async () => {
-        if (state.loading) return
+        if (state.loading)
+            return
         const { page } = topics
         setState({ loading: true })
         await handlefetchPosts(page + 1)
@@ -61,9 +62,12 @@ export default function Topics() {
         console.log('topics useMount: start')
         const pathname = firstPathname.current
 
-        if (topics.pathname !== firstPathname.current) handlefetchPosts()
-        if (category.lists.length === 0) dispatch(await getCategoryList())
-        if (trending.data.length === 0) dispatch(await getTrending())
+        if (topics.pathname !== firstPathname.current)
+            handlefetchPosts()
+        if (category.lists.length === 0)
+            dispatch(await getCategoryList())
+        if (trending.data.length === 0)
+            dispatch(await getTrending())
 
         if (topics.pathname !== '') {
             const scrollTop = ls.get(pathname)
@@ -94,15 +98,11 @@ export default function Topics() {
     else if (topics.data.length > 0) {
         const lists = topics.data.map(item => <TopicsItem key={item._id} payload={item} />)
         const hasNext = topics.hasNext
-            ? (
-            <a onClick={handleLoadMore} href={undefined} className={`load-more ${state.loading ? 'loading' : ''}`}>
+            ? <a onClick={handleLoadMore} href={undefined} className={`load-more ${state.loading ? 'loading' : ''}`}>
                 {state.loading ? '加载中' : '加载'}
                 <i className="icon icon-circle-loading" />
             </a>
-                )
-            : (
-                    ''
-                )
+            : null
         html = (
             <div className="home-feeds cards-wrap">
                 {lists}

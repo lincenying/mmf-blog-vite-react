@@ -14,7 +14,7 @@ import Sign from '@/components/sign'
 import Authorized from '@/components/frontend-authorized'
 import FrontendNavigation from '@/components/frontend-navigation'
 
-const Frontend = () => {
+function Frontend() {
     const location = useLocation()
     return (
         <div className="frontend">
@@ -28,8 +28,8 @@ const Frontend = () => {
                         <Route path="/search/:key" element={<Main />} />
                         <Route path="/article/:id" element={<Article />} />
                         <Route path="/about" element={<About />} />
-                        <Route path="/user/account" element={<Authorized path="/user/account" component={userAccount} />} />
-                        <Route path="/user/password" element={<Authorized path="/user/password" component={userPassword} />} />
+                        <Route path="/user/account" element={<Authorized component={userAccount} />} />
+                        <Route path="/user/password" element={<Authorized component={userPassword} />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </CSSTransition>

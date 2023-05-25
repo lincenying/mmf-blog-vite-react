@@ -60,27 +60,29 @@ export const slice = createSlice({
         deleteAdmin: (state, action: PayloadAction<string>) => {
             const id = action.payload
             const obj = state.lists.data.find(ii => ii._id === id)
-            if (obj) obj.is_delete = 1
+            if (obj)
+                obj.is_delete = 1
         },
         recoverAdmin: (state, action: PayloadAction<string>) => {
             const id = action.payload
             const obj = state.lists.data.find(ii => ii._id === id)
-            if (obj) obj.is_delete = 0
+            if (obj)
+                obj.is_delete = 0
         },
     },
 })
 
 export const { receiveAdminList, receiveAdminItem, updateAdminItem, deleteAdmin, recoverAdmin } = slice.actions
 
-export const getAdminList = async (config: Record<string, any>) => {
-    const { code, data } = await api.get('backend/admin/list', config)
+export async function getAdminList(config: Record<string, any>) {
+    const { code, data } = await api.get<ResponseDataLists<User[]>>('backend/admin/list', config)
     if (code === 200)
         return receiveAdminList({ ...data, ...config })
 
     return setMessage(errConfig)
 }
-export const getAdminItem = async (config: Record<string, any>) => {
-    const { code, data } = await api.get('backend/admin/item', config)
+export async function getAdminItem(config: Record<string, any>) {
+    const { code, data } = await api.get<User>('backend/admin/item', config)
     if (code === 200)
         return receiveAdminItem({ data, ...config })
 

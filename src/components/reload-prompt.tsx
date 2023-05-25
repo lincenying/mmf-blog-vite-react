@@ -2,7 +2,7 @@ import React from 'react'
 import type { RegisterSWOptions } from 'virtual:pwa-register'
 import { registerSW } from 'virtual:pwa-register'
 
-const useRegisterSW = (options: RegisterSWOptions = {}) => {
+function useRegisterSW(options: RegisterSWOptions = {}) {
     const { immediate = true, onNeedRefresh, onOfflineReady } = options
 
     const [needRefresh, { setTrue: setRefresTrue, setFalse: setRefresFalse }] = useBoolean(false)
@@ -29,7 +29,7 @@ const useRegisterSW = (options: RegisterSWOptions = {}) => {
     }
 }
 
-const ReloadPrompt = () => {
+function ReloadPrompt() {
     const { offlineReady, needRefresh, updateServiceWorker, setRefresFalse, setReadyFalse } = useRegisterSW()
     const onClose = async () => {
         setRefresFalse()

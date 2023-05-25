@@ -6,6 +6,7 @@ import { categoryState, getCategoryList } from '@/store/global/category'
 import { updateBackendArticle } from '@/store/backend/article'
 
 import AInput from '@/components/a-input'
+import type { Article } from '@/types'
 
 export default function ArticleInsert() {
     const params = useParams()
@@ -22,7 +23,7 @@ export default function ArticleInsert() {
     })
 
     const getArticleData = async () => {
-        const { code, data } = await api.get('backend/article/item', { id: params.id })
+        const { code, data } = await api.get<Article>('backend/article/item', { id: params.id })
         if (code === 200) {
             setState({
                 title: data.title,
@@ -59,7 +60,7 @@ export default function ArticleInsert() {
         if (!state.title || !state.category || !content)
             return setMessage('请将表单填写完整!')
 
-        const { code, data, message } = await api.post('backend/article/modify', {
+        const { code, data, message } = await api.post<Article>('backend/article/modify', {
             ...state,
             content,
             id: params.id,
@@ -112,12 +113,8 @@ export default function ArticleInsert() {
                 </div>
             </div>
             <div className="settings-footer">
-                <Link to="/backend/article/list" className="btn btn-blue">
-                    返回
-                </Link>
-                <a onClick={handleModify} href={undefined} className="btn btn-yellow">
-                    编辑文章
-                </a>
+                <Link to="/backend/article/list" className="btn btn-blue">返回</Link>
+                <a onClick={handleModify} href={undefined} className="btn btn-yellow">编辑文章</a>
             </div>
         </div>
     )

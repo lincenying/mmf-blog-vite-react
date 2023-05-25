@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { errConfig, setMessage } from '../global'
 import type { RootState } from '..'
 import api from '@/api'
-import type { ArticleItemConfig } from '@/types'
+import type { Article, ArticleItemConfig } from '@/types'
 
 const initialState: ArticleItemConfig = {
     data: null,
@@ -38,8 +38,8 @@ export const slice = createSlice({
 
 export const { receiveArticleItem, updateArticleLikeState } = slice.actions
 
-export const getArticleItem = async (config: Record<string, any>) => {
-    const { code, data } = await api.get('frontend/article/item', config)
+export async function getArticleItem(config: Record<string, any>) {
+    const { code, data } = await api.get<Article>('frontend/article/item', config)
     if (code === 200)
         return receiveArticleItem({ data, ...config })
 

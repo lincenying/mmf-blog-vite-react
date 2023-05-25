@@ -6,7 +6,7 @@ interface Porps {
     classNames?: string
 }
 
-const Avatar = (props: Porps) => {
+function Avatar(props: Porps) {
     const email = props.email || 'licenying@126.com'
     const classNames = props.classNames || 'avatar-img'
     const src = `https://fdn.geekzu.org/avatar/${md5(email)}?s=256&d=identicon&r=g`

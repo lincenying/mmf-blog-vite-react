@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Actions from './item-actions'
 import type { Article } from '@/types'
 
-const TopicsItem = (props: { payload: Article }) => {
+function TopicsItem(props: { payload: Article }) {
     const item = props.payload
     return (
         <div className="card feed">

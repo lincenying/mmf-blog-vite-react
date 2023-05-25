@@ -18,7 +18,7 @@ import BackendMenu from '@/components/backend-menu'
 import Authorized from '@/components/backend-authorized'
 import FrontendNavigation from '@/components/frontend-navigation'
 
-const Backend = () => {
+function Backend() {
     const location = useLocation()
     return (
         <div className="backend">

@@ -4,11 +4,11 @@ import { Navigate } from 'react-router-dom'
 import { globalState } from '@/store/global'
 
 interface Props {
-    [x: string]: any
-    component: any
+    component: React.ComponentType<any>
+    location?: string
 }
 
-const BackendAuthorized = (props: Props) => {
+function BackendAuthorized(props: Props) {
     const { component: Component, ...rest } = props
     const global = useSelector(globalState)
 

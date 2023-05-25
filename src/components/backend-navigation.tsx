@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Navigation = () => {
+function Navigation() {
     return (
         <nav className="global-nav">
             <div className="wrap">

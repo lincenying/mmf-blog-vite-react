@@ -6,7 +6,7 @@ interface Props {
     children?: any
 }
 
-const AInput = (props: Props) => {
+function AInput(props: Props) {
     const { title, classes } = props
     return (
         <div className="settings-section">

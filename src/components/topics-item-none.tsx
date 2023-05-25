@@ -1,10 +1,11 @@
+import type { ReactNode } from 'react'
 import React from 'react'
 
 interface Props {
-    children?: any
+    children?: ReactNode
 }
 
-const TopicsItemNone = (props: Props) => {
+function TopicsItemNone(props: Props) {
     return (
         <div className="card feed">
             <div className="feed-content">

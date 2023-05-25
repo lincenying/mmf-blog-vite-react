@@ -67,9 +67,7 @@ export default function UserPassword() {
                             </AInput>
                         </div>
                         <div className="settings-footer">
-                            <a onClick={handleModify} href={undefined} className="btn btn-yellow">
-                                保存设置
-                            </a>
+                            <a onClick={handleModify} href={undefined} className="btn btn-yellow">保存设置</a>
                         </div>
                     </div>
                 </div>

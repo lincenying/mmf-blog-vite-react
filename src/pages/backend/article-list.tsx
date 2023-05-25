@@ -22,7 +22,8 @@ export default function ArticleList() {
 
     useMount(async () => {
         console.log('article-list useMount: start')
-        if (topics.data.length === 0) await handleGetArticleList(1)
+        if (topics.data.length === 0)
+            await handleGetArticleList(1)
         console.log('article-list useMount: end')
     })
 
@@ -41,7 +42,8 @@ export default function ArticleList() {
         }
     }
     const handleLoadMore = async () => {
-        if (state.loading) return
+        if (state.loading)
+            return
         const { page } = topics
         setState({ loading: true })
         await handleGetArticleList(page + 1)
@@ -50,35 +52,19 @@ export default function ArticleList() {
 
     const lists = topics.data.map((item, index) => {
         const btn = item.is_delete
-            ? (
-            <a onClick={handleRecover.bind(null, item._id)} href={undefined}>
-                恢复
-            </a>
-                )
-            : (
-            <a onClick={handleDelete.bind(null, item._id)} href={undefined}>
-                删除
-            </a>
-                )
+            ? (<a onClick={handleRecover.bind(null, item._id)} href={undefined}>恢复</a>)
+            : (<a onClick={handleDelete.bind(null, item._id)} href={undefined}>删除</a>)
         const com
             = item.comment_count > 0
-                ? (
-                <Link to={`/backend/article/comment/${item._id}`} className="badge badge-success">
-                    评论
-                </Link>
-                    )
-                : (
-                        ''
-                    )
+                ? (<Link to={`/backend/article/comment/${item._id}`} className="badge badge-success">评论</Link>)
+                : null
         return (
             <div key={index} className="list-section">
                 <div className={`list-title${item.is_delete ? ' text-red-500 line-through' : ''}`}>{item.title}</div>
                 <div className="list-category">{item.category_name}</div>
                 <div className="list-date">{timeAgo(item.update_date)}</div>
                 <div className="list-action">
-                    <Link to={`/backend/article/modify/${item._id}`} className="badge badge-success">
-                        编辑
-                    </Link>
+                    <Link to={`/backend/article/modify/${item._id}`} className="badge badge-success">编辑</Link>
                     {btn}
                     {com}
                 </div>
@@ -91,12 +77,11 @@ export default function ArticleList() {
             {' '}
             <a onClick={handleLoadMore} className="admin-load-more" href={undefined}>
                 {state.loading ? '加载中...' : '加载更多'}
-            </a>{' '}
+            </a>
+            {' '}
         </div>
             )
-        : (
-                ''
-            )
+        : null
     return (
         <div className="settings-main card">
             <div className="settings-main-content">

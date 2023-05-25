@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import api from '@/api'
-import { categoryState, getCategoryItem } from '@/store/global/category'
+import { categoryState, getCategoryItem, updateCategoryItem } from '@/store/global/category'
 
 import AInput from '@/components/a-input'
+import type { Category } from '@/types'
 
-const CategoryModify = () => {
+function CategoryModify() {
     const navigate = useNavigate()
     const params = useParams()
     const dispatch = useDispatch()
@@ -40,10 +41,10 @@ const CategoryModify = () => {
             ...state,
             id: params.id,
         }
-        const { code, data, message } = await api.post('backend/category/modify', item)
+        const { code, data, message } = await api.post<Category>('backend/category/modify', item)
         if (code === 200) {
             setMessage({ type: 'success', content: message })
-            dispatch({ type: 'category/updateCategoryItem', payload: data })
+            dispatch(updateCategoryItem(data))
             navigate('/backend/category/list')
         }
     })
@@ -74,12 +75,8 @@ const CategoryModify = () => {
                 </AInput>
             </div>
             <div className="settings-footer">
-                <Link to="/backend/category/list" className="btn btn-blue">
-                    返回
-                </Link>
-                <a onClick={handleModify} href={undefined} className="btn btn-yellow">
-                    编辑分类
-                </a>
+                <Link to="/backend/category/list" className="btn btn-blue">返回</Link>
+                <a onClick={handleModify} href={undefined} className="btn btn-yellow">编辑分类</a>
             </div>
         </div>
     )

@@ -5,6 +5,7 @@ import Account from '@/components/aside-account'
 import AInput from '@/components/a-input'
 
 import { globalState, setCookis } from '@/store/global'
+import type { User } from '@/types'
 
 export default function UserAccount() {
     const dispatch = useDispatch()
@@ -16,7 +17,7 @@ export default function UserAccount() {
     })
 
     const getUser = async () => {
-        const { code, data } = await api.get('frontend/user/account')
+        const { code, data } = await api.get<User>('frontend/user/account')
         if (code === 200) {
             setState({
                 username: data.username,
@@ -76,9 +77,7 @@ export default function UserAccount() {
                             </AInput>
                         </div>
                         <div className="settings-footer">
-                            <a onClick={handleModify} href={undefined} className="btn btn-yellow">
-                                保存设置
-                            </a>
+                            <a onClick={handleModify} href={undefined} className="btn btn-yellow">保存设置</a>
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { errConfig, setMessage } from '../global'
 import type { RootState } from '..'
 import api from '@/api'
-import type { ArticleStoreList } from '@/types'
+import type { Article, ArticleStoreList } from '@/types'
 
 const initialState: {
     lists: ArticleStoreList
@@ -43,8 +43,8 @@ export const slice = createSlice({
 
 export const { receiveTopics, updateTopicsLikeState } = slice.actions
 
-export const getTopics = async (config: Record<string, any>) => {
-    const { code, data } = await api.get('frontend/article/list', config)
+export async function getTopics(config: Record<string, any>) {
+    const { code, data } = await api.get<ResponseDataLists<Article[]>>('frontend/article/list', config)
     if (code === 200)
         return receiveTopics({ ...data, ...config })
 

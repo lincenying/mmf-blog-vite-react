@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import type { Category } from '@/types'
 
-const AsideCategory = (props: { payload: Category [] }) => {
+function AsideCategory(props: { payload: Category[] }) {
     const { payload } = props
     const html = payload.map((item) => {
         return (

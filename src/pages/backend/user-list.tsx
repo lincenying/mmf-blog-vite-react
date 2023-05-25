@@ -5,7 +5,7 @@ import api from '@/api'
 import { backendUserState, deleteBackendUser, getUserList, recoverBackendUser } from '@/store/backend/user'
 import { timeAgo } from '@/utils'
 
-const UserList = () => {
+function UserList() {
     const location = useLocation()
     const pathname = location.pathname
     const dispatch = useDispatch()
@@ -22,7 +22,8 @@ const UserList = () => {
 
     useMount(async () => {
         console.log('user-list useMount: start')
-        if (user.lists.data.length === 0) await getUserListFunc(1)
+        if (user.lists.data.length === 0)
+            await getUserListFunc(1)
         console.log('user-list useMount: end')
     })
 
@@ -45,7 +46,8 @@ const UserList = () => {
         }
     }
     const handleLoadMore = async () => {
-        if (state.loading) return
+        if (state.loading)
+            return
         const { page } = user.lists
         setState({ loading: true })
         await getUserListFunc(page + 1)
@@ -54,42 +56,30 @@ const UserList = () => {
 
     const lists = user.lists.data.map((item, index) => {
         const btn = item.is_delete
-            ? (
-            <a onClick={handleRecover.bind(null, item._id)} href={undefined}>
-                恢复
-            </a>
-                )
-            : (
-            <a onClick={handleDelete.bind(null, item._id)} href={undefined}>
-                删除
-            </a>
-                )
+            ? <a onClick={handleRecover.bind(null, item._id)} href={undefined}>恢复</a>
+            : <a onClick={handleDelete.bind(null, item._id)} href={undefined}>删除</a>
+
         return (
             <div key={index} className="list-section">
                 <div className={`list-username${item.is_delete ? ' text-red-500 line-through' : ''}`}>{item.username}</div>
                 <div className="list-email">{item.email}</div>
                 <div className="list-date">{timeAgo(item.update_date)}</div>
                 <div className="list-action">
-                    <Link to={`/backend/user/modify/${item._id}`} className="badge badge-success">
-                        编辑
-                    </Link>
+                    <Link to={`/backend/user/modify/${item._id}`} className="badge badge-success">编辑</Link>
                     {btn}
                 </div>
             </div>
         )
     })
     const next = user.lists.hasNext
-        ? (
-        <div className="settings-footer">
+        ? <div className="settings-footer">
             {' '}
             <a onClick={handleLoadMore} className="admin-load-more" href={undefined}>
                 {state.loading ? '加载中...' : '加载更多'}
-            </a>{' '}
+            </a>
+            {' '}
         </div>
-            )
-        : (
-                ''
-            )
+        : null
     return (
         <div className="settings-main card">
             <div className="settings-main-content">
