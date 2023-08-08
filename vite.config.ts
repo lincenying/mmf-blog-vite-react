@@ -28,6 +28,11 @@ export default defineConfig(({ mode }) => {
         css: {
             preprocessorOptions: {},
         },
+        resolve: {
+            alias: {
+                '@': path.join(__dirname, './src'),
+            },
+        },
         plugins: [
             react(),
             AutoImport({
@@ -53,7 +58,6 @@ export default defineConfig(({ mode }) => {
                 resolvers: [],
                 defaultExportByFilename: false,
                 vueTemplate: false,
-                cache: false,
             }),
             createStyleImportPlugin({
                 resolves: [AntdResolve()],
@@ -62,15 +66,8 @@ export default defineConfig(({ mode }) => {
                 ],
             }),
             ...pwaConfig(),
-            UnoCSS({
-                /* options */
-            }),
+            UnoCSS(),
         ],
-        resolve: {
-            alias: {
-                '@': path.join(__dirname, './src'),
-            },
-        },
     }
 
     return config
