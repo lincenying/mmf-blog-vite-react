@@ -1,7 +1,13 @@
+import type { ReactNode } from 'react'
 import { useEffect, useRef } from 'react'
 
-export default function ScrollToTop(props: any) {
-    const pathname = props.location.pathname
+interface Props {
+    children?: ReactNode
+}
+
+export default function ScrollToTop(props: Props) {
+    const location = useLocation()
+    const pathname = location.pathname
     const mounting = useRef(true)
     const firstPathname = useRef(pathname)
 
@@ -11,7 +17,7 @@ export default function ScrollToTop(props: any) {
             console.log('componentDidMount')
             return
         }
-        if (firstPathname !== props.location.pathname)
+        if (firstPathname.current !== location.pathname)
             window.scrollTo(0, 0)
     })
 
