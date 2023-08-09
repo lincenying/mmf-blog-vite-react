@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
-import { AntdResolve, createStyleImportPlugin } from 'vite-plugin-style-import'
+import vitePluginImportus from 'vite-plugin-importus'
 import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
 
@@ -59,12 +59,13 @@ export default defineConfig(({ mode }) => {
                 defaultExportByFilename: false,
                 vueTemplate: false,
             }),
-            createStyleImportPlugin({
-                resolves: [AntdResolve()],
-                libs: [
-
-                ],
-            }),
+            vitePluginImportus([
+                {
+                    libraryName: 'antd',
+                    libraryDirectory: 'es',
+                    style: 'index',
+                },
+            ]),
             ...pwaConfig(),
             UnoCSS(),
         ],

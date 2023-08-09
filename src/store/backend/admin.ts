@@ -24,6 +24,7 @@ export const slice = createSlice({
     name: 'backendAdmin',
     initialState,
     reducers: {
+        /** 接收管理员列表 */
         receiveAdminList: (state, action: PayloadAction<Record<string, any>>) => {
             const { list, pathname, hasNext, hasPrev, page } = action.payload
             let data

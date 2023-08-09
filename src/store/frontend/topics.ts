@@ -6,9 +6,7 @@ import type { RootState } from '..'
 import api from '@/api'
 import type { Article, ArticleStoreList } from '@/types'
 
-const initialState: {
-    lists: ArticleStoreList
-} = {
+const initialState: { lists: ArticleStoreList } = {
     lists: {
         data: [],
         hasNext: 0,

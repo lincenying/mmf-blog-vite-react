@@ -52,8 +52,8 @@
     "unocss": "^0.54.2",
     "unplugin-auto-import": "^0.16.6",
     "vite": "^4.4.9",
-    "vite-plugin-pwa": "^0.16.4",
-    "vite-plugin-style-import": "^2.0.0"
+    "vite-plugin-importus": "^1.0.4",
+    "vite-plugin-pwa": "^0.16.4"
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx}": [
