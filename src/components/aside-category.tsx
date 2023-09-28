@@ -2,13 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import type { Category } from '@/types'
 
-function AsideCategory(props: { payload: Category[] }) {
+function AsideCategory(props: { readonly payload: Category[] }) {
     const { payload } = props
     const html = payload.map((item) => {
         return (
-            <Link key={item._id} to={`/category/${item._id}`} className="topic-item">
+            <Link className="topic-item" key={item._id} to={`/category/${item._id}`}>
                 <span className="avatar-link">
-                    <img src="/static/images/topic-1.png" className="avatar-image" />
+                    <img className="avatar-image" src="/static/images/topic-1.png" />
                 </span>
                 <div>
                     <h3 className="topic-title">{item.cate_name}</h3>

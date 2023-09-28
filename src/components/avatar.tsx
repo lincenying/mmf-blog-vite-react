@@ -2,14 +2,14 @@ import React from 'react'
 import md5 from 'md5'
 
 interface Porps {
-    email?: string
-    classNames?: string
+    readonly email?: string
+    readonly classNames?: string
 }
 
 function Avatar(props: Porps) {
-    const email = props.email || 'licenying@126.com'
-    const classNames = props.classNames || 'avatar-img'
+    const { email = 'licenying@126.com', classNames = 'avatar-img' } = props
+
     const src = `https://fdn.geekzu.org/avatar/${md5(email)}?s=256&d=identicon&r=g`
-    return <img src={src} alt="" className={classNames} />
+    return <img alt="" className={classNames} src={src} />
 }
 export default React.memo(Avatar)

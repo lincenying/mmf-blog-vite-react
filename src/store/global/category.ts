@@ -57,7 +57,7 @@ export const {
 } = slice.actions
 
 export async function getCategoryList(config?: Record<string, any>) {
-    const { code, data } = await api.get<ResponseDataList<Category[]>>('backend/category/list', config)
+    const { code, data } = await api.get<ResDataList<Category[]>>('backend/category/list', config)
     if (code === 200)
         return receiveCategoryList(data.list)
 

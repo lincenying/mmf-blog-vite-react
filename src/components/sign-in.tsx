@@ -38,7 +38,7 @@ export default function SignIn() {
             <span className="center-helper" />
             <div className="modal modal-signup">
                 <h2 className="modal-title">登录</h2>
-                <a onClick={handleClose} href={undefined} className="modal-close">
+                <a className="modal-close" href={undefined} onClick={handleClose}>
                     <i className="icon icon-close-black" />
                 </a>
                 <div className="modal-content">
@@ -46,31 +46,31 @@ export default function SignIn() {
                         <form action="#">
                             <div className="input-wrap">
                                 <input
-                                    type="text"
-                                    value={state.username}
+                                    autoComplete="off"
+                                    className="base-input"
                                     onChange={e => setState({ username: e.target.value })}
                                     placeholder="昵称"
-                                    className="base-input"
-                                    autoComplete="off"
+                                    type="text"
+                                    value={state.username}
                                 />
                                 <p className="error-info input-info hidden">长度至少 6 位</p>
                             </div>
                             <div className="input-wrap">
                                 <input
-                                    type="password"
-                                    value={state.password}
+                                    autoComplete="off"
+                                    className="base-input"
                                     onChange={e => setState({ password: e.target.value })}
                                     placeholder="密码"
-                                    className="base-input"
-                                    autoComplete="off"
+                                    type="password"
+                                    value={state.password}
                                 />
                                 <p className="error-info input-info hidden">长度至少 6 位</p>
                             </div>
                         </form>
-                        <a onClick={handleLogin} href={undefined} className="btn signup-btn btn-yellow">
+                        <a className="btn signup-btn btn-yellow" href={undefined} onClick={handleLogin}>
                             确认登录
                         </a>
-                        <a onClick={handleRegister} href={undefined} className="btn signup-btn btn-blue block">
+                        <a className="btn signup-btn btn-blue block" href={undefined} onClick={handleRegister}>
                             我要注册
                         </a>
                     </div>

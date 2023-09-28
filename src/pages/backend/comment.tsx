@@ -55,36 +55,41 @@ function Comment() {
     }
 
     const html = comment.data.map((item) => {
-        const btn = item.is_delete
-            ? <a onClick={handleRecover.bind(null, item._id)} href={undefined}>恢复</a>
-            : <a onClick={handleDelete.bind(null, item._id)} href={undefined}>删除</a>
+        const btns = item.is_delete ? (
+            <a href={undefined} onClick={handleRecover.bind(null, item._id)}>恢复</a>
+        ) : (
+            <a href={undefined} onClick={handleDelete.bind(null, item._id)}>删除</a>
+        )
+
         return (
-            <div key={item._id} className="comment-item">
-                <a href={undefined} className="comment-author-avatar-link">
-                    <img src={avatar(item.userid.email)} alt="" className="avatar-img" />
+            <div className="comment-item" key={item._id}>
+                <a className="comment-author-avatar-link" href={undefined}>
+                    <img alt="" className="avatar-img" src={avatar(item.userid.email)} />
                 </a>
                 <div className="comment-content-wrap">
                     <span className="comment-author-wrap">
-                        <a href={undefined} className="comment-author">{item.username}</a>
+                        <a className="comment-author" href={undefined}>{item.username}</a>
                     </span>
                     <div className="comment-content">{item.content}</div>
                     <div className="comment-footer">
                         <span className="comment-time">{timeAgo(item.timestamp)}</span>
-                        {btn}
+                        {btns}
                     </div>
                 </div>
             </div>
         )
     })
-    const next = comment.hasNext
-        ? <div className="settings-footer">
+
+    const next = comment.hasNext ? (
+        <div className="settings-footer">
             {' '}
-            <a onClick={handleLoadMore} className="admin-load-more" href={undefined}>
+            <a className="admin-load-more" href={undefined} onClick={handleLoadMore}>
                 {state.loading ? '加载中...' : '加载更多'}
             </a>
             {' '}
         </div>
-        : null
+    ) : null
+
     return (
         <div className="card">
             <div className="comments">

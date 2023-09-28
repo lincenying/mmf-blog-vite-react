@@ -73,7 +73,7 @@ export const {
 } = slice.actions
 
 export async function getArticleList(config: Record<string, any>) {
-    const { code, data } = await api.get<ResponseDataLists<Article[]>>('backend/article/list', config)
+    const { code, data } = await api.get<ResDataLists<Article[]>>('backend/article/list', config)
     if (code === 200)
         return receiveBackendArticle({ ...data, ...config })
 

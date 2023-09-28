@@ -61,23 +61,25 @@ export default function UserAccount() {
                     <div className="settings-main card">
                         <div className="settings-main-content">
                             <AInput title="昵称">
-                                <input value={state.username} type="text" placeholder="昵称" className="base-input" name="username" readOnly />
+                                <input className="base-input" name="username" placeholder="昵称" readOnly
+                                    type="text" value={state.username}
+                                />
                                 <span className="input-info error">请输入昵称</span>
                             </AInput>
                             <AInput title="邮箱">
                                 <input
-                                    value={state.email}
-                                    onChange={e => setState({ email: e.target.value })}
-                                    type="text"
-                                    placeholder="邮箱"
                                     className="base-input"
                                     name="email"
+                                    onChange={e => setState({ email: e.target.value })}
+                                    placeholder="邮箱"
+                                    type="text"
+                                    value={state.email}
                                 />
                                 <span className="input-info error">请输入邮箱</span>
                             </AInput>
                         </div>
                         <div className="settings-footer">
-                            <a onClick={handleModify} href={undefined} className="btn btn-yellow">保存设置</a>
+                            <a className="btn btn-yellow" href={undefined} onClick={handleModify}>保存设置</a>
                         </div>
                     </div>
                 </div>

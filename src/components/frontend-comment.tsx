@@ -74,20 +74,20 @@ export default function FrontendComment() {
 
     const html = comment.data.map((item) => {
         return (
-            <div key={item._id} className="comment-item">
-                <a href={undefined} className="comment-author-avatar-link">
+            <div className="comment-item" key={item._id}>
+                <a className="comment-author-avatar-link" href={undefined}>
                     <Avatar email={item.userid.email} />
                 </a>
                 <div className="comment-content-wrap">
                     <span className="comment-author-wrap">
-                        <a href={undefined} className="comment-author">
+                        <a className="comment-author" href={undefined}>
                             {item.username}
                         </a>
                     </span>
                     <div className="comment-content">{item.content}</div>
                     <div className="comment-footer">
                         <span className="comment-time">{item.creat_date}</span>
-                        <a onClick={handleReply.bind(null, item)} href={undefined} className="comment-action-item comment-reply">
+                        <a className="comment-action-item comment-reply" href={undefined} onClick={handleReply.bind(null, item)}>
                             回复
                         </a>
                     </div>
@@ -95,18 +95,14 @@ export default function FrontendComment() {
             </div>
         )
     })
-    const hasNext = comment.hasNext
-        ? (
+    const hasNext = comment.hasNext ? (
         <div className="load-more-wrap">
             {' '}
-            <a onClick={handleLoadMore} href={undefined} className="comments-load-more">
+            <a className="comments-load-more" href={undefined} onClick={handleLoadMore}>
                 {loading ? '加载中...' : '加载更多'}
             </a>{' '}
         </div>
-            )
-        : (
-                ''
-            )
+    ) : null
 
     return (
         <div className="card">
@@ -116,16 +112,16 @@ export default function FrontendComment() {
                     <Avatar email={global.cookies.useremail} />
                     <div className="comment-post-input-wrap base-textarea-wrap">
                         <textarea
-                            value={content}
-                            onChange={e => setContent(e.target.value)}
-                            id="content"
                             className="textarea-input base-input"
                             cols={30}
+                            id="content"
+                            onChange={e => setContent(e.target.value)}
                             rows={4}
+                            value={content}
                         />
                     </div>
                     <div className="comment-post-actions">
-                        <a onClick={handlePostComment} href={undefined} className="btn btn-blue">
+                        <a className="btn btn-blue" href={undefined} onClick={handlePostComment}>
                             发表评论
                         </a>
                     </div>

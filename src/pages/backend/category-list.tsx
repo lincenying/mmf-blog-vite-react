@@ -33,20 +33,22 @@ function CategoryList() {
     }
 
     const html = category.lists.map((item) => {
-        let btn
+        let btns
         if (!item.cate_num) {
-            btn = item.is_delete
-                ? <a onClick={handleRecover.bind(null, item._id)} href={undefined}>恢复</a>
-                : <a onClick={handleDelete.bind(null, item._id)} href={undefined}>删除</a>
+            btns = item.is_delete ? (
+                <a href={undefined} onClick={handleRecover.bind(null, item._id)}>恢复</a>
+            ) : (
+                <a href={undefined} onClick={handleDelete.bind(null, item._id)}>删除</a>
+            )
         }
 
         return (
-            <div key={item._id} className="list-section">
+            <div className="list-section" key={item._id}>
                 <div className={`list-title${item.is_delete ? ' text-red-500 line-through' : ''}`}>{item.cate_name}</div>
                 <div className="list-time">{item.cate_order}</div>
                 <div className="list-action">
-                    <Link to={`/backend/category/modify/${item._id}`} className="badge badge-success">编辑</Link>
-                    {btn}
+                    <Link className="badge badge-success" to={`/backend/category/modify/${item._id}`}>编辑</Link>
+                    {btns}
                 </div>
             </div>
         )

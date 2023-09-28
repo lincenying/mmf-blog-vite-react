@@ -27,18 +27,18 @@ function Backend() {
                 <div className="main-left">
                     <div className="home-feeds cards-wrap">
                         <Routes key={location.pathname}>
-                            <Route path="/backend" element={<Login />} />
-                            <Route path="/backend/admin/list" element={<Authorized component={AdminList} />} />
-                            <Route path="/backend/admin/modify/:id" element={<Authorized component={AdminModify} />} />
-                            <Route path="/backend/article/list" element={<Authorized component={ArticleList} />} />
-                            <Route path="/backend/article/insert" element={<Authorized component={ArticleInsert} />} />
-                            <Route path="/backend/article/modify/:id" element={<Authorized component={ArticleModify} />} />
-                            <Route path="/backend/article/comment/:id" element={<Authorized component={Comment} />} />
-                            <Route path="/backend/category/list" element={<Authorized component={CategoryList} />} />
-                            <Route path="/backend/category/insert" element={<Authorized component={CategoryInsert} />} />
-                            <Route path="/backend/category/modify/:id" element={<Authorized component={CategoryModify} />} />
-                            <Route path="/backend/user/list" element={<Authorized component={UserList} />} />
-                            <Route path="/backend/user/modify/:id" element={<Authorized component={UserModify} />} />
+                            <Route element={<Login />} path="/backend" />
+                            <Route element={<Authorized component={AdminList} />} path="/backend/admin/list" />
+                            <Route element={<Authorized component={AdminModify} />} path="/backend/admin/modify/:id" />
+                            <Route element={<Authorized component={ArticleList} />} path="/backend/article/list" />
+                            <Route element={<Authorized component={ArticleInsert} />} path="/backend/article/insert" />
+                            <Route element={<Authorized component={ArticleModify} />} path="/backend/article/modify/:id" />
+                            <Route element={<Authorized component={Comment} />} path="/backend/article/comment/:id" />
+                            <Route element={<Authorized component={CategoryList} />} path="/backend/category/list" />
+                            <Route element={<Authorized component={CategoryInsert} />} path="/backend/category/insert" />
+                            <Route element={<Authorized component={CategoryModify} />} path="/backend/category/modify/:id" />
+                            <Route element={<Authorized component={UserList} />} path="/backend/user/list" />
+                            <Route element={<Authorized component={UserModify} />} path="/backend/user/modify/:id" />
                         </Routes>
                     </div>
                 </div>

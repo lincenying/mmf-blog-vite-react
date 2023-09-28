@@ -97,12 +97,14 @@ export default function Topics() {
     }
     else if (topics.data.length > 0) {
         const lists = topics.data.map(item => <TopicsItem key={item._id} payload={item} />)
-        const hasNext = topics.hasNext
-            ? <a onClick={handleLoadMore} href={undefined} className={`load-more ${state.loading ? 'loading' : ''}`}>
+
+        const hasNext = topics.hasNext ? (
+            <a className={`load-more ${state.loading ? 'loading' : ''}`} href={undefined} onClick={handleLoadMore}>
                 {state.loading ? '加载中' : '加载'}
                 <i className="icon icon-circle-loading" />
             </a>
-            : null
+        ) : null
+
         html = (
             <div className="home-feeds cards-wrap">
                 {lists}

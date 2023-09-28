@@ -47,7 +47,7 @@ export default function SignUp() {
             <span className="center-helper" />
             <div className="modal modal-signup">
                 <h2 className="modal-title">注册</h2>
-                <a onClick={handleClose} href={undefined} className="modal-close">
+                <a className="modal-close" href={undefined} onClick={handleClose}>
                     <i className="icon icon-close-black" />
                 </a>
                 <div className="modal-content">
@@ -55,52 +55,52 @@ export default function SignUp() {
                         <form action="#">
                             <div className="input-wrap">
                                 <input
-                                    value={state.username}
+                                    autoComplete="off"
+                                    className="base-input"
                                     onChange={e => setState({ username: e.target.value })}
-                                    type="text"
                                     placeholder="昵称"
-                                    className="base-input"
-                                    autoComplete="off"
-                                />
-                                <p className="error-info input-info hidden">长度至少 6 位</p>
-                            </div>
-                            <div className="input-wrap">
-                                <input
-                                    value={state.email}
-                                    onChange={e => setState({ email: e.target.value })}
                                     type="text"
+                                    value={state.username}
+                                />
+                                <p className="error-info input-info hidden">长度至少 6 位</p>
+                            </div>
+                            <div className="input-wrap">
+                                <input
+                                    autoComplete="off"
+                                    className="base-input"
+                                    onChange={e => setState({ email: e.target.value })}
                                     placeholder="邮箱"
-                                    className="base-input"
-                                    autoComplete="off"
+                                    type="text"
+                                    value={state.email}
                                 />
                                 <p className="error-info input-info hidden">长度至少 6 位</p>
                             </div>
                             <div className="input-wrap">
                                 <input
-                                    value={state.password}
+                                    autoComplete="off"
+                                    className="base-input"
                                     onChange={e => setState({ password: e.target.value })}
-                                    type="password"
                                     placeholder="密码"
-                                    className="base-input"
-                                    autoComplete="off"
+                                    type="password"
+                                    value={state.password}
                                 />
                                 <p className="error-info input-info hidden">长度至少 6 位</p>
                             </div>
                             <div className="input-wrap">
                                 <input
-                                    value={state.re_password}
-                                    onChange={e => setState({ re_password: e.target.value })}
-                                    type="password"
-                                    placeholder="重复密码"
-                                    className="base-input"
                                     autoComplete="off"
+                                    className="base-input"
+                                    onChange={e => setState({ re_password: e.target.value })}
+                                    placeholder="重复密码"
+                                    type="password"
+                                    value={state.re_password}
                                 />
                                 <p className="error-info input-info hidden">长度至少 6 位</p>
                             </div>
-                            <a onClick={handleRegister} href={undefined} className="btn signup-btn btn-yellow">
+                            <a className="btn signup-btn btn-yellow" href={undefined} onClick={handleRegister}>
                                 确认注册
                             </a>
-                            <a onClick={handleLogin} href={undefined} className="btn signup-btn btn-blue block">
+                            <a className="btn signup-btn btn-blue block" href={undefined} onClick={handleLogin}>
                                 直接登录
                             </a>
                         </form>

@@ -35,8 +35,7 @@ function ReloadPrompt() {
         setRefresFalse()
         setReadyFalse()
     }
-    return (offlineReady || needRefresh)
-        ? (
+    return (offlineReady || needRefresh) ? (
         <div className="app-refresh" id="app-refresh">
             <div className="app-refresh-wrap">
                 {offlineReady ? <label>应用程序准备离线工作</label> : <label>发现新的版本, 请刷新加载最新版本</label>}
@@ -45,9 +44,6 @@ function ReloadPrompt() {
                 <span onClick={onClose}>点击关闭</span>
             </div>
         </div>
-            )
-        : (
-        <></>
-            )
+    ) : null
 }
 export default ReloadPrompt

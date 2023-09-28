@@ -1,15 +1,42 @@
-/* eslint-disable no-unused-vars */
-
-declare type Nullable<T> = T | null
+/**
+ * Null 或者 Undefined 或者 T
+ */
+declare type Nullable<T> = T | null | undefined
+/**
+ * 非 Null 类型
+ */
 declare type NonNullable<T> = T extends null | undefined ? never : T
-declare type UnfAble<T> = T | undefined
+/**
+ * 数组<T> 或者 T
+ */
+declare type Arrayable<T> = T | T[]
+/**
+ * 键为字符串, 值为 Any 的对象
+ */
 declare type Obj = Record<string, any>
+/**
+ * 键为字符串, 值为 T 的对象
+ */
 declare type ObjT<T> = Record<string, T>
+/**
+ * Function
+ */
+declare type Fn<T = void> = () => T
+/**
+ * 任意函数
+ */
+declare type AnyFn<T = any> = (...args: any[]) => T
+
+declare type PromiseFn<T> = (...args: any[]) => Promise<T>
+/**
+ * Promise, or maybe not
+ */
+declare type Awaitable<T> = T | PromiseLike<T>
 
 /**
  * 接口返回模板
  */
-declare interface ResponseData<T> {
+declare interface ResData<T> {
     data: T
     code: number
     message: string
@@ -19,7 +46,7 @@ declare interface ResponseData<T> {
 /**
  * 接口返回模板里的 Data 数据 - 含分页的列表
  */
-declare interface ResponseDataLists<T> {
+declare interface ResDataLists<T> {
     hasNext: number | boolean
     hasPrev: number | boolean
     total: number
@@ -29,17 +56,21 @@ declare interface ResponseDataLists<T> {
 /**
  * 接口返回模板里的 Data 数据 - 不含分页的列表
  */
-declare interface ResponseDataList<T> {
+declare interface ResDataList<T> {
     list: T
 }
 
+/**
+ * Api 浏览器端封装类型
+ */
+declare interface ApiClientReturn {
+    get<T>(url: string, params?: Obj, headers?: Obj): Promise<ResData<T>>
+    post<T>(url: string, data?: Obj, headers?: Obj): Promise<ResData<T>>
+    file<T>(url: string, data?: Obj, headers?: Obj): Promise<ResData<T>>
+}
 
 declare interface Window {
-    $$api: {
-        post: (...args) => Promise<any>
-        get: (...args) => Promise<any>
-        [propName: string]: (...args) => Promise<any>
-    }
+    $$api: ApiClientReturn
     editormd: any
     postEditor: any
 }

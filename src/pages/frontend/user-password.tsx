@@ -37,37 +37,37 @@ export default function UserPassword() {
                         <div className="settings-main-content">
                             <AInput title="当前密码">
                                 <input
-                                    value={state.old_password}
-                                    onChange={e => setState({ old_password: e.target.value })}
-                                    type="password"
-                                    placeholder="当前密码"
                                     className="base-input"
                                     name="old_password"
+                                    onChange={e => setState({ old_password: e.target.value })}
+                                    placeholder="当前密码"
+                                    type="password"
+                                    value={state.old_password}
                                 />
                             </AInput>
                             <AInput title="新的密码">
                                 <input
-                                    value={state.password}
-                                    onChange={e => setState({ password: e.target.value })}
-                                    type="password"
-                                    placeholder="新的密码"
                                     className="base-input"
                                     name="password"
+                                    onChange={e => setState({ password: e.target.value })}
+                                    placeholder="新的密码"
+                                    type="password"
+                                    value={state.password}
                                 />
                             </AInput>
                             <AInput title="确认密码">
                                 <input
-                                    value={state.re_password}
-                                    onChange={e => setState({ re_password: e.target.value })}
-                                    type="password"
-                                    placeholder="确认密码"
                                     className="base-input"
                                     name="re_password"
+                                    onChange={e => setState({ re_password: e.target.value })}
+                                    placeholder="确认密码"
+                                    type="password"
+                                    value={state.re_password}
                                 />
                             </AInput>
                         </div>
                         <div className="settings-footer">
-                            <a onClick={handleModify} href={undefined} className="btn btn-yellow">保存设置</a>
+                            <a className="btn btn-yellow" href={undefined} onClick={handleModify}>保存设置</a>
                         </div>
                     </div>
                 </div>

@@ -22,15 +22,15 @@ function Frontend() {
             <TransitionGroup appear className="main-wrap">
                 <CSSTransition classNames="slide-left" in={false} key={location.key} timeout={{ appear: 300, enter: 300, exit: 300 }}>
                     <Routes>
-                        <Route path="/" element={<Main />} />
-                        <Route path="/trending/:by" element={<Main />} />
-                        <Route path="/category/:id" element={<Main />} />
-                        <Route path="/search/:key" element={<Main />} />
-                        <Route path="/article/:id" element={<Article />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/user/account" element={<Authorized component={userAccount} />} />
-                        <Route path="/user/password" element={<Authorized component={userPassword} />} />
-                        <Route path="*" element={<NotFound />} />
+                        <Route element={<Main />} path="/" />
+                        <Route element={<Main />} path="/trending/:by" />
+                        <Route element={<Main />} path="/category/:id" />
+                        <Route element={<Main />} path="/search/:key" />
+                        <Route element={<Article />} path="/article/:id" />
+                        <Route element={<About />} path="/about" />
+                        <Route element={<Authorized component={userAccount} />} path="/user/account" />
+                        <Route element={<Authorized component={userPassword} />} path="/user/password" />
+                        <Route element={<NotFound />} path="*" />
                     </Routes>
                 </CSSTransition>
             </TransitionGroup>

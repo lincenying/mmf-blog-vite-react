@@ -69,31 +69,31 @@ export default function ArticleInsert() {
             <div className="settings-main-content">
                 <AInput title="标题">
                     <input
-                        value={state.title}
-                        onChange={e => setState({ title: e.target.value })}
-                        type="text"
-                        placeholder="标题"
                         className="base-input"
                         name="title"
+                        onChange={e => setState({ title: e.target.value })}
+                        placeholder="标题"
+                        type="text"
+                        value={state.title}
                     />
                     <span className="input-info error">请输入标题</span>
                 </AInput>
-                <AInput title="分类" classes={'select-item-wrap'}>
+                <AInput classes="select-item-wrap" title="分类">
                     <i className="icon icon-arrow-down" />
-                    <select value={state.category} onChange={e => setState({ category: e.target.value })} className="select-item" name="category">
+                    <select className="select-item" name="category" onChange={e => setState({ category: e.target.value })} value={state.category}>
                         <option value="">请选择分类</option>
                         {select}
                     </select>
                     <span className="input-info error">请输入分类</span>
                 </AInput>
                 <div className="settings-section">
-                    <div id="post-content" className="settings-item-content">
-                        <textarea id="editor" name="content" className="form-control hidden" data-autosave="editor-content" />
+                    <div className="settings-item-content" id="post-content">
+                        <textarea className="form-control hidden" data-autosave="editor-content" id="editor" name="content" />
                     </div>
                 </div>
             </div>
             <div className="settings-footer">
-                <a onClick={handleInsert} href={undefined} className="btn btn-yellow">添加文章</a>
+                <a className="btn btn-yellow" href={undefined} onClick={handleInsert}>添加文章</a>
             </div>
         </div>
     )

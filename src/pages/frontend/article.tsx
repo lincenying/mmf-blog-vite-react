@@ -56,11 +56,11 @@ export default function Article() {
             <div className="main-left">
                 <div className="card card-question-head">
                     <div className="question-content">
-                        <Link to={`/category/${article.data.category}`} className="topic-link-item">
+                        <Link className="topic-link-item" to={`/category/${article.data.category}`}>
                             {article.data.category_name}
                         </Link>
                         <h2 className="question-title">
-                            <Link to={`/article/${article.data._id}`} className="question-title-link">
+                            <Link className="question-title-link" to={`/article/${article.data._id}`}>
                                 {article.data.title}
                             </Link>
                         </h2>

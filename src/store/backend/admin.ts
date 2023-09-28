@@ -76,7 +76,7 @@ export const slice = createSlice({
 export const { receiveAdminList, receiveAdminItem, updateAdminItem, deleteAdmin, recoverAdmin } = slice.actions
 
 export async function getAdminList(config: Record<string, any>) {
-    const { code, data } = await api.get<ResponseDataLists<User[]>>('backend/admin/list', config)
+    const { code, data } = await api.get<ResDataLists<User[]>>('backend/admin/list', config)
     if (code === 200)
         return receiveAdminList({ ...data, ...config })
 

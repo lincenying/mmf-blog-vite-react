@@ -56,7 +56,7 @@ export const slice = createSlice({
 export const { recevieCommentList, insertCommentItem, deleteComment, recoverComment } = slice.actions
 
 export async function getCommentList(config: Record<string, any>) {
-    const { code, data } = await api.get<ResponseDataLists<Comment>>('frontend/comment/list', config)
+    const { code, data } = await api.get<ResDataLists<Comment>>('frontend/comment/list', config)
     if (code === 200)
         return recevieCommentList({ ...data, ...config })
 

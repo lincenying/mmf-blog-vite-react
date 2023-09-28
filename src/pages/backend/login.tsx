@@ -27,29 +27,29 @@ export default function Login() {
                     <div className="settings-main-content">
                         <AInput title="昵称">
                             <input
-                                value={state.username}
-                                onChange={e => setState({ username: e.target.value })}
-                                type="text"
-                                placeholder="昵称"
                                 className="base-input"
                                 name="username"
+                                onChange={e => setState({ username: e.target.value })}
+                                placeholder="昵称"
+                                type="text"
+                                value={state.username}
                             />
                             <span className="input-info error">请输入昵称</span>
                         </AInput>
                         <AInput title="密码">
                             <input
-                                value={state.password}
-                                onChange={e => setState({ password: e.target.value })}
-                                type="password"
-                                placeholder="密码"
                                 className="base-input"
                                 name="password"
+                                onChange={e => setState({ password: e.target.value })}
+                                placeholder="密码"
+                                type="password"
+                                value={state.password}
                             />
                             <span className="input-info error">请输入密码</span>
                         </AInput>
                     </div>
                     <div className="settings-footer">
-                        <a onClick={handleLogin} href={undefined} className="btn btn-yellow">登录</a>
+                        <a className="btn btn-yellow" href={undefined} onClick={handleLogin}>登录</a>
                     </div>
                 </div>
             </div>

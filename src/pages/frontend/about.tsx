@@ -36,7 +36,7 @@ export default function About() {
                             <div className="flex-item">
                                 <div className="flex-label">Github:</div>
                                 <div className="flex-content">
-                                    <a href="https://github.com/lincenying" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://github.com/lincenying" rel="noopener noreferrer" target="_blank">
                                         @lincenying
                                     </a>
                                 </div>

@@ -3,22 +3,22 @@ import { Link } from 'react-router-dom'
 import Actions from './item-actions'
 import type { Article } from '@/types'
 
-function TopicsItem(props: { payload: Article }) {
-    const item = props.payload
+function TopicsItem(props: { readonly payload: Article }) {
+    const { payload: item } = props
     return (
         <div className="card feed">
             <div className="feed-content">
                 <div className="feed-source-time">
                     <span className="feed-source">
                         来自分类{' '}
-                        <Link to={`/category/${item.category}`} className="feed-minor-link">
+                        <Link className="feed-minor-link" to={`/category/${item.category}`}>
                             {item.category_name}
                         </Link>
                     </span>
                     <span className="feed-time">{item.update_date}</span>
                 </div>
                 <div className="feed-main-link-wrap">
-                    <Link to={`/article/${item._id}`} className="feed-main-link">
+                    <Link className="feed-main-link" to={`/article/${item._id}`}>
                         {item.title}
                     </Link>
                 </div>

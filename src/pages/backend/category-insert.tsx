@@ -33,29 +33,29 @@ function CategoryModify() {
             <div className="settings-main-content">
                 <AInput title="分类名称">
                     <input
-                        value={state.cate_name}
-                        onChange={e => setState({ cate_name: e.target.value })}
-                        type="text"
-                        placeholder="分类名称"
                         className="base-input"
                         name="cate_name"
+                        onChange={e => setState({ cate_name: e.target.value })}
+                        placeholder="分类名称"
+                        type="text"
+                        value={state.cate_name}
                     />
                     <span className="input-info error">请输入分类名称</span>
                 </AInput>
                 <AInput title="分类排序">
                     <input
-                        value={state.cate_order}
-                        onChange={e => setState({ cate_order: e.target.value })}
-                        type="text"
-                        placeholder="分类排序"
                         className="base-input"
                         name="cate_order"
+                        onChange={e => setState({ cate_order: e.target.value })}
+                        placeholder="分类排序"
+                        type="text"
+                        value={state.cate_order}
                     />
                     <span className="input-info error">请输入分类排序</span>
                 </AInput>
             </div>
             <div className="settings-footer">
-                <a onClick={handleInsert} href={undefined} className="btn btn-yellow">添加分类</a>
+                <a className="btn btn-yellow" href={undefined} onClick={handleInsert}>添加分类</a>
             </div>
         </div>
     )

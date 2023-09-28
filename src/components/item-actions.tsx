@@ -10,10 +10,10 @@ import { updateTopicsLikeState } from '@/store/frontend/topics'
 import { updateArticleLikeState } from '@/store/frontend/article'
 import type { Article } from '@/types'
 
-export default function ItemActions(props: { item: Article }) {
+export default function ItemActions(props: { readonly item: Article }) {
     const global = useSelector(globalState)
     const dispatch = useDispatch()
-    const item = props.item
+    const { item } = props
 
     const handleLike = useLockFn(async () => {
         const username = global.cookies.user
@@ -50,19 +50,19 @@ export default function ItemActions(props: { item: Article }) {
 
     return (
         <div className="actions-wrap">
-            <a onClick={handleLike} href={undefined} className={item.like_status ? 'action-item active' : 'action-item'}>
+            <a className={item.like_status ? 'action-item active' : 'action-item'} href={undefined} onClick={handleLike}>
                 <i className={item.like_status ? 'icon icon-action-voteup-active' : 'icon icon-action-voteup'} />
                 <span className="text">{item.like} 赞</span>
             </a>
-            <a href={undefined} className="action-item">
+            <a className="action-item" href={undefined}>
                 <i className="icon icon-action-comment" />
                 <span className="text">{item.comment_count} 评论</span>
             </a>
-            <a href={undefined} className="action-item action-item-fav">
+            <a className="action-item action-item-fav" href={undefined}>
                 <i className="icon icon-action-fav" />
                 <span className="text">{item.visit} 浏览</span>
             </a>
-            <a onClick={handleShare} href={undefined} className="action-item">
+            <a className="action-item" href={undefined} onClick={handleShare}>
                 <i className="icon icon-action-share" />
                 <span className="text">分享</span>
             </a>

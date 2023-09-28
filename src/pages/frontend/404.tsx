@@ -20,7 +20,7 @@ export default function About() {
                 <div className="card card-answer">
                     <div className="answer-content">
                         <div className="flex py-40px justify-center">
-                            <img src="/static/images/error_1.jpg" alt="" />
+                            <img alt="" src="/static/images/error_1.jpg" />
                         </div>
                     </div>
                 </div>

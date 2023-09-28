@@ -22,40 +22,38 @@ export default function Navigation() {
             navigate(`/search/${key}`)
     }
 
-    const loginText = isLogin
-        ? (
+    const loginText = isLogin ? (
         <span className="nav-me">
-            <Link to="/user/account" className="nav-me-link">
-                <Avatar email={global.cookies.useremail} classNames={'nav-avatar-img'} />
+            <Link className="nav-me-link" to="/user/account">
+                <Avatar classNames="nav-avatar-img" email={global.cookies.useremail} />
             </Link>
         </span>
-            )
-        : (
+    ) : (
         <span className="nav-me">
-            <a onClick={handleLogin} href={undefined} className="nav-me-link">
-                <Avatar classNames={'nav-avatar-img'} />
+            <a className="nav-me-link" href={undefined} onClick={handleLogin}>
+                <Avatar classNames="nav-avatar-img" />
             </a>
         </span>
-            )
+    )
 
     return (
         <nav className="global-nav">
             <div className="wrap">
                 <div className="left-part">
-                    <Link to="/" className="logo-link">
+                    <Link className="logo-link" to="/">
                         <i className="icon icon-nav-logo" />
                         <span className="hidden">M.M.F 小屋</span>
                     </Link>
                     <div className="main-nav">
-                        <NavLink to="/" className={({ isActive }) => `nav-link${isActive ? ' current' : ''}` }>
+                        <NavLink className={({ isActive }) => `nav-link${isActive ? ' current' : ''}`} to="/">
                             <i className="icon icon-nav-home" />
                             <span className="text">首页</span>
                         </NavLink>
-                        <NavLink to="/trending/visit" className={({ isActive }) => `nav-link${isActive ? ' current' : ''}` }>
+                        <NavLink className={({ isActive }) => `nav-link${isActive ? ' current' : ''}`} to="/trending/visit">
                             <i className="icon icon-nav-explore" />
                             <span className="text">热门</span>
                         </NavLink>
-                        <NavLink to="/about" className={({ isActive }) => `nav-link${isActive ? ' current' : ''}` }>
+                        <NavLink className={({ isActive }) => `nav-link${isActive ? ' current' : ''}`} to="/about">
                             <i className="icon icon-nav-features" />
                             <span className="text">关于</span>
                         </NavLink>
@@ -64,7 +62,7 @@ export default function Navigation() {
                 <div className="right-part">
                     <span className="nav-search">
                         <i className="icon icon-search-white" />
-                        <input onKeyUp={handleSearch} placeholder="记得按回车哦" className="nav-search-input" />
+                        <input className="nav-search-input" onKeyUp={handleSearch} placeholder="记得按回车哦" />
                     </span>
                     {loginText}
                 </div>

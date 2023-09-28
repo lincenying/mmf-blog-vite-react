@@ -10,19 +10,19 @@ function AsideAccount() {
 
     return (
         <div className="card card-me">
-            <NavLink to="/user/account" className="side-entry">
+            <NavLink className="side-entry" to="/user/account">
                 <i className="icon icon-arrow-right" />
-                <i className="icon icon-menu-articles" />
+                <i className="icon icon-menu-articles" />{' '}
                 帐号
             </NavLink>
-            <NavLink to="/user/password" className="side-entry">
+            <NavLink className="side-entry" to="/user/password">
                 <i className="icon icon-arrow-right" />
-                <i className="icon icon-menu-articles" />
+                <i className="icon icon-menu-articles" />{' '}
                 密码
             </NavLink>
-            <a href={undefined} onClick={handleLogout} className="side-entry">
+            <a className="side-entry" href={undefined} onClick={handleLogout}>
                 <i className="icon icon-arrow-right" />
-                <i className="icon icon-menu-articles" />
+                <i className="icon icon-menu-articles" />{' '}
                 退出
             </a>
         </div>

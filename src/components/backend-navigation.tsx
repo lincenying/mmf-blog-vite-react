@@ -5,20 +5,20 @@ function Navigation() {
         <nav className="global-nav">
             <div className="wrap">
                 <div className="left-part">
-                    <a href="/" className="logo-link">
+                    <a className="logo-link" href="/">
                         <i className="icon icon-nav-logo" />
                         <span className="hidden">M.M.F 小屋</span>
                     </a>
                     <div className="main-nav">
-                        <a href="/" className="nav-link">
+                        <a className="nav-link" href="/">
                             <i className="icon icon-nav-home" />
                             <span className="text">首页</span>
                         </a>
-                        <a href="/trending/visit" className="nav-link">
+                        <a className="nav-link" href="/trending/visit">
                             <i className="icon icon-nav-explore" />
                             <span className="text">热门</span>
                         </a>
-                        <a href="/about" className="nav-link">
+                        <a className="nav-link" href="/about">
                             <i className="icon icon-nav-features" />
                             <span className="text">关于</span>
                         </a>

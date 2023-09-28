@@ -78,7 +78,7 @@ export const {
 } = slice.actions
 
 export async function getUserList(config: Record<string, any>) {
-    const { code, data } = await api.get<ResponseDataLists<User[]>>('backend/user/list', config)
+    const { code, data } = await api.get<ResDataLists<User[]>>('backend/user/list', config)
     if (code === 200)
         return receiveBackendUser({ ...data, ...config })
 
