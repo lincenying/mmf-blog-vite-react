@@ -1,6 +1,0 @@
-{
-  "extends": ["@lincy/eslint-config-react", ".eslintrc-auto-import.json"],
-  "rules": {
-
-  }
-}

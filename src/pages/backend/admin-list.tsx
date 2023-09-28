@@ -55,31 +55,29 @@ export default function AdminList() {
         setState({ loading: false })
     }
 
-    const lists = admin.lists.data.map((item, index) => {
-        const btn = item.is_delete
-            ? <a onClick={handleRecover.bind(null, item._id)} href={undefined}>恢复</a>
-            : <a onClick={handleDelete.bind(null, item._id)} href={undefined}>删除</a>
+    const lists = admin.lists.data.map((item) => {
+        const btn = item.is_delete ? <a href={undefined} onClick={handleRecover.bind(null, item._id)}>恢复</a> : <a href={undefined} onClick={handleDelete.bind(null, item._id)}>删除</a>
         return (
-            <div key={index} className="list-section">
+            <div className="list-section" key={item._id}>
                 <div className={`list-username${item.is_delete ? ' text-red-500 line-through' : ''}`}>{item.username}</div>
                 <div className="list-email">{item.email}</div>
                 <div className="list-date">{timeAgo(item.update_date)}</div>
                 <div className="list-action">
-                    <Link to={`/backend/admin/modify/${item._id}`} className="badge badge-success">编辑</Link>
+                    <Link className="badge badge-success" to={`/backend/admin/modify/${item._id}`}>编辑</Link>
                     {btn}
                 </div>
             </div>
         )
     })
-    const next = admin.lists.hasNext
-        ? <div className="settings-footer">
+    const next = admin.lists.hasNext ? (
+        <div className="settings-footer">
             {' '}
-            <a onClick={handleLoadMore} className="admin-load-more" href={undefined}>
+            <a className="admin-load-more" href={undefined} onClick={handleLoadMore}>
                 {state.loading ? '加载中...' : '加载更多'}
             </a>
             {' '}
         </div>
-        : null
+    ) : null
     return (
         <div className="settings-main card">
             <div className="settings-main-content">
