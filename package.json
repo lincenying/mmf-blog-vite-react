@@ -5,7 +5,7 @@
   "private": true,
   "author": "lincenying <lincenying@qq.com>",
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "sh simple-git-hooks.sh",
     "serve": "vite",
     "build": "vite build",
     "start": "vite preview --port 7778",
@@ -48,12 +48,16 @@
     "lint-staged": "^14.0.1",
     "postcss": "^8.4.30",
     "sass": "^1.68.0",
+    "simple-git-hooks": "^2.9.0",
     "typescript": "^5.2.2",
     "unocss": "^0.56.4",
     "unplugin-auto-import": "^0.16.6",
     "vite": "^4.4.9",
     "vite-plugin-importus": "^1.0.4",
     "vite-plugin-pwa": "^0.16.5"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
     "*.{js,ts,tsx,jsx}": [
