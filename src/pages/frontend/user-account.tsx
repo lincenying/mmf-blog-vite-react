@@ -61,7 +61,8 @@ export default function UserAccount() {
                     <div className="settings-main card">
                         <div className="settings-main-content">
                             <AInput title="昵称">
-                                <input className="base-input" name="username" placeholder="昵称" readOnly
+                                <input
+                                    className="base-input" name="username" placeholder="昵称" readOnly
                                     type="text" value={state.username}
                                 />
                                 <span className="input-info error">请输入昵称</span>

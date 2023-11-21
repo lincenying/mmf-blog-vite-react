@@ -52,15 +52,27 @@ export default function ItemActions(props: { readonly item: Article }) {
         <div className="actions-wrap">
             <a className={item.like_status ? 'action-item active' : 'action-item'} href={undefined} onClick={handleLike}>
                 <i className={item.like_status ? 'icon icon-action-voteup-active' : 'icon icon-action-voteup'} />
-                <span className="text">{item.like} 赞</span>
+                <span className="text">
+                    {item.like}
+                    {' '}
+                    赞
+                </span>
             </a>
             <a className="action-item" href={undefined}>
                 <i className="icon icon-action-comment" />
-                <span className="text">{item.comment_count} 评论</span>
+                <span className="text">
+                    {item.comment_count}
+                    {' '}
+                    评论
+                </span>
             </a>
             <a className="action-item action-item-fav" href={undefined}>
                 <i className="icon icon-action-fav" />
-                <span className="text">{item.visit} 浏览</span>
+                <span className="text">
+                    {item.visit}
+                    {' '}
+                    浏览
+                </span>
             </a>
             <a className="action-item" href={undefined} onClick={handleShare}>
                 <i className="icon icon-action-share" />

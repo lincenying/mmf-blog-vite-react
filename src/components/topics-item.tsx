@@ -10,7 +10,8 @@ function TopicsItem(props: { readonly payload: Article }) {
             <div className="feed-content">
                 <div className="feed-source-time">
                     <span className="feed-source">
-                        来自分类{' '}
+                        来自分类
+                        {' '}
                         <Link className="feed-minor-link" to={`/category/${item.category}`}>
                             {item.category_name}
                         </Link>

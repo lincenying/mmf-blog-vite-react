@@ -100,7 +100,8 @@ export default function FrontendComment() {
             {' '}
             <a className="comments-load-more" href={undefined} onClick={handleLoadMore}>
                 {loading ? '加载中...' : '加载更多'}
-            </a>{' '}
+            </a>
+            {' '}
         </div>
     ) : null
 
