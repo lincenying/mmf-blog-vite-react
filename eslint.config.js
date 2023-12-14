@@ -9,6 +9,7 @@ const autoImport = JSON.parse(
 const config = lincy(
     {
         vue: false,
+        formatters: true,
         overrides: {
             stylistic: {
                 'antfu/consistent-list-newline': 'off',

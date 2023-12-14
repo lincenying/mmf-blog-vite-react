@@ -138,73 +138,96 @@
     background-image: url('../images/@1x/entry-people.png');
 }
 
+/* stylelint-disable-next-line media-feature-name-no-vendor-prefix */
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5) {
     .icon-nav-logo {
         background-image: url('../images/@2x/nav-logo.png');
     }
+
     .icon-nav-home {
         background-image: url('../images/@2x/nav-home.png');
     }
+
     .icon-nav-explore {
         background-image: url('../images/@2x/nav-explore.png');
     }
+
     .icon-nav-features {
         background-image: url('../images/@2x/nav-features.png');
     }
+
     .icon-search-white {
         background-image: url('../images/@2x/search-white.png');
     }
+
     .icon-menu-articles {
         background-image: url('../images/@2x/menu-articles.png');
     }
+
     .icon-action-articles {
         background-image: url('../images/@2x/action-articles.png');
     }
+
     .icon-action-comment {
         background-image: url('../images/@2x/action-comment.png');
     }
+
     .icon-action-fav {
         background-image: url('../images/@2x/action-fav.png');
     }
+
     .icon-action-fav-active {
         background-image: url('../images/@2x/action-fav-active.png');
     }
+
     .icon-action-follow {
         background-image: url('../images/@2x/action-follow.png');
     }
+
     .icon-action-follow-active {
         background-image: url('../images/@2x/action-follow-active.png');
     }
+
     .icon-action-share {
         background-image: url('../images/@2x/action-share.png');
     }
+
     .icon-action-voteup {
         background-image: url('../images/@2x/action-voteup.png');
     }
+
     .icon-action-voteup-active {
         background-image: url('../images/@2x/action-voteup-active.png');
     }
+
     .icon-arrow-right {
         background-image: url('../images/@2x/arrow-right.png');
     }
+
     .icon-arrow-right-circle-green {
         background-image: url('../images/@2x/arrow-right-circle-green.png');
     }
+
     .icon-close-white {
         background-image: url('../images/@2x/close-white.png');
     }
+
     .icon-close-black {
         background-image: url('../images/@2x/close-black.png');
     }
+
     .icon-prev-black {
         background-image: url('../images/@2x/prev-black.png');
     }
+
     .icon-arrow-down {
         background-image: url('../images/@2x/arrow-down.png');
     }
+
     .icon-circle-loading {
         background-image: url('../images/@2x/circle-loading.png');
     }
+
     .icon-entry-people {
         background-image: url('../images/@2x/entry-people.png');
     }
