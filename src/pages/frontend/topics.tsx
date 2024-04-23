@@ -33,8 +33,9 @@ export default function Topics() {
     }
 
     const handleLoadMore = async () => {
-        if (state.loading)
+        if (state.loading) {
             return
+        }
         const { page } = topics
         setState({ loading: true })
         await handlefetchPosts(page + 1)
@@ -62,12 +63,15 @@ export default function Topics() {
         console.log('topics useMount: start')
         const pathname = firstPathname.current
 
-        if (topics.pathname !== firstPathname.current)
+        if (topics.pathname !== firstPathname.current) {
             handlefetchPosts()
-        if (category.lists.length === 0)
+        }
+        if (category.lists.length === 0) {
             dispatch(await getCategoryList())
-        if (trending.data.length === 0)
+        }
+        if (trending.data.length === 0) {
             dispatch(await getTrending())
+        }
 
         if (topics.pathname !== '') {
             const scrollTop = ls.get(pathname)
@@ -81,8 +85,9 @@ export default function Topics() {
 
     useUpdateEffect(() => {
         console.log('topics useUpdateEffect:')
-        if (topics.pathname !== firstPathname.current)
+        if (topics.pathname !== firstPathname.current) {
             handlefetchPosts()
+        }
     }, [location.pathname])
 
     useWhyDidYouUpdate('topicsComponent', { location, topics, category, trending })

@@ -17,8 +17,9 @@ export default function ScrollToTop(props: Props) {
             console.log('componentDidMount')
             return
         }
-        if (firstPathname.current !== location.pathname)
+        if (firstPathname.current !== location.pathname) {
             window.scrollTo(0, 0)
+        }
     })
 
     return props.children

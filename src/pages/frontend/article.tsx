@@ -12,8 +12,9 @@ import { categoryState, getCategoryList } from '@/store/global/category'
 import { getTrending, trendingState } from '@/store/frontend/trending'
 
 function addTarget(content: string) {
-    if (!content)
+    if (!content) {
         return ''
+    }
     return content.replace(/<a(.*?)href=/g, '<a$1target="_blank" href=')
 }
 
@@ -31,12 +32,15 @@ export default function Article() {
     useMount(async () => {
         console.log('article useMount: start')
         window.scrollTo(0, 0)
-        if (article.pathname !== location.pathname)
+        if (article.pathname !== location.pathname) {
             dispatch(await getArticleItem({ id, pathname }))
-        if (category.lists.length === 0)
+        }
+        if (category.lists.length === 0) {
             dispatch(await getCategoryList())
-        if (trending.data.length === 0)
+        }
+        if (trending.data.length === 0) {
             dispatch(await getTrending())
+        }
         console.log('article useMount: end')
     })
 

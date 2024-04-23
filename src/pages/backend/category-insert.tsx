@@ -17,8 +17,9 @@ function CategoryModify() {
     })
 
     const handleInsert = useLockFn(async () => {
-        if (!state.cate_name || !state.cate_order)
+        if (!state.cate_name || !state.cate_order) {
             return setMessage('请将表单填写完整!')
+        }
 
         const { code, data, message } = await api.post<Category>('backend/category/insert', state)
         if (code === 200) {

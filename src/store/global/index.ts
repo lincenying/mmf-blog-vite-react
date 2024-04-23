@@ -6,8 +6,9 @@ import type { RootState } from '..'
 import type { GlobalStore, Message, UserCookies } from '@/types'
 
 let userid = cookies.get('userid')
-if (userid)
+if (userid) {
     userid = userid.replace('j:"', '').replace('"', '')
+}
 
 const initialState: GlobalStore = {
     cookies: {

@@ -23,8 +23,9 @@ export default function AdminList() {
 
     useMount(async () => {
         console.log('admin-list useMount: start')
-        if (admin.lists.data.length === 0)
+        if (admin.lists.data.length === 0) {
             await getAdminListFunc(1)
+        }
         console.log('admin-list useMount: end')
     })
 
@@ -47,8 +48,9 @@ export default function AdminList() {
         }
     }
     const handleLoadMore = async () => {
-        if (state.loading)
+        if (state.loading) {
             return
+        }
         const { page } = admin.lists
         setState({ loading: true })
         await getAdminListFunc(page + 1)

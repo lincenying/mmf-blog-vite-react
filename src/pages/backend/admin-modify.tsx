@@ -29,13 +29,15 @@ function AdminModify() {
 
     useUpdateEffect(() => {
         const { username, email } = admin.item.data! || {}
-        if (prevAdmin?.item.data?.username !== username)
+        if (prevAdmin?.item.data?.username !== username) {
             setState({ username, email })
+        }
     }, [admin])
 
     const handleModify = useLockFn(async () => {
-        if (!state.username || !state.email)
+        if (!state.username || !state.email) {
             return setMessage('请将表单填写完整!')
+        }
 
         const item = {
             ...state,

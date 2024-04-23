@@ -15,6 +15,9 @@ const config = lincy(
                 'antfu/consistent-list-newline': 'off',
                 'style/jsx-max-props-per-line': ['error', { maximum: 4 }],
             },
+            react: {
+                'react-dom/no-dangerously-set-innerhtml': 'off',
+            },
             ignores: [
                 '**/assets',
                 '**/static',

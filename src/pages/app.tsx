@@ -11,8 +11,9 @@ import 'nprogress/nprogress.css'
 
 function App() {
     const location = useLocation()
-    if (location.pathname.includes('backend'))
+    if (location.pathname.includes('backend')) {
         return <Backend />
+    }
 
     return <Frontend />
 }

@@ -22,11 +22,13 @@ export const slice = createSlice({
         recevieCommentList: (state, action: PayloadAction<Record<string, any>>) => {
             const { list, pathname, hasNext, hasPrev, page } = action.payload
             let data
-            if (page === 1)
+            if (page === 1) {
                 data = [].concat(list)
+            }
 
-            else
+            else {
                 data = state.lists.data.concat(list)
+            }
 
             state.lists = {
                 data,
@@ -42,13 +44,15 @@ export const slice = createSlice({
         },
         deleteComment: (state, action: PayloadAction<string>) => {
             const obj = state.lists.data.find(ii => ii._id === action.payload)
-            if (obj)
+            if (obj) {
                 obj.is_delete = 1
+            }
         },
         recoverComment: (state, action: PayloadAction<string>) => {
             const obj = state.lists.data.find(ii => ii._id === action.payload)
-            if (obj)
+            if (obj) {
                 obj.is_delete = 0
+            }
         },
     },
 })
@@ -57,8 +61,9 @@ export const { recevieCommentList, insertCommentItem, deleteComment, recoverComm
 
 export async function getCommentList(config: Record<string, any>) {
     const { code, data } = await api.get<ResDataLists<Comment>>('frontend/comment/list', config)
-    if (code === 200)
+    if (code === 200) {
         return recevieCommentList({ ...data, ...config })
+    }
 
     return setMessage(errConfig)
 }

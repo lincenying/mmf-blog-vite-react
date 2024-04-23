@@ -24,8 +24,9 @@ function Comment() {
     }
 
     useMount(() => {
-        if (comment.pathname !== pathname)
+        if (comment.pathname !== pathname) {
             handleGetComment(1)
+        }
     })
 
     const handleRecover = async (id: string) => {
@@ -43,8 +44,9 @@ function Comment() {
         }
     }
     const handleLoadMore = async () => {
-        if (state.loading)
+        if (state.loading) {
             return
+        }
         const { page } = comment
         setState({ loading: true })
         await handleGetComment(page + 1)

@@ -29,13 +29,15 @@ function UserModify() {
 
     useUpdateEffect(() => {
         const { username, email } = user.item.data!
-        if (prevUser?.item.data?.username !== username)
+        if (prevUser?.item.data?.username !== username) {
             setState({ username, email })
+        }
     }, [user])
 
     const handleModify = useLockFn(async () => {
-        if (!state.username || !state.email)
+        if (!state.username || !state.email) {
             return setMessage('请将表单填写完整!')
+        }
 
         const item = {
             ...state,

@@ -9,8 +9,9 @@ function CategoryList() {
     const category = useSelector(categoryState)
 
     useMount(async () => {
-        if (category.lists.length === 0)
+        if (category.lists.length === 0) {
             dispatch(await getCategoryList())
+        }
     })
 
     const handleRecover = async (id: string) => {

@@ -23,8 +23,9 @@ export default function FrontendComment() {
     const [content, setContent] = useState('')
 
     const handleGetComment = async (page: number) => {
-        if (loading)
+        if (loading) {
             return
+        }
         setLoading(true)
         page = page || comment.page
         dispatch(await getCommentList({ id, pathname, limit: 10, page }))
@@ -32,8 +33,9 @@ export default function FrontendComment() {
     }
 
     useMount(() => {
-        if (comment.pathname !== pathname)
+        if (comment.pathname !== pathname) {
             handleGetComment(1)
+        }
     })
 
     const handleLoadMore = async () => {

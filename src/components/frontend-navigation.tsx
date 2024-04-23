@@ -18,8 +18,9 @@ export default function Navigation() {
 
     const handleSearch = (e: any) => {
         const key = e.target.value
-        if (e.keyCode === 13 && key !== '')
+        if (e.keyCode === 13 && key !== '') {
             navigate(`/search/${key}`)
+        }
     }
 
     const loginText = isLogin ? (

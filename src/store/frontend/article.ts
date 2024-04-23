@@ -40,8 +40,9 @@ export const { receiveArticleItem, updateArticleLikeState } = slice.actions
 
 export async function getArticleItem(config: Record<string, any>) {
     const { code, data } = await api.get<Article>('frontend/article/item', config)
-    if (code === 200)
+    if (code === 200) {
         return receiveArticleItem({ data, ...config })
+    }
 
     return setMessage(errConfig)
 }

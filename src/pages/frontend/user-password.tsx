@@ -12,11 +12,13 @@ export default function UserPassword() {
     })
 
     const handleModify = useLockFn(async () => {
-        if (!state.password || !state.old_password || !state.re_password)
+        if (!state.password || !state.old_password || !state.re_password) {
             return setMessage('请将表单填写完整!')
+        }
 
-        else if (state.password !== state.re_password)
+        else if (state.password !== state.re_password) {
             return setMessage('两次密码输入不一致!')
+        }
 
         const { code, message } = await api.post('frontend/user/password', state)
         if (code === 200) {

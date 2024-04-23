@@ -28,11 +28,13 @@ export const slice = createSlice({
         receiveAdminList: (state, action: PayloadAction<Record<string, any>>) => {
             const { list, pathname, hasNext, hasPrev, page } = action.payload
             let data
-            if (page === 1)
+            if (page === 1) {
                 data = [].concat(list)
+            }
 
-            else
+            else {
                 data = state.lists.data.concat(list)
+            }
 
             state.lists = {
                 data,
@@ -53,22 +55,25 @@ export const slice = createSlice({
             const { lists } = state
             const data = action.payload
             const index = lists.data.findIndex(ii => ii._id === data._id)
-            if (index > -1)
+            if (index > -1) {
                 lists.data.splice(index, 1, data)
+            }
 
             state.lists = lists
         },
         deleteAdmin: (state, action: PayloadAction<string>) => {
             const id = action.payload
             const obj = state.lists.data.find(ii => ii._id === id)
-            if (obj)
+            if (obj) {
                 obj.is_delete = 1
+            }
         },
         recoverAdmin: (state, action: PayloadAction<string>) => {
             const id = action.payload
             const obj = state.lists.data.find(ii => ii._id === id)
-            if (obj)
+            if (obj) {
                 obj.is_delete = 0
+            }
         },
     },
 })
@@ -77,15 +82,17 @@ export const { receiveAdminList, receiveAdminItem, updateAdminItem, deleteAdmin,
 
 export async function getAdminList(config: Record<string, any>) {
     const { code, data } = await api.get<ResDataLists<User[]>>('backend/admin/list', config)
-    if (code === 200)
+    if (code === 200) {
         return receiveAdminList({ ...data, ...config })
+    }
 
     return setMessage(errConfig)
 }
 export async function getAdminItem(config: Record<string, any>) {
     const { code, data } = await api.get<User>('backend/admin/item', config)
-    if (code === 200)
+    if (code === 200) {
         return receiveAdminItem({ data, ...config })
+    }
 
     return setMessage(errConfig)
 }

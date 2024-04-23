@@ -28,8 +28,9 @@ function CategoryModify() {
 
     useUpdateEffect(() => {
         const { cate_name, cate_order } = category.item.data! || {}
-        if (prevCategory?.item.data?.cate_name !== cate_name)
+        if (prevCategory?.item.data?.cate_name !== cate_name) {
             setState({ cate_name, cate_order })
+        }
     }, [category])
 
     const handleModify = useLockFn(async () => {

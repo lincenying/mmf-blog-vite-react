@@ -51,14 +51,16 @@ export default function ArticleInsert() {
 
     useMount(async () => {
         getArticleData()
-        if (category.lists.length === 0)
+        if (category.lists.length === 0) {
             dispatch(await getCategoryList())
+        }
     })
 
     const handleModify = useLockFn(async () => {
         const content = window.postEditor.getMarkdown()
-        if (!state.title || !state.category || !content)
+        if (!state.title || !state.category || !content) {
             return setMessage('请将表单填写完整!')
+        }
 
         const { code, data, message } = await api.post<Article>('backend/article/modify', {
             ...state,

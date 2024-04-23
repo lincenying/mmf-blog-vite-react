@@ -22,8 +22,9 @@ function UserList() {
 
     useMount(async () => {
         console.log('user-list useMount: start')
-        if (user.lists.data.length === 0)
+        if (user.lists.data.length === 0) {
             await getUserListFunc(1)
+        }
         console.log('user-list useMount: end')
     })
 
@@ -46,8 +47,9 @@ function UserList() {
         }
     }
     const handleLoadMore = async () => {
-        if (state.loading)
+        if (state.loading) {
             return
+        }
         const { page } = user.lists
         setState({ loading: true })
         await getUserListFunc(page + 1)

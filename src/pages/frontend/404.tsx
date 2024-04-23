@@ -9,8 +9,9 @@ export default function About() {
 
     useMount(async () => {
         console.log('404 useMount: start')
-        if (trending.data.length === 0)
+        if (trending.data.length === 0) {
             dispatch(await getTrending())
+        }
         console.log('404 useMount: end')
     })
 

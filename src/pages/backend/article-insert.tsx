@@ -19,8 +19,9 @@ export default function ArticleInsert() {
     })
 
     useMount(async () => {
-        if (category.lists.length === 0)
+        if (category.lists.length === 0) {
             dispatch(await getCategoryList())
+        }
 
         window.postEditor = window.editormd('post-content', {
             width: '100%',

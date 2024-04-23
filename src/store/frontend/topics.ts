@@ -43,8 +43,9 @@ export const { receiveTopics, updateTopicsLikeState } = slice.actions
 
 export async function getTopics(config: Record<string, any>) {
     const { code, data } = await api.get<ResDataLists<Article[]>>('frontend/article/list', config)
-    if (code === 200)
+    if (code === 200) {
         return receiveTopics({ ...data, ...config })
+    }
 
     return setMessage(errConfig)
 }

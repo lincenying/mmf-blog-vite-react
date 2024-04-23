@@ -12,12 +12,14 @@ export default function Login() {
     })
 
     const handleLogin = useLockFn(async () => {
-        if (!state.username || !state.password)
+        if (!state.username || !state.password) {
             return setMessage('请输入用户名和密码!')
+        }
 
         const { code, data } = await api.post<string>('backend/admin/login', state)
-        if (data && code === 200)
+        if (data && code === 200) {
             navigate('/backend/article/list')
+        }
     })
 
     return (

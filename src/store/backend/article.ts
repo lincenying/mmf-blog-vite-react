@@ -25,11 +25,13 @@ export const slice = createSlice({
         receive: (state, action: PayloadAction<Record<string, any>>) => {
             const { list, pathname, hasNext, hasPrev, page } = action.payload
             let data
-            if (page === 1)
+            if (page === 1) {
                 data = [].concat(list)
+            }
 
-            else
+            else {
                 data = state.lists.data.concat(list)
+            }
 
             state.lists = {
                 data,
@@ -46,20 +48,23 @@ export const slice = createSlice({
         update: (state, action: PayloadAction<Article>) => {
             const data = action.payload
             const index = state.lists.data.findIndex(ii => ii._id === data._id)
-            if (index > -1)
+            if (index > -1) {
                 state.lists.data[index] = data
+            }
         },
         deletes: (state, action: PayloadAction<string>) => {
             const id = action.payload
             const obj = state.lists.data.find(ii => ii._id === id)
-            if (obj)
+            if (obj) {
                 obj.is_delete = 1
+            }
         },
         recover: (state, action: PayloadAction<string>) => {
             const id = action.payload
             const obj = state.lists.data.find(ii => ii._id === id)
-            if (obj)
+            if (obj) {
                 obj.is_delete = 0
+            }
         },
     },
 })
@@ -74,23 +79,26 @@ export const {
 
 export async function getArticleList(config: Record<string, any>) {
     const { code, data } = await api.get<ResDataLists<Article[]>>('backend/article/list', config)
-    if (code === 200)
+    if (code === 200) {
         return receiveBackendArticle({ ...data, ...config })
+    }
 
     return setMessage(errConfig)
 }
 
 export async function deleteArticle(config: Record<string, any>) {
     const { code } = await api.get('backend/article/delete', config)
-    if (code === 200)
+    if (code === 200) {
         return deleteBackendArticle(config.id)
+    }
 
     return setMessage(errConfig)
 }
 export async function recoverArticle(config: Record<string, any>) {
     const { code } = await api.get('backend/article/recover', config)
-    if (code === 200)
+    if (code === 200) {
         return recoverBackendArticle(config.id)
+    }
 
     return setMessage(errConfig)
 }

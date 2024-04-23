@@ -23,8 +23,9 @@ export default function ItemActions(props: { readonly item: Article }) {
             return
         }
         let url = 'frontend/like'
-        if (item.like_status)
+        if (item.like_status) {
             url = 'frontend/unlike'
+        }
         const { code, message } = await api.get(url, { id: item._id })
         if (code === 200) {
             setMessage({ type: 'success', content: message })

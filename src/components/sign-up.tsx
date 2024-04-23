@@ -21,17 +21,21 @@ export default function SignUp() {
         dispatch(showRegisterModal(false))
     }
     const handleRegister = useLockFn(async () => {
-        if (!state.username || !state.password || !state.email)
+        if (!state.username || !state.password || !state.email) {
             return setMessage('请将表单填写完整!')
+        }
 
-        else if (strlen(state.username) < 4)
+        else if (strlen(state.username) < 4) {
             return setMessage('用户长度至少 2 个中文或 4 个英文!')
+        }
 
-        else if (strlen(state.password) < 8)
+        else if (strlen(state.password) < 8) {
             return setMessage('密码长度至少 8 位!')
+        }
 
-        else if (state.password !== state.re_password)
+        else if (state.password !== state.re_password) {
             return setMessage('密码和重复密码不一致!')
+        }
 
         const { code, message } = await api.post('frontend/user/insert', state)
         if (code === 200) {

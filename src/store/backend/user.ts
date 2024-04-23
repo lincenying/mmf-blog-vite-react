@@ -24,11 +24,13 @@ const reducers = {
     receive: (state: UserStore, action: PayloadAction<Record<string, any>>) => {
         const { list, pathname, hasNext, hasPrev, page } = action.payload
         let data
-        if (page === 1)
+        if (page === 1) {
             data = [].concat(list)
+        }
 
-        else
+        else {
             data = state.lists.data.concat(list)
+        }
 
         state.lists = {
             data,
@@ -48,18 +50,21 @@ const reducers = {
     update: (state: UserStore, action: PayloadAction<User>) => {
         const data = action.payload
         const index = state.lists.data.findIndex(ii => ii._id === data?._id)
-        if (index > -1)
+        if (index > -1) {
             state.lists.data.splice(index, 1, data)
+        }
     },
     deletes: (state: UserStore, action: PayloadAction<string>) => {
         const obj = state.lists.data.find(ii => ii._id === action.payload)
-        if (obj)
+        if (obj) {
             obj.is_delete = 1
+        }
     },
     recover: (state: UserStore, action: PayloadAction<string>) => {
         const obj = state.lists.data.find(ii => ii._id === action.payload)
-        if (obj)
+        if (obj) {
             obj.is_delete = 0
+        }
     },
 }
 
@@ -79,15 +84,17 @@ export const {
 
 export async function getUserList(config: Record<string, any>) {
     const { code, data } = await api.get<ResDataLists<User[]>>('backend/user/list', config)
-    if (code === 200)
+    if (code === 200) {
         return receiveBackendUser({ ...data, ...config })
+    }
 
     return setMessage(errConfig)
 }
 export async function getUserItem(config: Record<string, any>) {
     const { code, data } = await api.get<User>('backend/user/item', config)
-    if (code === 200)
+    if (code === 200) {
         return insertBackendUser({ data, ...config })
+    }
 
     return setMessage(errConfig)
 }

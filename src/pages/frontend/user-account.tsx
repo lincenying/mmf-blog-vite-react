@@ -34,11 +34,13 @@ export default function UserAccount() {
 
     const handleModify = useLockFn(async () => {
         const reg = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)$/i
-        if (!state.email)
+        if (!state.email) {
             return setMessage('请填写邮箱地址!')
+        }
 
-        else if (!reg.test(state.email))
+        else if (!reg.test(state.email)) {
             return setMessage('邮箱格式错误!')
+        }
 
         const { code, message } = await api.post('frontend/user/account', {
             ...state,

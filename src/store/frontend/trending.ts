@@ -32,8 +32,9 @@ export const { receiveTrending, updateTrendingLikeState } = slice.actions
 
 export async function getTrending() {
     const { code, data } = await api.get<ResDataList<Article[]>>('frontend/trending', {})
-    if (data && code === 200)
+    if (data && code === 200) {
         return receiveTrending({ data: data.list })
+    }
 
     return setMessage(errConfig)
 }

@@ -22,8 +22,9 @@ export default function ArticleList() {
 
     useMount(async () => {
         console.log('article-list useMount: start')
-        if (topics.data.length === 0)
+        if (topics.data.length === 0) {
             await handleGetArticleList(1)
+        }
         console.log('article-list useMount: end')
     })
 
@@ -42,8 +43,9 @@ export default function ArticleList() {
         }
     }
     const handleLoadMore = async () => {
-        if (state.loading)
+        if (state.loading) {
             return
+        }
         const { page } = topics
         setState({ loading: true })
         await handleGetArticleList(page + 1)
