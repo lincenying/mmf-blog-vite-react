@@ -1,0 +1,11 @@
+services:
+  frontend:
+    container_name: images-mmf-blog-vite-react
+    image: lincenying/images-mmf-blog-vite-react:${TAG}
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8088:80"

@@ -52,6 +52,34 @@ $ yarn serve
 
 ```
 
+## docker-compose
+
+使用`docker-compose`, 将会从`docker hub`拉取`api-server`镜像, 并且启动容器
+
+```yaml
+api:
+  container_name: api-server
+  image: lincenying/api-server:1.0.1
+```
+
+修改`docker-compose.yml`中的`mongo.volumes`配置, 将宿主机数据库路径映射到容器中
+
+```yaml
+volumes:
+  - /Users/lincenying/web/mongodb/data:/data/db
+```
+
+```bash
+# 生成镜像及启动容器
+# 后端服务器一起启动
+docker-compose build
+docker-compose up -d
+
+# 如果后端服务器在宿主机或者其他容器上, 按照如下命令启动, 并且修改`nginx/conf.d/vue3-api.conf`里的`proxy_pass`配置
+docker-compose -f docker-compose.api.yml build
+docker-compose -f docker-compose.api.yml up -d
+```
+
 首页
 http://localhost:7778
 
