@@ -1,7 +1,7 @@
+import type { Article } from '@/types'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Actions from './item-actions'
-import type { Article } from '@/types'
 
 function TopicsItem(props: { readonly payload: Article }) {
     const { payload: item } = props

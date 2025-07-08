@@ -1,10 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { createSlice } from '@reduxjs/toolkit'
-
-import { errConfig, setMessage } from '../global'
 import type { RootState } from '..'
-import api from '@/api'
+
 import type { User, UserStore, UserStoreItem } from '@/types'
+import { createSlice } from '@reduxjs/toolkit'
+import api from '@/api'
+import { errConfig, setMessage } from '../global'
 
 const initialState: UserStore = {
     lists: {

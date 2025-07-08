@@ -8,8 +8,8 @@ import Comment from '@/components/frontend-comment'
 import Actions from '@/components/item-actions'
 
 import { articleState, getArticleItem } from '@/store/frontend/article'
-import { categoryState, getCategoryList } from '@/store/global/category'
 import { getTrending, trendingState } from '@/store/frontend/trending'
+import { categoryState, getCategoryList } from '@/store/global/category'
 
 function addTarget(content: string) {
     if (!content) {

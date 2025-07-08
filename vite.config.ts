@@ -2,11 +2,11 @@ import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 
-import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
-import vitePluginImportus from 'vite-plugin-importus'
-import AutoImport from 'unplugin-auto-import/vite'
 import UnoCSS from 'unocss/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import { defineConfig, loadEnv } from 'vite'
+import vitePluginImportus from 'vite-plugin-importus'
 
 import pwaConfig from './vite.config.pwa'
 

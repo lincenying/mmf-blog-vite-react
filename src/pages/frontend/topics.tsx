@@ -5,8 +5,8 @@ import ls from 'store2'
 import Category from '@/components/aside-category'
 import Other from '@/components/aside-other'
 import Trending from '@/components/aside-trending'
-import TopicsItemNone from '@/components/topics-item-none'
 import TopicsItem from '@/components/topics-item'
+import TopicsItemNone from '@/components/topics-item-none'
 
 import { getTopics, topicsState } from '@/store/frontend/topics'
 import { getTrending, trendingState } from '@/store/frontend/trending'
@@ -85,7 +85,8 @@ export default function Topics() {
 
     useUpdateEffect(() => {
         console.log('topics useUpdateEffect:')
-        if (topics.pathname !== firstPathname.current) {
+        console.log(topics.pathname, location.pathname)
+        if (topics.pathname !== location.pathname) {
             handlefetchPosts()
         }
     }, [location.pathname])

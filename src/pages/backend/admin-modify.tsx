@@ -1,11 +1,11 @@
+import type { User } from '@/types'
 import React from 'react'
-import { Link } from 'react-router-dom'
 
+import { Link } from 'react-router-dom'
 import api from '@/api'
-import { adminState, getAdminItem, updateAdminItem } from '@/store/backend/admin'
 
 import AInput from '@/components/a-input'
-import type { User } from '@/types'
+import { adminState, getAdminItem, updateAdminItem } from '@/store/backend/admin'
 
 function AdminModify() {
     const params = useParams()

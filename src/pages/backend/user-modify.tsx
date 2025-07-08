@@ -1,11 +1,11 @@
+import type { User } from '@/types'
 import React from 'react'
-import { Link } from 'react-router-dom'
 
+import { Link } from 'react-router-dom'
 import api from '@/api'
-import { backendUserState, getUserItem, updateBackendUser } from '@/store/backend/user'
 
 import AInput from '@/components/a-input'
-import type { User } from '@/types'
+import { backendUserState, getUserItem, updateBackendUser } from '@/store/backend/user'
 
 function UserModify() {
     const params = useParams()

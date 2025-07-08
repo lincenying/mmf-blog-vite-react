@@ -1,11 +1,11 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
+import type { RootState } from '..'
+
+import type { Category, CategoryStore } from '@/types'
 import { createSlice } from '@reduxjs/toolkit'
 
-import type { RootState } from '..'
-import { errConfig, setMessage } from '.'
-
 import api from '@/api'
-import type { Category, CategoryStore } from '@/types'
+import { errConfig, setMessage } from '.'
 
 const initialState: CategoryStore = {
     lists: [],

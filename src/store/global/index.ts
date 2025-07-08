@@ -1,9 +1,9 @@
-import cookies from 'js-cookie'
-
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { createSlice } from '@reduxjs/toolkit'
+
 import type { RootState } from '..'
 import type { GlobalStore, Message, UserCookies } from '@/types'
+import { createSlice } from '@reduxjs/toolkit'
+import cookies from 'js-cookie'
 
 let userid = cookies.get('userid')
 if (userid) {

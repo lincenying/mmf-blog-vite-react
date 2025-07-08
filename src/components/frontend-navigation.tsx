@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-import { globalState, showLoginModal } from '@/store/global'
-
 import Avatar from '@/components/avatar'
+
+import { globalState, showLoginModal } from '@/store/global'
 
 export default function Navigation() {
     const navigate = useNavigate()

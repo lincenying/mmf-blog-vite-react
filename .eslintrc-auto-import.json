@@ -101,6 +101,7 @@
     "useState": true,
     "useSyncExternalStore": true,
     "useTextSelection": true,
+    "useTheme": true,
     "useThrottle": true,
     "useThrottleEffect": true,
     "useThrottleFn": true,

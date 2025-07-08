@@ -1,6 +1,10 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
+import Authorized from '@/components/backend-authorized'
+import BackendMenu from '@/components/backend-menu'
+import FrontendNavigation from '@/components/frontend-navigation'
+import ReloadPrompt from '@/components/reload-prompt'
 import AdminList from './backend/admin-list'
 import AdminModify from './backend/admin-modify'
 import ArticleInsert from './backend/article-insert'
@@ -13,10 +17,6 @@ import Comment from './backend/comment'
 import Login from './backend/login'
 import UserList from './backend/user-list'
 import UserModify from './backend/user-modify'
-import ReloadPrompt from '@/components/reload-prompt'
-import BackendMenu from '@/components/backend-menu'
-import Authorized from '@/components/backend-authorized'
-import FrontendNavigation from '@/components/frontend-navigation'
 
 function Backend() {
     const location = useLocation()

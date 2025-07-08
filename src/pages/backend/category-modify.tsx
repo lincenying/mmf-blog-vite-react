@@ -1,11 +1,11 @@
+import type { Category } from '@/types'
 import React from 'react'
-import { Link } from 'react-router-dom'
 
+import { Link } from 'react-router-dom'
 import api from '@/api'
-import { categoryState, getCategoryItem, updateCategoryItem } from '@/store/global/category'
 
 import AInput from '@/components/a-input'
-import type { Category } from '@/types'
+import { categoryState, getCategoryItem, updateCategoryItem } from '@/store/global/category'
 
 function CategoryModify() {
     const navigate = useNavigate()

@@ -1,12 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
-import api from '@/api'
-import { categoryState, getCategoryList } from '@/store/global/category'
-import { updateBackendArticle } from '@/store/backend/article'
-
-import AInput from '@/components/a-input'
 import type { Article } from '@/types'
+import React from 'react'
+
+import { Link } from 'react-router-dom'
+import api from '@/api'
+import AInput from '@/components/a-input'
+
+import { updateBackendArticle } from '@/store/backend/article'
+import { categoryState, getCategoryList } from '@/store/global/category'
 
 export default function ArticleInsert() {
     const params = useParams()

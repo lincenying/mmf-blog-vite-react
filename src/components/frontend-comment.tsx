@@ -1,12 +1,12 @@
+import type { Comment } from '@/types'
+
 import React, { useState } from 'react'
-
 import api from '@/api'
-import { commentState, getCommentList, insertCommentItem } from '@/store/global/comment'
-import { globalState, showLoginModal } from '@/store/global'
-
 import Avatar from '@/components/avatar'
 
-import type { Comment } from '@/types'
+import { globalState, showLoginModal } from '@/store/global'
+
+import { commentState, getCommentList, insertCommentItem } from '@/store/global/comment'
 
 export default function FrontendComment() {
     const location = useLocation()

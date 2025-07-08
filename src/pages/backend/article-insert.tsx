@@ -1,11 +1,11 @@
-import React from 'react'
-
-import api from '@/api'
-import { categoryState, getCategoryList } from '@/store/global/category'
-import { insertBackendArticle } from '@/store/backend/article'
-
-import AInput from '@/components/a-input'
 import type { Article } from '@/types'
+
+import React from 'react'
+import api from '@/api'
+import AInput from '@/components/a-input'
+
+import { insertBackendArticle } from '@/store/backend/article'
+import { categoryState, getCategoryList } from '@/store/global/category'
 
 export default function ArticleInsert() {
     const navigate = useNavigate()

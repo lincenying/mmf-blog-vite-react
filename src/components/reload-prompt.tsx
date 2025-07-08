@@ -1,5 +1,5 @@
-import React from 'react'
 import type { RegisterSWOptions } from 'virtual:pwa-register'
+import React from 'react'
 import { registerSW } from 'virtual:pwa-register'
 
 function useRegisterSW(options: RegisterSWOptions = {}) {

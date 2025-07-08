@@ -1,11 +1,11 @@
-import React from 'react'
+import type { User } from '@/types'
 
+import React from 'react'
 import api from '@/api'
-import Account from '@/components/aside-account'
 import AInput from '@/components/a-input'
 
+import Account from '@/components/aside-account'
 import { globalState, setCookis } from '@/store/global'
-import type { User } from '@/types'
 
 export default function UserAccount() {
     const dispatch = useDispatch()
@@ -33,7 +33,7 @@ export default function UserAccount() {
     })
 
     const handleModify = useLockFn(async () => {
-        const reg = /^([a-zA-Z0-9_\-.]+)@([a-zA-Z0-9_-]+)(\.[a-zA-Z0-9_-]+)$/i
+        const reg = /^[\w\-.]+@[\w-]+\.[\w-]+$/
         if (!state.email) {
             return setMessage('请填写邮箱地址!')
         }

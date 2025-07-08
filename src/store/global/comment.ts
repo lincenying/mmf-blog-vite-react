@@ -1,10 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { createSlice } from '@reduxjs/toolkit'
-
 import type { RootState } from '..'
-import { errConfig, setMessage } from '.'
-import api from '@/api'
+
 import type { Comment, CommentStore } from '@/types'
+import { createSlice } from '@reduxjs/toolkit'
+import api from '@/api'
+import { errConfig, setMessage } from '.'
 
 const initialState: CommentStore = {
     lists: {

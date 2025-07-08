@@ -47,21 +47,21 @@
 .slide-left-enter.slide-left-enter-active {
     z-index: 2;
     opacity: 1;
+    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+    transition-duration: 500ms;
+    transition-property: transform, opacity;
     transform: translate(0, 0);
     transform: translate3d(0, 0, 0);
-    transition-property: transform, opacity;
-    transition-duration: 500ms;
-    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
 }
 
 .slide-left-exit {
     min-height: 100vh;
     opacity: 0;
+    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
+    transition-duration: 0;
+    transition-property: transform, opacity;
     transform: translate(0, 0);
     transform: translate3d(0, 0, 0);
-    transition-property: transform, opacity;
-    transition-duration: 0;
-    transition-timing-function: cubic-bezier(0.175, 0.665, 0.32, 1), linear;
 }
 
 .slide-left-exit.slide-left-exit-active {
@@ -85,6 +85,7 @@
 //     opacity: 0;
 //     transform: translate3d(100px, 0, 0);
 // }
+
 @media (width <= 540px) {
     .slide-left-enter-active,
     .slide-left-leave-active,
@@ -217,7 +218,6 @@
         transform: rotate(360deg);
     }
 }
-
 @keyframes bounce {
     0%,
     100% {

@@ -1,14 +1,14 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useLockFn } from 'ahooks'
-
-import api from '@/api'
-import { setMessage } from '@/utils'
-
-import { globalState, showLoginModal } from '@/store/global'
-import { updateTopicsLikeState } from '@/store/frontend/topics'
-import { updateArticleLikeState } from '@/store/frontend/article'
 import type { Article } from '@/types'
+import { useLockFn } from 'ahooks'
+import React from 'react'
+
+import { useDispatch, useSelector } from 'react-redux'
+import api from '@/api'
+
+import { updateArticleLikeState } from '@/store/frontend/article'
+import { updateTopicsLikeState } from '@/store/frontend/topics'
+import { globalState, showLoginModal } from '@/store/global'
+import { setMessage } from '@/utils'
 
 export default function ItemActions(props: { readonly item: Article }) {
     const global = useSelector(globalState)
@@ -42,7 +42,7 @@ export default function ItemActions(props: { readonly item: Article }) {
         window.open(
             `http://service.weibo.com/share/share.php?title=${
                 encodeURIComponent(title.replace(/&nbsp;/g, ' ').replace(/<br \/>/g, ' '))
-                }&url=${
+            }&url=${
                 encodeURIComponent(url)}`,
             '分享至新浪微博',
             `height=500, width=600, top=${top}, left=${left}, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no`,

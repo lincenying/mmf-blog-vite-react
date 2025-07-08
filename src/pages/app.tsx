@@ -1,8 +1,8 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 
-import Frontend from './frontend'
 import Backend from './backend'
+import Frontend from './frontend'
 
 import 'uno.css'
 import '../assets/scss/style.scss'

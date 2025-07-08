@@ -1,9 +1,9 @@
 import React from 'react'
 
 import api from '@/api'
-import { strlen } from '@/utils'
-
 import { globalState, showLoginModal, showRegisterModal } from '@/store/global'
+
+import { strlen } from '@/utils'
 
 export default function SignUp() {
     const dispatch = useDispatch()

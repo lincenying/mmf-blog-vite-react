@@ -1,11 +1,11 @@
+import type { Category } from '@/types'
+
 import React from 'react'
 
 import api from '@/api'
 
-import { insertCategoryItem } from '@/store/global/category'
-
 import AInput from '@/components/a-input'
-import type { Category } from '@/types'
+import { insertCategoryItem } from '@/store/global/category'
 
 function CategoryModify() {
     const navigate = useNavigate()

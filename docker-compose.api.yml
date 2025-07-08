@@ -6,9 +6,9 @@ services:
       context: .
       dockerfile: Dockerfile.api
     extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - 'host.docker.internal:host-gateway'
     ports:
-      - "8088:80"
+      - '8088:80'
     networks:
       - webnet
 

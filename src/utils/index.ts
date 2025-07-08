@@ -1,5 +1,5 @@
-import toastr from 'toastr'
 import type { Message } from '@/types'
+import toastr from 'toastr'
 
 toastr.options.positionClass = 'toast-top-center'
 
@@ -37,7 +37,7 @@ export function strlen(str: string) {
 }
 
 export function timeAgo(time: string | number) {
-    const preg = /^[\d]+$/
+    const preg = /^\d+$/
     const timestamp = preg.test(`${time}`)
     if (!timestamp) {
         const tmp = Date.parse(`${time}`)
