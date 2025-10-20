@@ -46,7 +46,7 @@ export default defineConfig(({ mode }) => {
                 ],
                 imports: [
                     'react',
-                    'react-router-dom',
+                    'react-router',
                     'ahooks',
                     {
                         'react-redux': ['useSelector', 'useDispatch'],

@@ -1,7 +1,7 @@
 import type { Category } from '@/types'
 import React from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import api from '@/api'
 
 import AInput from '@/components/a-input'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router'
 
 import Authorized from '@/components/backend-authorized'
 import BackendMenu from '@/components/backend-menu'

@@ -1,6 +1,6 @@
 import type { Category } from '@/types'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 function AsideCategory(props: { readonly payload: Category[] }) {
     const { payload } = props

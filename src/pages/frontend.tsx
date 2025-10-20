@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import Authorized from '@/components/frontend-authorized'

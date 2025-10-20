@@ -1,6 +1,6 @@
 import type { Article } from '@/types'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 function AsideTrending(props: { readonly payload: Article[] }) {
     const { payload } = props
